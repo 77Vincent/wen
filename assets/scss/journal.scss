@@ -697,6 +697,7 @@ a {
               margin-left: 0;
             }
             .post-item-image {
+              border: rgba($color-accent, 0.2) 1px solid;
               width: 230px;
               height: 120px;
               background: no-repeat center;
@@ -788,10 +789,10 @@ a {
       background: no-repeat center;
       background-size: cover;
       position: relative;
-      padding-top: 140px;
+      padding-top: 40px;
 
       @media screen and (max-width: $single-column-max-width) {
-        padding-top: 120px;
+        padding-top: 20px;
       }
       * {
         color: white;

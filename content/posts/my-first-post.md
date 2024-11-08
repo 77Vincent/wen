@@ -1,10 +1,10 @@
 ---
 title: "轻松理解汉明码"
-date: 2018-03-18T02:01:58+05:30
-description: "hhh"
-tags: [Primer, todo]
+date: 2024-03-18T02:01:58+05:30
+description: "为何汉明码的几个不等式是那样的?"
+tags: [technology, work]
 featured_image: "https://wen-images.s3.ap-northeast-1.amazonaws.com/hamming-distance-1-bit-error.png"
-categories: Todo
+categories: work 
 comment : false
 ---
 
