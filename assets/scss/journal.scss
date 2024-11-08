@@ -1,4 +1,4 @@
-$color-accent: #4312c2;
+$color-accent: #b92278;
 //$color-accent: #330000;
 $back-container-background: #fcfcfc;
 $front-container-background: #ffffff;
@@ -26,7 +26,7 @@ $post-summary-size: 16px;
 $post-body-size: 16px;
 $post-meta-size: 16px;
 $tag-category-title-size: 22px;
-$toc-size: 16px;
+$toc-size: 15px;
 
 $dark-accent: darken($color-accent, 10%);
 $deep-dark-accent: darken($color-accent, 50%);
@@ -84,6 +84,12 @@ h1,
 h2,
 h3 {
   font-weight: 400;
+}
+
+li, ul,
+p {
+  font-size: 1.05rem;
+  line-height: 1.65;
 }
 
 h1 {
@@ -902,6 +908,8 @@ a {
           word-wrap: break-word;
         }
         img {
+          display: block;
+          margin: 0 auto;
           max-width: 100%;
           border-radius: 5px;
           overflow: hidden;
@@ -964,26 +972,34 @@ a {
   }
 }
 
+.underline {
+  color: rgba($color-text, 0.4);
+  border-bottom: 1px solid rgba($color-text, 0.06);
+}
+
 .toc {
   float: right;
   border-radius: 5px;
-  margin-left: 30px;
+  margin-left: 20px;
   margin-right: 30px;
   margin-top: 30px;
   min-width: 200px;
   max-width: 260px;
   max-height: 80vh;
   overflow: auto;
-  background: rgba($color-accent, 0.05);
+  background: rgba($color-accent, 0.04);
   &,
   * {
     font-size: $toc-size;
   }
   ul {
     list-style: none;
-    padding: 0 0 0 20px;
-    margin: 0;
+    padding: 0;
+    margin: 10px 0 0;
     line-height: 1.7em;
+    li {
+      margin-bottom: 5px;
+    }
   }
   .toc-content {
     padding: 20px;
