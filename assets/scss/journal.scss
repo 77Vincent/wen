@@ -18,9 +18,9 @@ $stream-container-max-width: 1620px;
 
 $nav-title-size: 30px;
 $nav-subtitle-size: 18px;
-$nav-link-size: 20px;
+$nav-link-size: 18px;
 $nav-footer-size: 12px;
-$post-title-size: 27px;
+$post-title-size: 26px;
 $post-subtitle-size: 14px;
 $post-summary-size: 16px;
 $post-body-size: 16px;
@@ -459,6 +459,8 @@ a {
     border-right: 2px solid transparent;
     .nav-subtitle {
       margin-top: 8px;
+      font-style: italic;
+      color: $dark-accent;
       font-size: $nav-subtitle-size;
     }
     &:hover {
@@ -477,7 +479,7 @@ a {
     flex-grow: 1;
     .nav-link-item {
       font-size: $nav-link-size;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       border-right: 2px solid transparent;
       padding: 8px 28px 8px 30px;
       cursor: hand;
@@ -629,8 +631,8 @@ a {
         cursor: hand;
         cursor: pointer;
         .post-item {
-          margin: 0 28px 0 35px;
-          padding: 27px 0;
+          margin: 0 21px 0 27px;
+          padding: 24px 0;
           display: flex;
           flex-direction: row;
           align-items: center;
