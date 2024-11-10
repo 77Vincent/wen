@@ -5,6 +5,7 @@ description: "通过图示整体理解汉明码的几个基本公式的原理"
 tags: [work, computer-science, math]
 featured_image: "https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-error-correction.png"
 categories: study 
+canonicalUrl: "https://wenstudy.com/posts/hamming-distance/"
 ---
 
 对于一个码字间最短汉明距离为 m 的编码，它可以检测出 r 比特个错误只要满足

@@ -520,6 +520,7 @@ a {
   }
   .nav-footer {
     padding: 20px 30px 0 20px;
+    opacity: 0.7;
     font-size: $nav-footer-size;
   }
   @media screen and (max-width: $single-column-max-width) {
