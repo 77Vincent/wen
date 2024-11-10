@@ -2,6 +2,8 @@ baseURL: 'https://wenstudy.com'
 languageCode: en-us
 title: WEN
 theme: diary
+enableGitalk: true
+
 ## marketing
 services:
   googleAnalytics:
@@ -9,6 +11,11 @@ services:
 params:
   description: WEN's personal blog site of study notes that covers arts, computer science, maths .etc.. 文的个人博客，覆盖艺术，技术，数学等个主题的文章和学习笔记。
   subtitle: Welcome to my study notes
+  gitalk:
+    owner: "77Vincent"
+    repo: "wen-blog-comments"
+    client_id: "Ov23lit0mk6PdYjm9mYF"
+    client_secret: "9bb9c80a13eee33cc6135079470ad110c5d9927e"
 meta:
   - favicon: true
 deployment:
