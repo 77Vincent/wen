@@ -1,8 +1,8 @@
-$color-accent: #117246;
+$color-accent: #735e56;
 $color-border: rgba(128, 128, 128, 0.12);
 //$color-accent: #330000;
-$back-container-background: #fcfcfc;
-$front-container-background: #ffffff;
+$back-container-background: #f6f5f5;
+$front-container-background: #fcfbfb;
 $color-paper-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 
 $default-font-list: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -31,7 +31,7 @@ $tag-category-title-size: 22px;
 $toc-size: 15px;
 
 $dark-accent: darken($color-accent, 10%);
-$deep-dark-accent: darken($color-accent, 50%);
+$deep-dark-accent: darken($color-accent, 65%);
 $color-text: $deep-dark-accent;
 
 @if lightness($color-accent) <20% {
@@ -176,7 +176,7 @@ pre {
 blockquote {
   padding: 10px 20px;
   border-left: 3px solid rgba($color-accent, 0.7);
-  font-family: monospace;
+  font-family: $mono-font-list;
   color: $dark-accent;
   background: rgba($color-accent, 0.05);
   p {
@@ -452,7 +452,7 @@ a {
   $nav-item-hover-background-alpha: 0.02;
   $nav-item-hover-indicator-alpha: 0.6;
   $nav-item-hover-color-darken: 30%;
-  $nav-item-active-background-alpha: 0.03;
+  $nav-item-active-background-alpha: 0.07;
   $nav-item-active-color-darken: 20%;
   .nav-head {
     padding: 30px 28px 30px 20px;
@@ -463,6 +463,7 @@ a {
     .nav-title {
       font-size: $nav-title-size;
       line-height: $nav-title-size * 1.4;
+      font-family: $mono-font-list;
     }
     border-right: 2px solid transparent;
     .nav-subtitle {
@@ -510,6 +511,7 @@ a {
         color: darken($color-accent, $nav-item-hover-color-darken);
       }
       &.active {
+        font-weight: 700;
         border-right: 2px solid $color-accent;
         background: rgba($color-accent, $nav-item-active-background-alpha);
         color: darken($color-accent, $nav-item-active-color-darken);
@@ -1002,7 +1004,7 @@ a {
   max-width: 260px;
   max-height: 80vh;
   overflow: auto;
-  background: rgba($color-accent, 0.04);
+  background: rgba($color-border, 0.05);
   &,
   * {
     font-size: $toc-size;

@@ -1,5 +1,6 @@
 baseURL: 'https://wenstudy.com'
-languageCode: en-us
+languageCode: en
+DefaultContentLanguage: en
 title: WEN
 theme: diary
 
@@ -11,6 +12,7 @@ services:
 params:
   description: WEN's personal blog site of study notes that covers arts, computer science, maths .etc.. 文的个人博客，覆盖艺术，技术，数学等个主题的文章和学习笔记。
   subtitle: Welcome to my study notes
+#  googleSearchCode: 635148eea787144bc
   enableGitalk: true
   gitalk:
     owner: "77Vincent"
@@ -36,9 +38,3 @@ menu:
     - url: /tags
       name: Tags
       weight: 3
-    - url: /posts
-      name: Archive
-      weight: 1
-    - url: /index.xml
-      name: RSS Feed
-      weight: 4

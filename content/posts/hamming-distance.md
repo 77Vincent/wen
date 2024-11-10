@@ -1,7 +1,7 @@
 ---
 title: "轻松理解汉明码"
 date: 2024-03-18T02:01:58+05:30
-description: "为何汉明码的几个不等式是那样的?"
+description: "通过图示整体理解汉明码的几个基本公式的原理"
 tags: [work, computer-science, math]
 featured_image: "https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-error-correction.png"
 categories: study 
