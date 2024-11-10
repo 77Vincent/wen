@@ -1,4 +1,5 @@
 $color-accent: #117246;
+$color-border: rgba(128, 128, 128, 0.12);
 //$color-accent: #330000;
 $back-container-background: #fcfcfc;
 $front-container-background: #ffffff;
@@ -169,6 +170,7 @@ pre {
 blockquote {
   padding: 10px 20px;
   border-left: 3px solid rgba($color-accent, 0.7);
+  font-family: monospace;
   color: $dark-accent;
   background: rgba($color-accent, 0.05);
   p {
@@ -618,7 +620,7 @@ a {
     min-height: 100vh;
     padding: 20px 0 20px 0;
     background: $front-container-background;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 
     @media screen and (max-width: $single-column-max-width) {
       min-height: unset;
@@ -757,7 +759,7 @@ a {
 
       &:not(:last-child) {
         .post-item {
-          border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+          border-bottom: 1px solid $color-border;
 
           @media screen and (max-width: $single-column-max-width) {
             //border-bottom: none !important;
@@ -901,7 +903,7 @@ a {
     }
 
     .post-body-wrapper {
-      padding: 30px 35px 35px 35px;
+      padding: 30px 40px 35px;
 
       @media screen and (max-width: $single-column-max-width) {
         padding: 20px 20px 35px 20px;
@@ -933,6 +935,7 @@ a {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      border-top: 1px solid $color-border;
 
       .newer-posts {
         padding-right: 5px;
@@ -952,6 +955,7 @@ a {
     }
 
     .post-comment-wrapper {
+      border-top: 1px solid $color-border;
       iframe {
         // Yay a dirty hack
         overflow: hidden !important;
@@ -977,9 +981,10 @@ a {
   }
 }
 
-.underline {
+.toc-header {
   color: rgba($color-text, 0.4);
-  border-bottom: 1px solid rgba($color-text, 0.06);
+  border-bottom: 1px solid $color-border;
+  margin-bottom: 1rem;
 }
 
 .toc {
