@@ -1,15 +1,14 @@
-baseURL: 'https://example.org/'
+baseURL: 'https://wenstudy.com'
 languageCode: en-us
 title: WEN
-copyright: This is a customized copyright.
 theme: diary
 ## marketing
 services:
   googleAnalytics:
     id: G-XXXXXXXXXX
 params:
-  description: WEN's personal blog site that covers techonology and study notes. 文的个人博客，覆盖技术文章和学习笔记。
-  subtitle: hi, welcome to my study space
+  description: WEN's personal blog site of study notes that covers arts, computer science, maths .etc.. 文的个人博客，覆盖艺术，技术，数学等个主题的文章和学习笔记。
+  subtitle: Welcome to my study notes
 meta:
   - favicon: true
 deployment:
