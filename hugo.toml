@@ -6,6 +6,9 @@ theme = 'diary'
 [params]
 # Add list of sections that should show up on the homepage
 
+[[meta]]
+favicon = true
+
 #[[menu.main]]
 #name = "About"
 #url = "/about"
