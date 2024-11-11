@@ -206,8 +206,6 @@ a {
   overflow: hidden;            /* 隐藏溢出文字 */
   text-overflow: ellipsis;     /* 添加省略号 */
   -webkit-line-clamp: 2;       /* 限制显示两行 */
-  line-height: 1.5em;          /* 调整行高，根据需求调整 */
-  max-height: 3em;             /* 两行内容的最大高度 (line-height * 2) */
 }
 
 .a-block {
@@ -731,11 +729,12 @@ a {
             }
             .post-item-image {
               border: rgba($color-accent, 0.2) 1px solid;
-              width: 230px;
-              height: 120px;
+              width: 200px;
+              height: 130px;
               background: no-repeat center;
               background-size: cover;
               border-radius: 5px;
+              position: relative;
               overflow: hidden;
 
               @media screen and (max-width: $single-column-max-width) {

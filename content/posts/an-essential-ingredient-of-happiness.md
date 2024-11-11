@@ -5,7 +5,7 @@ description: For some people, losing possibilities or choices in their lives, or
 tags: [life, english]
 featured_image: https://wen-images.s3.ap-northeast-1.amazonaws.com/travel/WechatIMG12.jpg
 categories: sutra
-canonicalUrl: https://wenstudy.com/posts/hamming-distance/
+canonicalUrl: https://wenstudy.com/posts/an-essential-ingredient-of-happiness/
 ---
 
 For some people, losing possibilities or choices in their lives, or having a heartfelt acceptance of fate, can be quite distasteful. It is best to always be in a state with infinite opportunities. Otherwise, surprisingly, they feel unsafe.
