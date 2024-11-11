@@ -97,6 +97,7 @@ li,
 p {
   font-size: 1.05rem;
   line-height: 1.65;
+  margin-bottom: 1.5rem;
 }
 
 h1 {
@@ -160,6 +161,8 @@ pre {
   background: rgba($color-accent, 0.07);
   padding: 12px 15px;
   border-radius: 5px;
+  border-color: $color-border;
+  border-style: solid;
   font-family: $mono-font-list;
   * {
     background: none;
@@ -650,7 +653,7 @@ a {
         cursor: hand;
         cursor: pointer;
         .post-item {
-          margin: 0 21px 0 27px;
+          margin: 0 24px 0 30px;
           padding: 24px 0;
           display: flex;
           flex-direction: row;
@@ -929,7 +932,7 @@ a {
     }
 
     .post-body-wrapper {
-      padding: 30px 45px 0px;
+      padding: 30px 50px 0;
 
       @media screen and (max-width: $single-column-max-width) {
         padding: 20px 20px 35px 20px;

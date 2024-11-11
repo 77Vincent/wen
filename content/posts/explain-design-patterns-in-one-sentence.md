@@ -8,8 +8,6 @@ categories: study
 canonicalUrl: https://wenstudy.com/posts/explain-design-patterns-one-sentence/
 ---
 
-![image of common pattern](https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/explain-design-patterns-in-one-sentence/explain-design-patterns-in-one-sentence.webp "common pattern")
-
 Most of these patterns have one thing in common, which is to connect producers and consumers through the interface. The abstraction of the interface is the key. It reflects a deep understanding of the underlying type. Knowing this can simply things, no matter what scenario we are dealing with, or what language is being used.
 
 As for why currently there are these patterns, how many there are yet to be discovered, and what mathematical nature is behind them, I can't answer now.
