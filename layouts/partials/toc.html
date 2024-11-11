@@ -9,7 +9,7 @@
 		<div class="toc-header">{{ i18n "toc_title" }}</div>
 		{{ $scratch := newScratch }}
 		{{ $scratch.Set "prev_heading" 1 }}
-		<ul>
+		<ul style="padding-left: 5px">
 			{{ range $headers }}
 				{{ $header := . }}
 				{{ range first 1 (findRE $re $header 1) }}
