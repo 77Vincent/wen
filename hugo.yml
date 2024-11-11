@@ -3,6 +3,19 @@ DefaultContentLanguage: en
 languageCode: en-us
 title: WEN
 theme: diary
+enableLaTeX: true
+
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: false
+    hl_Lines: ''
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: false
+    noClasses: true
+    style: catppuccin-macchiato
+    tabWidth: 4
 
 ## marketing
 services:
@@ -31,6 +44,9 @@ deployment:
 
 menu:
   main:
+    - url: /posts
+      name: "Archive"
+      weight: 1
     - url: /categories
       name: Categories
       weight: 2

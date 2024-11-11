@@ -13,7 +13,7 @@ $mono-font-list: "Fira Mono", "Cousine", Monaco, Menlo, "Source Code Pro",
 //$sans-preferred-font-list: "Montserrat", "Roboto", "Source Sans Pro", "Helvetica", $default-font-list;
 $sans-preferred-font-list: $default-font-list;
 
-$side-container-width: 25%; //280px;
+$side-container-width: 20%; //280px;
 $extra-container-width: 25%;
 $extra-container-pagination-width: 64px;
 $stream-container-max-width: 1620px;
@@ -198,6 +198,16 @@ a {
       text-decoration: none !important;
     }
   }
+}
+
+.truncate-2-lines {
+  display: -webkit-box;        /* 使用 flex 容器 */
+  -webkit-box-orient: vertical; /* 垂直排列 */
+  overflow: hidden;            /* 隐藏溢出文字 */
+  text-overflow: ellipsis;     /* 添加省略号 */
+  -webkit-line-clamp: 2;       /* 限制显示两行 */
+  line-height: 1.5em;          /* 调整行高，根据需求调整 */
+  max-height: 3em;             /* 两行内容的最大高度 (line-height * 2) */
 }
 
 .a-block {
@@ -829,17 +839,17 @@ a {
         background: -moz-linear-gradient(
           top,
           rgba(0, 0, 0, 0) 0%,
-          rgba(0, 0, 0, 0.75) 100%
+          rgba(0, 0, 0, 0.8) 90%
         ); /* FF3.6-15 */
         background: -webkit-linear-gradient(
           top,
           rgba(0, 0, 0, 0) 0%,
-          rgba(0, 0, 0, 0.75) 100%
+          rgba(0, 0, 0, 0.8) 90%
         ); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
-          rgba(0, 0, 0, 0.75) 100%
+          rgba(0, 0, 0, 0.8) 90%
         ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#c6000000', GradientType=0); /* IE6-9 */
 
