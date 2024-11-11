@@ -696,9 +696,17 @@ a {
               }
             }
             .post-item-meta {
+              display: flex;
+              justify-content: space-between;
               font-size: $post-meta-size;
-              color: gray;
               font-style: italic;
+
+              .post-meta {
+                display: flex;
+                a {
+                  margin-left: 0.3rem;
+                }
+              }
 
               @media screen and (max-width: $single-column-max-width) {
                 font-size: $single-column-post-meta-size;
