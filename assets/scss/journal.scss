@@ -19,7 +19,7 @@ $extra-container-pagination-width: 64px;
 $stream-container-max-width: 1620px;
 
 $nav-title-size: 30px;
-$nav-subtitle-size: 18px;
+$nav-subtitle-size: 16px;
 $nav-link-size: 18px;
 $nav-footer-size: 10px;
 $post-title-size: 26px;
@@ -443,7 +443,7 @@ a {
   width: $side-container-width;
   text-align: right;
   font-family: $sans-preferred-font-list;
-  padding: 20px 0 30px 0;
+  padding: 20px 0;
   //overflow-x: hidden;
   //overflow-y: hidden;
   display: flex;
