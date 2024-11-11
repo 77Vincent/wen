@@ -1,6 +1,6 @@
 baseURL: https://wenstudy.com
-languageCode: en
 DefaultContentLanguage: en
+languageCode: en-us
 title: WEN
 theme: diary
 
