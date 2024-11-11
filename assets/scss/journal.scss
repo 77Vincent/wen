@@ -22,7 +22,7 @@ $nav-title-size: 30px;
 $nav-subtitle-size: 16px;
 $nav-link-size: 18px;
 $nav-footer-size: 10px;
-$post-title-size: 26px;
+$post-title-size: 24px;
 $post-subtitle-size: 14px;
 $post-summary-size: 16px;
 $post-body-size: 16px;
@@ -675,7 +675,7 @@ a {
               font-weight: 500;
               font-style: normal;
               margin-bottom: 10px;
-              line-height: 1.5em;
+              line-height: 1.25em;
 
               @media screen and (max-width: $single-column-max-width) {
                 font-size: $single-column-post-title-size;
@@ -696,7 +696,7 @@ a {
               font-size: $post-summary-size;
               line-height: 1.5em;
               margin-bottom: 10px;
-              //font-weight:300;
+              font-weight:300;
 
               @media screen and (max-width: $single-column-max-width) {
                 font-size: $single-column-post-summary-size;
@@ -1020,7 +1020,7 @@ a {
   margin-top: 30px;
   min-width: 200px;
   max-width: 260px;
-  max-height: 80vh;
+  max-height: 70vh;
   overflow: auto;
   background: rgba($color-border, 0.05);
   &,

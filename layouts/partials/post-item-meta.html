@@ -22,7 +22,7 @@
 
     <div class="post-meta">
         {{ if .Params.categories }}
-            <i class="material-icons text-dark" style="">folder</i>
+            <i class="material-icons text-dark" style="opacity: 0.7">folder</i>
             <a href="{{ "/categories/" | relLangURL }}{{ .Params.categories | urlize }}">{{ .Params.categories }}</a>
             &nbsp;
         {{ end }}
