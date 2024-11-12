@@ -20,7 +20,7 @@ canonicalUrl: https://wenstudy.com/posts/hamming-distance/
 
 假设已定义两个码字A和B，然后我们接收到C，它本应是A和B中的一个。因为C距离A或B的最大距离只能是 r（即最大为r比特的错误），而根据上述不等式，A和B的最小距离都要比 r 多1，所以错误为r比特的C一定不会被误认为任何一个合法码字。然而我们无法得知C原本应是A还是B，因为它可能来自于从A出发的1比特错误，或者从B出发的r比特错误。
 
-![image of error detecting](https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-error-detecting.png "error detecting")
+![image of error detecting](/images/hamming-distance/error-detecting.png "error detecting")
 
 This is actually a Hamming(3, 1) error correcting code [^1]
 
@@ -30,7 +30,7 @@ This is actually a Hamming(3, 1) error correcting code [^1]
 
 为了将C还原为A或B，即纠正错误，我们必须知道C距离哪个合法码字更近。即然A和B可以同时出现 r 比特的错误，只需在此距离上加1，就必然会出现赢家，即只会距离A或B中的一个更近，而没有平局。若不添加这1比特的距离，C既可能来自于A的r比特错误，也可能来自于B，因而无法定论。
 
-![image of error correction](https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-error-correction.png "error correction")
+![image of error correction](/images/hamming-distance/error-correction.png "error correction")
 
 ## 汉明码
 
@@ -50,7 +50,7 @@ This is actually a Hamming(3, 1) error correcting code [^1]
 2. 校验位1号出错，校验位2号会和信息位的奇偶性匹配。
 3. 同理，校验位2号出错，1号会和信息位匹配。
 
-![image of 1 bit error detection](https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-1-bit-error.png "1 bit error detection")
+![image of 1 bit error detection](/images/hamming-distance/1-bit-error.png "1 bit error detection")
 
 ## 为了修复一比特错误而需要的校验位数量
 

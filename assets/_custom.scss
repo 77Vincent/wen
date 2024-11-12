@@ -1,10 +1,21 @@
 /* You can add custom styles here. */
 
- //@import "plugins/numbered";
+//@import "plugins/numbered";
+@import "defaults";
 
-.book-post {
+
+.markdown {
+  > h2 {
+    font-weight: 700;
+  }
+
   .book-post-content {
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid var(--gray-200);
     margin-top: 1rem;
+
+    img {
+      border: 1px solid var(--gray-200);
+      border-radius: 5px;
+    }
   }
 }
