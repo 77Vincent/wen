@@ -1,10 +1,12 @@
 ---
-title: 轻松理解汉明码
+title: 理解汉明码
 date: 2024-03-18T02:01:58+05:30
 tags: [computer-science, math]
 categories: study 
 canonicalUrl: https://wenstudy.com/posts/hamming-distance/
 ---
+
+汉明距离是两个等长字符串之间对应位置上不同字符的个数。在编码理论中，用来衡量两个码字之间的差异。 `001` 和 `101` 的汉明距离是1。
 
 对于一个码字间最短汉明距离为 m 的编码，它可以检测出 r 比特个错误只要满足
 

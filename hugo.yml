@@ -1,17 +1,26 @@
 baseURL: https://wenstudy.com
 title: WEN
 theme: hugo-book
+defaultContentLanguage: zh
 
-summaryLength: 7
+summaryLength: 5
 # Book configuration
 disablePathToLower: true
 enableRobotsTXT: true
 
+# Multi-lingual mode config
+# There are different options to translate files
+# See https://gohugo.io/content-management/multilingual/#translation-by-filename
+# And https://gohugo.io/content-management/multilingual/#translation-by-content-directory
 languages:
+  zh:
+    languageName: Chinese
+    contentDir: content.zh
+    weight: 1
   en:
     languageName: English
     contentDir: content.en
-    weight: 1
+    weight: 2
 
 markup:
   highlight:
