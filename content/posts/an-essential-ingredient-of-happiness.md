@@ -1,9 +1,7 @@
 ---
 title: An essential ingredient of happiness
 date: 2023-10-30T02:01:58+05:30
-description: For some people, losing possibilities or choices in their lives, or having a heartfelt acceptance of fate, can be quite distasteful.
 tags: [life, english]
-featured_image: https://wen-images.s3.ap-northeast-1.amazonaws.com/travel/WechatIMG12.jpg
 categories: sutra
 canonicalUrl: https://wenstudy.com/posts/an-essential-ingredient-of-happiness/
 ---

@@ -1,9 +1,7 @@
 ---
 title: Explain design patterns in one sentence
 date: 2023-10-29T02:01:58+05:30
-description: With minimum Golang sample code
 tags: [computer-science, golang, english]
-featured_image: https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/explain-design-patterns-in-one-sentence/explain-design-patterns-in-one-sentence.webp
 categories: study 
 canonicalUrl: https://wenstudy.com/posts/explain-design-patterns-one-sentence/
 ---

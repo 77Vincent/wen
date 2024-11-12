@@ -1,9 +1,7 @@
 ---
 title: 轻松理解汉明码
 date: 2024-03-18T02:01:58+05:30
-description: 通过图示整体理解汉明码的几个基本公式的原理
 tags: [computer-science, math]
-featured_image: https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/color-block-cover.webp
 categories: study 
 canonicalUrl: https://wenstudy.com/posts/hamming-distance/
 ---
