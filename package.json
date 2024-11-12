@@ -1,0 +1,15 @@
+{
+  "name": "wen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "index-and-send": "hugo-algolia --config ./hugo.yml -s",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "hugo-algolia": "^1.2.14"
+  }
+}
