@@ -15,6 +15,15 @@
     font-weight: 700;
   }
 
+  .book-post-content {
+    h2 {
+      margin-top: 2.5rem;
+    }
+    h3 {
+      font-size: $font-size-l;
+    }
+  }
+
   blockquote {
     background-color: var(--color-blockquote);
     font-family: monospace;
@@ -31,6 +40,7 @@
     img {
       border: 1px solid var(--gray-300);
       border-radius: 5px;
+      margin-top: 1.5rem;
     }
   }
 }
