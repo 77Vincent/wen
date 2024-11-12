@@ -447,6 +447,11 @@ a {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
+.dosearch {
+  margin-top: 10px;
+  margin-bottom: -20px;
+}
+
 .side-container {
   position: fixed;
   top: 0;
@@ -834,7 +839,7 @@ a {
       }
       .post-title {
         padding: 80px 35px 30px 35px;
-        font-size: $post-title-size;
+        font-size: $post-title-size + 12px;
         font-weight: 600;
         font-style: normal;
         line-height: 1.5em;
@@ -896,15 +901,16 @@ a {
         padding: 30px 20px 0 20px;
       }
       .post-title {
-        font-size: $post-title-size;
+        font-size: $post-title-size + 12px;
+        border-bottom: 1px solid $color-border;
         font-weight: 600;
         font-style: normal;
         line-height: 1.5em;
         .post-subtitle {
           font-size: $post-subtitle-size;
+          line-height: 2rem;
           width: 80%;
           opacity: 0.6;
-          padding: 0px 0 8px 0;
         }
         .post-meta {
           margin: 0;

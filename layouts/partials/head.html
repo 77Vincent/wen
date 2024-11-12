@@ -122,7 +122,9 @@
     })(window, document, "clarity", "script", "ow7fogtvc2");
 </script>
 
-{{ if and ( and ( .Site.Params.enableGitalk ) ( .IsPage ) ) ( or ( not ( isset .Params "comment" ) ) ( eq .Params.comment true ) ) }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+
+    {{ if and ( and ( .Site.Params.enableGitalk ) ( .IsPage ) ) ( or ( not ( isset .Params "comment" ) ) ( eq .Params.comment true ) ) }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <!-- For compatibility. View https://github.com/AmazingRise/hugo-theme-diary/pull/135 for details.-->

@@ -1,5 +1,6 @@
 <div id="extraContainer" class="extra-container">
     <div class="toc-wrapper">
+<!--        <div class="dosearch" id="dosearch"></div>-->
         {{ if and (isset .Site.Params "googlesearchcode") (.IsHome) }}
         <script async src="https://cse.google.com/cse.js?cx={{.Site.Params.googleSearchCode}}"></script>
         <div class="gcse-searchbox-only" mobileLayout="true"></div>

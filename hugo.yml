@@ -3,7 +3,12 @@ DefaultContentLanguage: en
 languageCode: en-us
 title: WEN
 theme: diary
-enableLaTeX: true
+enableRobotsTXT: true
+
+algolia:
+  index: "wenstudy"
+  appID: "ZX8NQDH1YO"
+  key: "7e0310896450763f5adcd0a8f428cd2d"
 
 markup:
   highlight:
@@ -24,6 +29,7 @@ services:
 
 params:
   description: WEN's personal blog site of study notes that covers arts, computer science, maths .etc.. 文的个人博客，覆盖艺术，技术，数学等个主题的文章和学习笔记。
+  enableLaTeX: true
 #  googleSearchCode: 635148eea787144bc
   enableGitalk: true
   gitalk:
