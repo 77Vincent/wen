@@ -16,7 +16,7 @@ canonicalUrl: https://wenstudy.com/posts/hamming-distance/
 
 为什么呢？
 
-# 错误检测
+## 错误检测
 
 假设已定义两个码字A和B，然后我们接收到C，它本应是A和B中的一个。因为C距离A或B的最大距离只能是 r（即最大为r比特的错误），而根据上述不等式，A和B的最小距离都要比 r 多1，所以错误为r比特的C一定不会被误认为任何一个合法码字。然而我们无法得知C原本应是A还是B，因为它可能来自于从A出发的1比特错误，或者从B出发的r比特错误。
 
@@ -26,13 +26,13 @@ This is actually a Hamming(3, 1) error correcting code [^1]
 
 [^1]: [Hamming code (3,1)](https://en.wikipedia.org/wiki/Hamming_code)
 
-# 错误纠正
+## 错误纠正
 
 为了将C还原为A或B，即纠正错误，我们必须知道C距离哪个合法码字更近。即然A和B可以同时出现 r 比特的错误，只需在此距离上加1，就必然会出现赢家，即只会距离A或B中的一个更近，而没有平局。若不添加这1比特的距离，C既可能来自于A的r比特错误，也可能来自于B，因而无法定论。
 
 ![image of error correction](https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-error-correction.png "error correction")
 
-# 汉明码
+## 汉明码
 
 真实世界里，一个比特的错误很少，两个的更是罕见，因而著名的汉明码针对的是一个比特错误的修复。我们从最基本的情况来学习。
 
@@ -52,7 +52,7 @@ This is actually a Hamming(3, 1) error correcting code [^1]
 
 ![image of 1 bit error detection](https://wen-images.s3.ap-northeast-1.amazonaws.com/blog/hamming-distance/hamming-distance-1-bit-error.png "1 bit error detection")
 
-# 为了修复一比特错误而需要的校验位数量
+## 为了修复一比特错误而需要的校验位数量
 
 更一般的说，信息论角度说，为了**检测** m 比特信息中，一比特错误而所需的最少校验位数量 r。
 

@@ -1,14 +1,17 @@
 baseURL: https://wenstudy.com
-DefaultContentLanguage: en
-languageCode: en-us
 title: WEN
-theme: diary
+theme: hugo-book
+
+summaryLength: 7
+# Book configuration
+disablePathToLower: true
 enableRobotsTXT: true
 
-algolia:
-  index: "wenstudy"
-  appID: "ZX8NQDH1YO"
-  key: "7e0310896450763f5adcd0a8f428cd2d"
+languages:
+  en:
+    languageName: English
+    contentDir: content.en
+    weight: 1
 
 markup:
   highlight:
@@ -30,13 +33,7 @@ services:
 params:
   description: WEN's personal blog site of study notes that covers arts, computer science, maths .etc.. 文的个人博客，覆盖艺术，技术，数学等个主题的文章和学习笔记。
   enableLaTeX: true
-#  googleSearchCode: 635148eea787144bc
-  enableGitalk: true
-  gitalk:
-    owner: "77Vincent"
-    repo: "wen-blog-comments"
-    client_id: "Ov23lit0mk6PdYjm9mYF"
-    client_secret: "9bb9c80a13eee33cc6135079470ad110c5d9927e"
+  BookSection: posts
 
 meta:
   - favicon: true
@@ -47,15 +44,3 @@ deployment:
       URL: s3://wenstudy.com?region=ap-northeast-1
     - name: production-www
       URL: s3://www.wenstudy.com?region=ap-northeast-1
-
-menu:
-  main:
-    - url: /posts
-      name: "Archive"
-      weight: 1
-    - url: /categories
-      name: Categories
-      weight: 2
-    - url: /tags
-      name: Tags
-      weight: 3

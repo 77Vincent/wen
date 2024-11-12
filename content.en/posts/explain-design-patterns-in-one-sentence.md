@@ -10,9 +10,9 @@ Most of these patterns have one thing in common, which is to connect producers a
 
 As for why currently there are these patterns, how many there are yet to be discovered, and what mathematical nature is behind them, I can't answer now.
 
-# Creational - How instances are created
+## Creational - How instances are created
 
-## Factory
+### Factory
 
 The factory method is in charge of creating a series of instances that all implement one common interface. The return type is the interface instead of a concrete class.
 
@@ -32,7 +32,7 @@ func factory(string t) I {
 }
 ```
 
-## Singleton
+### Singleton
 
 One instance throughout the application life-cycle.
 
@@ -61,7 +61,7 @@ func Get() {
 }
 ```
 
-## Prototype
+### Prototype
 
 Instances are obtained by cloning but not instantiating. Their class implements a common interface that defines a clone method, so the return type is an interface but not the concrete class.
 
@@ -84,9 +84,9 @@ func main() {
 }
 ```
 
-# Structural - How components collaborate
+## Structural - How components collaborate
 
-## Bridge
+### Bridge
 
 Class A delegates tasks to class B. They share a common interface.
 
@@ -116,7 +116,7 @@ func main() {
 }
 ```
 
-## Adapter
+### Adapter
 
 Class A interacts with incompatible class B through an adapter.
 
@@ -147,7 +147,7 @@ func main() {
 }
 ```
 
-## Composite
+### Composite
 
 Using a tree-like structure if the business model is recursive.
 
@@ -180,7 +180,7 @@ func main() {
 }
 ```
 
-## Facade
+### Facade
 
 A new interface is defined for a single-entry-point control. Behind that, it is a complex subsystem that involves many classes.
 
@@ -223,9 +223,9 @@ func main() {
 }
 ```
 
-# Behavioral - How variation is produced
+## Behavioral - How variation is produced
 
-## Strategy
+### Strategy
 
 The context chooses one of the instances from multiple classes that all implement a common interface.
 
@@ -251,7 +251,7 @@ func main() {
 }
 ```
 
-## Template
+### Template
 
 Class A is a template for classes B C and D to inherit and overwrite to produce variations during definition (not at runtime).
 
@@ -289,7 +289,7 @@ func (b B) bar() {
 }
 ```
 
-## Decorator
+### Decorator
 
 B decorates(wraps) A to mutate the result without changing A's original behavior.
 
