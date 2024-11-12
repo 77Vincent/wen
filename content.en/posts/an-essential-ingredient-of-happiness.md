@@ -2,7 +2,7 @@
 title: An essential ingredient of happiness
 date: 2023-10-30T02:01:58+05:30
 tags: [life, english]
-categories: sutra
+categories: life
 canonicalUrl: https://wenstudy.com/posts/an-essential-ingredient-of-happiness/
 ---
 
