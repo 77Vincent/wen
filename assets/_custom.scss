@@ -3,18 +3,33 @@
 //@import "plugins/numbered";
 @import "defaults";
 
+.book-search {
+  input {
+    background-color: var(--gray-100);
+    border: 1px solid var(--gray-300);
+  }
+}
 
 .markdown {
   > h2 {
     font-weight: 700;
   }
 
+  blockquote {
+    background-color: var(--color-blockquote);
+    font-family: monospace;
+    font-size: 0.9rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-inline-start: .25rem solid var(--gray-500);
+  }
+
   .book-post-content {
-    border-top: 1px solid var(--gray-200);
+    border-top: 1px solid var(--gray-300);
     margin-top: 1rem;
 
     img {
-      border: 1px solid var(--gray-200);
+      border: 1px solid var(--gray-300);
       border-radius: 5px;
     }
   }
