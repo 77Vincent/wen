@@ -3,16 +3,16 @@
 //@import "plugins/numbered";
 @import "defaults";
 
-.book-toc-content {
-  li {
-    font-size: $font-size-14;
-  }
-}
-
 .book-search {
   input {
     background-color: var(--gray-100);
     border: 1px solid var(--gray-300);
+  }
+}
+
+.book-page {
+  article {
+    margin-bottom: 1.5rem;
   }
 }
 
