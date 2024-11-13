@@ -1,13 +1,15 @@
 ---
-title: 泊松过程中的碰撞次数
+title: 随机过程中的碰撞次数
 date: 2024-11-12T02:01:58+05:30
-tags: [math]
+tags: [math, randomness]
 categories: study 
 math: true
 canonicalUrl: https://wenstudy.com/posts/poisson-process-collision-rate/
 ---
 
 <!-- more -->
+这可能是你也会遇到的问题，我找到了一个简单的计算方法。从结果来看，应该是正确的。
+
 一个网站每小时平均有1000个请求，一次只能处理一个，用时1秒。当一个请求到达时，若前一个还未完成，就会报错。那么在一个小时内，平均会报多少次错？
 
 通过把网站流量看作泊松过程，可以计算出碰撞概率。
@@ -15,10 +17,10 @@ canonicalUrl: https://wenstudy.com/posts/poisson-process-collision-rate/
 ## 泊松过程
 泊松过程是一个随机过程，其中事件以恒定的速率发生：
 1. 单位时间内事件发生次数服从泊松分布。
-![image of error correction](/images/poisson-process-collision-rate/poisson-distribution.png "error correction")
+![image of poisson distribution](/images/poisson-process-collision-rate/poisson-distribution.png "poisson distribution")
 
 2. 时间间隔服从指数分布。
-![image of error correction](/images/poisson-process-collision-rate/exponential-distribution.png "error correction")
+![image of exponential distribution](/images/poisson-process-collision-rate/exponential-distribution.png "exponential distribution")
 
 ## 推导
 知名的二项分布，\(P(X=k)\)表示 \(n\) 次试验中成功 \(k\) 次的概率。

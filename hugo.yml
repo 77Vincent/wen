@@ -2,6 +2,8 @@ baseURL: https://wenstudy.com
 title: WEN - 求真之路永无尽
 theme: hugo-book
 defaultContentLanguage: zh
+ignoreLogs: ['warning-goldmark-raw-html']
+
 
 summaryLength: 5
 # Book configuration
