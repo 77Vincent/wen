@@ -1,11 +1,10 @@
 baseURL: https://wenstudy.com
-title: WEN - 求真之路永无尽
+title: WEN
 theme: hugo-book
 defaultContentLanguage: zh
 ignoreLogs: ['warning-goldmark-raw-html']
 
-
-summaryLength: 5
+summaryLength: 6
 enableRobotsTXT: true
 
 # Multi-lingual mode config
@@ -53,7 +52,7 @@ services:
     id: G-N22C96071S
 
 params:
-  description: WEN's personal blog site of study notes that covers arts, computer science, maths .etc.. 文的个人博客，覆盖艺术，技术，数学等个主题的文章和学习笔记。
+  subtitle: senior software engineer and architect at tokyo
   BookSection: posts
 
 meta:

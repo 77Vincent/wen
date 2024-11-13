@@ -3,6 +3,17 @@
 //@import "plugins/numbered";
 @import "defaults";
 
+h1.book-brand {
+  margin-bottom: 0.5rem;
+}
+
+.intro {
+  margin-top: .5rem;
+  font-size: 1rem;
+  font-style: italic;
+  font-family: serif;
+}
+
 .book-search {
   input {
     background-color: var(--gray-100);
