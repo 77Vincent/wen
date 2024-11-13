@@ -15,7 +15,10 @@ canonicalUrl: https://wenstudy.com/posts/poisson-process-collision-rate/
 ## 泊松过程
 泊松过程是一个随机过程，其中事件以恒定的速率发生：
 1. 单位时间内事件发生次数服从泊松分布。
+![image of error correction](/images/poisson-process-collision-rate/poisson-distribution.png "error correction")
+
 2. 时间间隔服从指数分布。
+![image of error correction](/images/poisson-process-collision-rate/exponential-distribution.png "error correction")
 
 ## 推导
 知名的二项分布，\(P(X=k)\)表示 \(n\) 次试验中成功 \(k\) 次的概率。
