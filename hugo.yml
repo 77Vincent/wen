@@ -7,7 +7,6 @@ ignoreLogs: ['warning-goldmark-raw-html']
 
 summaryLength: 5
 # Book configuration
-disablePathToLower: true
 enableRobotsTXT: true
 
 # Multi-lingual mode config
@@ -65,5 +64,3 @@ deployment:
   targets:
     - name: production
       URL: s3://wenstudy.com?region=ap-northeast-1
-    - name: production-www
-      URL: s3://www.wenstudy.com?region=ap-northeast-1
