@@ -25,14 +25,6 @@
     border: 1px solid var(--gray-300);
   }
 
-  code {
-    background-color: var(--gray-100);
-    border: 1px solid var(--gray-300);
-    border-radius: 5px;
-    padding: 0.25rem;
-    font-weight: 700;
-  }
-
   .book-post-content {
     h2 {
       margin-top: 2.5rem;
@@ -55,9 +47,6 @@
   }
 
   .book-post-content {
-    //border-top: 1px solid var(--gray-300);
-    //margin-top: 1rem;
-
     img {
       border: 1px solid var(--gray-300);
       border-radius: 5px;
