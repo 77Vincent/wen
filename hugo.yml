@@ -54,6 +54,17 @@ services:
 params:
   subtitle: senior software engineer and architect at tokyo
   BookSection: posts
+  shareButtons:
+    size: small
+    icon: solid
+    buttonMargin: 0.2em
+    networks:
+      - facebook
+      - twitter
+      - linkedin
+      - pinterest
+      - reddit
+      - email
 
 meta:
   - favicon: true
