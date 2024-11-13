@@ -6,7 +6,6 @@ ignoreLogs: ['warning-goldmark-raw-html']
 
 
 summaryLength: 5
-# Book configuration
 enableRobotsTXT: true
 
 # Multi-lingual mode config
