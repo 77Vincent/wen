@@ -21,8 +21,8 @@ h1.book-brand {
 }
 
 .share-buttons {
-  opacity: .7;
-  scale: .6;
+  opacity: .8;
+  scale: .8;
   transform-origin: 0 50%;
   -webkit-transform-origin: 0 50%;
   filter: grayscale(40%);
@@ -43,6 +43,10 @@ h1.book-brand {
   }
 }
 
+main.container {
+  max-width: 85rem;
+}
+
 .book-page {
   article {
     margin-bottom: 1.5rem;
@@ -51,7 +55,12 @@ h1.book-brand {
 
 .markdown {
   > h2 {
+    font-size: 1.75rem;
     font-weight: 700;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+        font-size: 1.5rem;
+    }
   }
 
   pre {
