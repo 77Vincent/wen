@@ -52,8 +52,9 @@ services:
     id: G-N22C96071S
 
 params:
-  subtitle: senior software engineer and architect at tokyo
+  subtitle: application architect in Tokyo
   BookSection: posts
+  BookLogo: /favicon.png
   shareButtons:
     size: small
     icon: solid
