@@ -3,7 +3,7 @@ title: Explain design patterns in one sentence
 date: 2023-10-29T02:01:58+05:30
 tags: [computer-science, golang, english]
 categories: study 
-canonicalUrl: https://wenstudy.com/posts/en/explain-design-patterns-one-sentence/
+canonicalUrl: https://wenstudy.com/en/posts/explain-design-patterns-one-sentence/
 ---
 
 Most of these patterns have one thing in common, which is to connect producers and consumers through the interface. The abstraction of the interface is the key. It reflects a deep understanding of the underlying type. Knowing this can simply things, no matter what scenario we are dealing with, or what language is being used.
