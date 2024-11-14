@@ -3,8 +3,17 @@
 //@import "plugins/numbered";
 @import "defaults";
 
+nav {
+  li {
+    a.active {
+      text-decoration: underline;
+    }
+  }
+}
+
 h1.book-brand {
   margin-bottom: 0.5rem;
+
   img {
     width: 30px;
     height: auto;
