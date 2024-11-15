@@ -1,6 +1,7 @@
 ---
 title: 理解汉明码
 date: 2024-03-18T02:01:58+05:30
+description: 学习汉明距离和汉明码，通过直观的，创新性的图示的方法，理解错误检测和纠正公式的正确性和原因。
 tags: [computer-science, math]
 categories: study 
 canonicalUrl: https://wenstudy.com/posts/hamming-distance/
