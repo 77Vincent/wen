@@ -2,7 +2,7 @@ run:
 	hugo serve
 
 deploy:
-	hugo build && hugo deploy
+	rm -rf public && hugo build && hugo deploy
 
 index:
 	npm run index-and-send
