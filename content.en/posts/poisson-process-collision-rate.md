@@ -8,8 +8,8 @@ canonicalUrl: https://wenstudy.com/en/posts/poisson-process-collision-rate/
 ---
 
 This is problem that you may encounter, and I found a simple way to calculate it. The result looks correct after comparing with the actual data.
-<!-- more -->
 A website receives an average of 1000 requests per hour, and can only handle one at a time, taking 1 second. When a request arrives, if the previous one has not been completed, an error will occur. How many errors will occur on average in an hour?
+<!-- more -->
 
 By treating website traffic as a Poisson process, the result can be calculated.
 
