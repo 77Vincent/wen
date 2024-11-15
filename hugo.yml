@@ -52,6 +52,8 @@ services:
     id: G-N22C96071S
 
 params:
+  author: wen
+  header: wen
   subtitle: application architect in Tokyo
   BookSection: posts
   BookLogo: /favicon.png
