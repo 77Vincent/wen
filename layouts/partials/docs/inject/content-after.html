@@ -1,6 +1,7 @@
-{{ if and .IsPage .Content }}
 <div class="share-buttons">
     {{ partial "share-buttons" . }}
 </div>
+
+{{ if and .IsPage .Content }}
 <div id="gitalk-container"></div>
 {{ end }}
