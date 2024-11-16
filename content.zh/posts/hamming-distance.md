@@ -23,10 +23,6 @@ canonicalUrl: https://wenstudy.com/posts/hamming-distance/
 
 ![image of error detecting](/images/hamming-distance/error-detecting.png "error detecting")
 
-This is actually a Hamming(3, 1) error correcting code [^1]
-
-[^1]: [Hamming code (3,1)](https://en.wikipedia.org/wiki/Hamming_code)
-
 ## 错误纠正
 
 为了将C还原为A或B，即纠正错误，我们必须知道C距离哪个合法码字更近。即然A和B可以同时出现 r 比特的错误，只需在此距离上加1，就必然会出现赢家，即只会距离A或B中的一个更近，而没有平局。若不添加这1比特的距离，C既可能来自于A的r比特错误，也可能来自于B，因而无法定论。

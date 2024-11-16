@@ -22,10 +22,6 @@ Assume two codewords A and B are defined, and we receive C, which should be one 
 
 ![image of error detecting](/images/hamming-distance/error-detecting.png "error detecting")
 
-This is actually a Hamming(3, 1) error correcting code [^1]
-
-[^1]: [Hamming code (3,1)](https://en.wikipedia.org/wiki/Hamming_code)
-
 ## Error correction
 
 To correct an error, we must be able to tell which valid codeword a corrupted one is closer to. Since A and B can both have maximum r-bit errors, we must have 1 distance further so there will always be a winner. Otherwise, without that 1 additional distance, C could result from r-bit errors from either A or B.
