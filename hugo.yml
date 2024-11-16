@@ -54,7 +54,6 @@ services:
 params:
   author: wen
   header: wen
-  subtitle: application architect in Tokyo
   BookSection: posts
   BookLogo: /favicon.png
   shareButtons:
