@@ -13,6 +13,11 @@ nav {
 
 mjx-container {
   overflow-x: auto;
+  overflow-y: visible;
+
+  mjx-math {
+    font-size: 1.25rem;
+  }
 }
 
 h1.book-brand {
