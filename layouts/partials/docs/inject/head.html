@@ -5,7 +5,9 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2116972811842348"
         crossorigin="anonymous"></script>
 
+{{ if and .IsPage .Content }}
 <link rel="stylesheet" href="/css/gitalk.css">
 <script src="/js/gitalk.min.js"></script>
+{{ end }}
 
 {{ partial "schema.html" . }}
