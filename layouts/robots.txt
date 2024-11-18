@@ -1,5 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://www.wenstudy.com/zh/sitemap.xml
-Sitemap: https://www.wenstudy.com/en/sitemap.xml
