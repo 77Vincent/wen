@@ -1,5 +1,6 @@
 ---
 title: About WEN
+date: 2024-11-18T12:40:07+06:00
 url: about
 _build:
   list: never
