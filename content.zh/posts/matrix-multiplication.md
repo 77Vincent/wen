@@ -3,7 +3,7 @@ title: 理解矩阵乘法
 date: 2024-03-18T02:01:58+05:30
 tags: [ matrix, math ]
 categories: study
-canonicalUrl: https://wenstudy.com/posts/matrics-multiplication/
+canonicalUrl: https://wenstudy.com/posts/matrix-multiplication/
 math: true
 ---
 
@@ -19,7 +19,7 @@ math: true
 ## 向量乘向量（点积）
 
 一切要从点积开始。点积是两个向量之间的运算，结果是一个标量。理解为两个向量“合并”后可以走多远。单纯的模长乘积是不对的，因为向量带方向。为了共线，就要乘以夹角的余弦值。
-``
+
 $$
 \begin{bmatrix}
 x_1 & y_1
@@ -74,8 +74,8 @@ $$
 
 ![image of matrix-vector-multiplication](/images/matrix-multiplication/m-v.png "matrix vector multiplication")
 
-向量里 \(n\) 行代表 \(n\) 维。矩阵里，列代表输入向量的维度，行代表输出向量的维度。所以矩阵列数必须等于向量的行数；而输出维度
-\(m\) 可以随意。
+向量里 \(p\) 行代表 \(p\) 维。矩阵里，列代表输入向量的维度，行代表输出向量的维度。所以矩阵列数必须等于向量的行数；而输出维度
+\(n\) 可以随意。
 
 $$
 x_{\text{new}} = \\
