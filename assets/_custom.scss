@@ -11,6 +11,16 @@ nav {
   }
 }
 
+.book-toc {
+  .book-toc-content {
+    padding-left: .7rem;
+    nav {
+      border-left: 1px solid var(--gray-300);
+      padding-left: .7rem;
+    }
+  }
+}
+
 mjx-container {
   overflow-x: auto;
   overflow-y: visible;
@@ -79,7 +89,7 @@ main.container {
   }
 
   p, ul, ol {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     font-size: 1.05rem;
   }
 
@@ -94,7 +104,8 @@ main.container {
 
   .book-post-content {
     h2 {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
+      font-weight: 500;
       border-bottom: 1px solid var(--gray-300);
       padding-bottom: 0.5rem;
     }
