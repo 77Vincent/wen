@@ -17,6 +17,10 @@ nav {
     nav {
       border-left: 1px solid var(--gray-300);
       padding-left: .7rem;
+
+      li {
+        font-size: .8rem;
+      }
     }
   }
 }

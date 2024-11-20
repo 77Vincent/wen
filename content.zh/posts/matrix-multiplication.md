@@ -32,7 +32,7 @@ y_2
 = |A||B|cos\theta
 $$
 
-![image of dot product](/images/dot-product.png "dot product")
+![image of dot product](/images/matrix-multiplication/dot-product.png "dot product")
 
 更广泛的：
 $$
