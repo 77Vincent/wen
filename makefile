@@ -5,6 +5,6 @@ deploy:
 	rm -rf public && hugo build && hugo deploy
 
 index:
-	npm run index-and-send
+	cd dev/indexNow && go run main.go
 
-.PHONY: run, deploy
+.PHONY: run, deploy, index
