@@ -12,4 +12,4 @@ _build:
 - Lived in Shanghai, now in Tokyo 
 - Majored in architect, then become a software engineer and architect through self-study
 - AWS certified solutions architect
-- A coffee lover, badminton player
+- A coffee, badminton, and travel lover

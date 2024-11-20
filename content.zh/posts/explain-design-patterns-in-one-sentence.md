@@ -10,6 +10,8 @@ canonicalUrl: https://wenstudy.com/posts/explain-design-patterns-one-sentence/
 
 至于为什么现在有这些模式，还有多少尚未被发现，以及背后的数学本质是什么，我也还无法回答。
 
+<!--more-->
+
 ## 创建型 - 实例如何创建
 
 ### 工厂
