@@ -265,3 +265,7 @@ $$
 $$
 AB = f_A(f_B(x))
 $$
+
+---
+
+进阶阅读：[理解矩阵行列式](https://wenstudy.com/posts/matrix-determinant/)
