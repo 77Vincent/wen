@@ -1,7 +1,7 @@
 ---
 title: 用Golang理解几种设计模式
 date: 2023-10-29T02:01:58+05:30
-tags: [computer-science, golang, english]
+tags: [computer-science, golang]
 categories: study 
 canonicalUrl: https://wenstudy.com/posts/explain-design-patterns-one-sentence/
 ---
