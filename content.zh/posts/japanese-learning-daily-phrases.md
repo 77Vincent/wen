@@ -5,6 +5,8 @@ tags: [ japanese ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/japanese-learning-daily-phrases/
 ---
+在日本生活一年多，记录下自己日常最可能用到的句子词汇。
+<!--more-->
 
 ## 在便利店（コンビニで）
 
