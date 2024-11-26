@@ -9,6 +9,9 @@ math: true
 
 矩阵的根本属性就是变换空间，所以 _特征值描述其对某个方向上的缩放力度。特征向量描述那个方向。_
 
+<!-- more -->
+![image of matrix-eigen](/images/matrix-eigenvalues-and-eigenvectors/matrix-eigen.png "matrix-eigen")
+
 本篇前提：[理解矩阵行列式](https://wenstudy.com/posts/matrix-determinant/)
 
 ## 意义
@@ -17,8 +20,6 @@ math: true
 $$
 A \cdot v = \lambda \cdot v
 $$
-
-![image of matrix-eigen](/images/matrix-eigenvalues-and-eigenvectors/matrix-eigen.png "matrix-eigen")
 
 ## 方阵！
 矩阵必须是方形矩阵，即 \(n \times n\)，并且特征向量也是一个 \(n\) 维向量。**因为只有在输入和输出维度相同的情况下，才能讨论一个向量在变换后方向不变的问题。**
