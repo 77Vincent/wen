@@ -381,4 +381,4 @@ $$
 A^{-1} = \frac{1}{\det(A)}adj(A)
 $$
 
-继续学习：[理解矩阵特征值和特征向量](https://wenstudy.com/posts/matrix-eigenvalues-and-eigenvactors/)
+继续学习：[理解矩阵特征值和特征向量](https://wenstudy.com/posts/matrix-eigenvalues-and-eigenvectors/)
