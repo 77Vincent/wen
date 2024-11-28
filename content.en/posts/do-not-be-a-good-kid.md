@@ -8,7 +8,7 @@ canonicalUrl: https://wenstudy.com/en/posts/do-not-be-a-good-kid/
 
 In Chinese, there is a word "懂事" (dǒng shì), which means sensible, obedient, and mature.
 
-But I want to tell you my friends, whoever tells us to be sensible, we tell them to get lost. Whoever tells us to be obedient, they are our enemies.
+But I want to tell you my friends, whoever tells us to be sensible, we tell them to fuck off. Whoever tells us to be obedient, they are our enemies.
 
 To be sensible is to tell us to conform to the framework of others, and to be sensible is to be tamed. _Remember, friends, we don't need to conform to anyone's framework, and if we do, others must sacrifice the same to adapt to our framework._
 
