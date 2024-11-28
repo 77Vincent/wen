@@ -49,7 +49,7 @@ canonicalUrl: https://wenstudy.com/posts/japanese-learning-daily-phrases/
 > **もう少し安くなりませんか？(能不能便宜点)**
 - すみません、値段(ねだん)は固定(こてい)です
 
-> **領収証をください（请给我收据）**
+> **領収証(りょうしゅうしょう)をください（请给我收据）**
 - かしこまりました
 
 ## レストランで（餐厅里）
@@ -81,7 +81,7 @@ canonicalUrl: https://wenstudy.com/posts/japanese-learning-daily-phrases/
 > **飲み物はどうされますか？（喝什么）**
 - お水をください
 - ビールをお願いします
-- もう少し考えます
+- もう少し考(かんが)えます
 
 > **お持ち帰りは可能ですか？（可以打包吗）**
 - はい、可能です
@@ -97,7 +97,7 @@ canonicalUrl: https://wenstudy.com/posts/japanese-learning-daily-phrases/
 - はい、いいですよ
 
 > **写真を撮ってもいいですか？（可以拍照吗）**
-- すみません、写真はご遠慮ください
+- すみません、写真はご遠慮(えんりょ)ください
 
 > **写真を撮りましょうか？（我们一起拍照吧）**
 - はい、いいですよ
