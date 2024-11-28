@@ -36,7 +36,7 @@ $$
 
 More generally:
 $$
-a \cdot b = \Sigma_{i=1}^{n} a_ib_i = a_1b_1 + a_2b_2 + \cdots + a_nb_n
+a \cdot b = \sum_{i=1}^{n} a_ib_i = a_1b_1 + a_2b_2 + \cdots + a_nb_n
 $$
 
 ## Matrix Multiply Vector (Right Multiply)
