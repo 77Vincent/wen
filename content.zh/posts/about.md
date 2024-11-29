@@ -6,7 +6,7 @@ _build:
   list: never
 ---
 
-![WEN](/images/wen.jpg)
+![WEN](/images/wen.jpg "image of WEN")
 
 - Born in 1990, Guilin 
 - Lived in Shanghai, now in Tokyo 

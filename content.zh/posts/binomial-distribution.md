@@ -1,7 +1,7 @@
 ---
 title: 理解二项分布
 date: 2022-11-21T02:01:58+05:30
-tags: [ probability, math ]
+tags: [ probability, statistics, math ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/binomial-distribution/
 math: true

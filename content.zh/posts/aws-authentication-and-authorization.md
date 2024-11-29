@@ -75,7 +75,7 @@ IAM 政策是 JSON 格式的文档，用于指定 _谁能在什么条件下使�
 2. 而一个身份最多可以被贴上 10 个 IAM 政策 (每个政策不超过 6,144 字符)。
 3. 如果政策间冲突，拒绝 (Explicit deny) 优先级最高。
 
-![IAM user-group-role](/images/aws-authentication-and-authorization/iam-user-group-role.png)
+![IAM user-group-role](/images/aws-authentication-and-authorization/iam-user-group-role.png "IAM user-group-role")
 
 以下政策的作用是允许来自 `111.111.111.111` 的 IP 地址访问 S3 服务。
 ```json

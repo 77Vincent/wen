@@ -124,6 +124,9 @@ canonicalUrl: https://wenstudy.com/posts/japanese-learning-daily-phrases/
 > **これ、どうやって使うんですか？（这个怎么用）**
 - 教えてあげます
 
+> **李さんは、JC企画(きかく)の社員です（李先生是JC企划的员工）**
+- 李と申します、よろしくお願いします
+
 ## 友達と（和朋友）
 
 > **今日は何をしようか？（今天想做什么）**
