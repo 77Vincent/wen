@@ -2,32 +2,40 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"io"
 	"log"
 	"net/http"
 	"time"
 )
 
-var client = &http.Client{
-	Timeout: time.Second * 10,
-}
+var (
+	client = &http.Client{
+		Timeout: time.Second * 10,
+	}
+	payload = map[string]interface{}{
+		"host":        "wenstudy.com",
+		"key":         "d1b801009c857fd452e1f9086f9b567e",
+		"keyLocation": "https://wenstudy.com/d1b801009c857fd452e1f9086f9b567e.txt",
+		"urlList": []string{
+			"https://wenstudy.com",
+			"https://wenstudy.com/en/",
+		},
+	}
+)
 
 func main() {
-	body := []byte(`{
-"host": "wenstudy.com",
-"key": "86dbd11a307c45ccb46b89c8d1f45bff",
-"keyLocation": "https://wenstudy.com/86dbd11a307c45ccb46b89c8d1f45bff.txt",
-"urlList": [
-  "https://wenstudy.com",
-  "https://wenstudy.com/en/",
-  ]}`)
 
+	body, err := json.Marshal(payload)
+	if err != nil {
+		log.Fatalf("failed to marshal body: %s", err)
+	}
 	req, err := http.NewRequest("POST", "https://api.indexnow.org/IndexNow", bytes.NewBuffer(body))
 	if err != nil {
 		log.Fatalf("failed to create request: %s", err)
 	}
 
-	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	res, err := client.Do(req)
 	if err != nil {

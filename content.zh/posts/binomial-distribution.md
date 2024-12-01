@@ -27,7 +27,7 @@ $$
 
 ## 概率质量函数（PMF）
 
-_概率质量函数（Probability Mass Function, PMF）是离散随机变量在各个取值上的概率_。全部取值的概率之和为 1。（密度一词非常精髓）
+_概率质量函数（Probability Mass Function, PMF）是离散随机变量在各个取值上的概率_。全部取值的概率之和为 1。
 
 $$
 \sum_{x=0}^{n} P(X) = 1\
