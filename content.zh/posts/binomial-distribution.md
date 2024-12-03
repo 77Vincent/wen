@@ -1,6 +1,6 @@
 ---
 title: 理解二项分布
-date: 2022-11-21T02:01:58+05:30
+date: 2024-11-28T02:01:58+05:30
 tags: [ probability, statistics, math ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/binomial-distribution/
@@ -82,7 +82,13 @@ $$
 
 ## 方差（Variance）
 
-方差描述成功次数围绕期望值 \(np\) 的波动程度，_定义是单个随机变量的平方期望值减去期望值的平方_。
+方差描述成功次数围绕期望值 \(np\) 的波动程度，_定义为各个数据点与均值之差的平方和的均值_。
+
+$$
+Var(X) = E[(X - E[X])^2]
+$$
+
+展开后，得到以下公式，更容易用于推导二项分布的方差。（见前文：[理解方差](/posts/understand-math-variance/)）
 
 $$
 Var(X) = E(X^2) - E(X)^2
@@ -120,11 +126,13 @@ $$
 Var(X) = Var(\sum_{i=1}^{n} X_i) = \sum_{i=1}^{n} Var(X_i) = np(1-p)
 $$
 
-> 一个重要的直觉是，当 \(p = 0.5\) 时，方差最大。显然，50% 成功率代表的不确定性最高。
-> 
-> 若成功率是 0% 或 100%，则不会有波动，即必然事件，没有随机性，所以方差为 0。
+## 方差的直觉
+
+一个重要的直觉是，因为存在 \(p(1-p)\)， 当 \(p = 0.5\) 时，方差最大。显然，50% 成功率代表的不确定性最高。类似于，周长固定的矩形中，正方形的面积最大。
 
 ![square-area](/images/binomial-distribution/square-area.png "square-area")
+
+若成功率是 0% 或 100%，则不会有波动，即必然事件，没有随机性，所以方差为 0。即，矩形有一条边为零，面积也为零。
 
 ## 标准差（Standard Deviation）
 

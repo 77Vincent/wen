@@ -12,7 +12,7 @@ math: true
 <!-- more -->
 ![image of matrix-eigen](/images/matrix-eigenvalues-and-eigenvectors/matrix-eigen.png "matrix-eigen")
 
-本篇前提：[理解矩阵行列式](https://wenstudy.com/posts/matrix-determinant/)
+本篇前提：[理解矩阵行列式](/posts/matrix-determinant/)
 
 ## 意义
 特征向量是一个非零向量\(v\)，其被矩阵 \(A\) 变换后，方向不变，仅伸长或缩短，缩放倍数 \(\lambda\) 就是特征值。
@@ -24,7 +24,7 @@ $$
 ## 方阵！
 矩阵必须是方形矩阵，即 \(n \times n\)，并且特征向量也是一个 \(n\) 维向量。**因为只有在输入和输出维度相同的情况下，才能讨论一个向量在变换后方向不变的问题。**
 
-## 特征值（Eigen Values）
+## 特征值（Eigenvalues）
 根据定义，有如下推导：
 $$
 A \cdot v - \lambda \cdot v = (A - \lambda \cdot I) \cdot v = 0
@@ -65,7 +65,7 @@ $$
 
 于是得到两个特征值：\(\lambda_1 = 2, \lambda_2 = 5\)。
 
-## 特征向量（Eigen Vectors）
+## 特征向量（Eigenvectors）
 在得到特征值后，将其代入特征方程，将得到特征向量。
 
 $$

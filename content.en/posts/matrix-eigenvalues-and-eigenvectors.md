@@ -12,7 +12,7 @@ The fundamental property of a matrix is the transformation space, so _eigenvalue
 <!-- more -->
 ![image of matrix-eigen](/images/matrix-eigenvalues-and-eigenvectors/matrix-eigen.png "matrix-eigen")
 
-Pre-requisite: [Understanding Matrix Determinant](https://wenstudy.com/en/posts/matrix-determinant/)
+Pre-requisite: [Understanding Matrix Determinant](/en/posts/matrix-determinant/)
 
 ## Meaning
 An eigenvector is a non-zero vector \(v\) whose direction remains unchanged after being transformed by matrix \(A\), only elongated or shortened, and the scaling factor \(\lambda\) is the eigenvalue.
@@ -24,7 +24,7 @@ $$
 ## Square Matrix!
 The matrix must be a square matrix, i.e. \(n \times n\), and the eigenvector is also an \(n\)-dimensional vector. **Because only when the input and output dimensions are the same can we discuss the problem of a vector not changing direction after transformation.**
 
-## Eigen Values
+## Eigenvalues
 According to the definition, the following derivation is obtained:
 $$
 A \cdot v - \lambda \cdot v = (A - \lambda \cdot I) \cdot v = 0
@@ -65,7 +65,7 @@ $$
 
 Thus, two eigenvalues are obtained: \(\lambda_1 = 2, \lambda_2 = 5\).
 
-## Eigen Vectors
+## Eigenvectors
 After obtaining the eigenvalues, substitute them into the characteristic equation to obtain the eigenvectors.
 
 $$

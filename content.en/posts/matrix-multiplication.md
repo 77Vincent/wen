@@ -264,3 +264,6 @@ $$
 $$
 AB = f_A(f_B(x))
 $$
+
+---
+Next：[Understanding Matrix Determinant](/en/posts/matrix-determinant/)

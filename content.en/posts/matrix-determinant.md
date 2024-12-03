@@ -14,7 +14,7 @@ The determinant is only applicable to square matrices, describing the volume of 
 <!--more-->
 > **Matrix Rank:** Refers to the maximum number of linearly independent rows or columns in a matrix. It represents the number of independent directions that the matrix can describe in space, i.e., the maximum dimension that the matrix can actually express.
 
-Prerequisite: [Understanding Matrix Multiplication](https://wenstudy.com/en/posts/matrix-multiplication/)
+Prerequisite: [Understanding Matrix Multiplication](/en/posts/matrix-multiplication/)
 
 ## Writing
 Taking two-dimensional space as an example, the determinant is written as:
@@ -383,4 +383,4 @@ $$
 A^{-1} = \frac{1}{\det(A)}adj(A)
 $$
 
-Next, continue learning: [Understanding Matrix Eigenvalues and Eigenvectors](https://wenstudy.com/en/posts/matrix-eigenvalues-and-eigenvectors/)
+Next, continue learning: [Understanding Matrix Eigenvalues and Eigenvectors](/en/posts/matrix-eigenvalues-and-eigenvectors/)

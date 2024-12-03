@@ -268,4 +268,4 @@ $$
 
 ---
 
-进阶阅读：[理解矩阵行列式](https://wenstudy.com/posts/matrix-determinant/)
+进阶阅读：[理解矩阵行列式](/posts/matrix-determinant/)

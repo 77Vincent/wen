@@ -14,7 +14,7 @@ _行列式跟“式子“毫无关系，它是一个标量。_
 <!--more-->
 > **矩阵的秩:** 指矩阵中的线性无关行或列的最大数目。表示矩阵在空间中所能描述的独立方向的数目，即矩阵实际能表达的维度上限。
 
-本篇前提：[理解矩阵乘法](https://wenstudy.com/posts/matrix-multiplication/)
+本篇前提：[理解矩阵乘法](/posts/matrix-multiplication/)
 
 ## 写法
 以二维空间为例，行列式的写法：
@@ -381,4 +381,4 @@ $$
 A^{-1} = \frac{1}{\det(A)}adj(A)
 $$
 
-继续学习：[理解矩阵特征值和特征向量](https://wenstudy.com/posts/matrix-eigenvalues-and-eigenvectors/)
+继续学习：[理解矩阵特征值和特征向量](/posts/matrix-eigenvalues-and-eigenvectors/)
