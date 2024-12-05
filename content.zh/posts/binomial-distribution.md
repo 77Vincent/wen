@@ -13,7 +13,7 @@ math: true
 ![binomial-distribution](/images/binomial-distribution/graph.png "binomial-distribution")
 
 ## 定义
-对于 \(X ~ B(n, p)\)，即参数服从为 \(n\) 次试验，成功概率为 \(p\) 的二项分布。其概率质量函数为：
+对于 \(X ~ B(n, p)\)，即参数服从为 \(n\) 次试验，成功概率为 \(p\) 的二项分布，概率质量函数为：
 
 $$
 P(X=k) = C(n, k) \cdot p^k \cdot (1-p)^{n-k}
