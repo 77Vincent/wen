@@ -7,9 +7,14 @@ canonicalUrl: https://wenstudy.com/posts/setup-k8s-cluster-in-aws-ec2-without-us
 ---
 
 ## 准备EC2实例
-通过AWS控制台或者AWS CLI创建两个EC2实例，一个作为Master节点，另一个作为Worker节点。
+通过AWS控制台或者AWS CLI创建两个EC2实例，一个作为Master节点，另一个作为Worker节点。实例需求：
+- Master节点：2 vCPU，4GB内存，20GB硬盘
+- Worker节点：1 vCPU，2GB内存，20GB硬盘
 
 使用AWS AMI创建EC2实例，选择Amazon Linux 2 AMI。
+
+### 安全组配置
+在创建EC2实例时，需要配置安全组，如果不完全开放所有端口，至少需要开放以下端口：
 
 创建key pair，用于远程SSH登录EC2实例。创建后会下载一个私钥文件，一般存入`~/.ssh`目录下，并修改权限为只允许拥有者读取。
 ```bash
@@ -48,7 +53,7 @@ sudo systemctl restart containerd
 sudo systemctl status containerd
 ```
 
-### 准备 CNI
+## 准备 CNI
 CNI (Container Network Interface) 插件为 Kubernetes 提供网络功能。它主要负责：
 1. 为 Pod 分配 IP 地址。
 2. 设置容器之间的网络通信。
@@ -191,7 +196,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 安装CNI网络插件，这里使用 Flannel。
-
 Flannel 是一种简单的 Kubernetes 网络解决方案。它会为每个 Pod 分配一个唯一的 IP 地址，并确保不同节点之间的 Pod 能通过虚拟网络通信。
 
 首先手动初始化环境变量文件（是否必要待定）
@@ -201,7 +205,6 @@ echo -e "FLANNEL_NETWORK=10.244.0.0/16\nFLANNEL_SUBNET=10.244.0.1/24\nFLANNEL_MT
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
-
 ```
 
 查看相关Pod状态
@@ -230,4 +233,10 @@ kubectl get nodes
 ```
 NAME                                              STATUS   ROLES           AGE   VERSION
 ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m   v1.32.0
+```
+
+## 加入节点
+在 Worker 节点上执行 `kubeadm join` 命令，将 Worker 节点加入到 Kubernetes 集群中。
+```bash
+sudo kubeadm join
 ```
