@@ -1,10 +1,14 @@
 ---
-title: 用AWS EC2从零搭建Kubernetes集群
+title: 用AWS EC2从零搭建Kubernetes集群并集成ArgoCD
 date: 2024-11-20T02:01:58+05:30
 tags: [ computer-science, aws, kubernetes, argocd, cicd ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/
 ---
+
+在AWS上实现 Kubernetes 集群最简单的方法是走 EKS（Elastic Kubernetes Service）托管服务（managed service）。但后来发现 EKS
+成本高昂，会有一笔跟 EC2 计算费用无关的起步价，仅仅来源于 EKS。为了学习（省钱），我们来用裸机 EC2 实例搭建 Kubernetes 集群，以及集成
+ArgoCD 实现 CD (Continuous Deployment)。
 
 ## 准备EC2实例
 
@@ -78,7 +82,6 @@ CNI (Container Network Interface) 插件为 Kubernetes 提供网络功能。它�
 1. 为 Pod 分配 IP 地址。
 2. 设置容器之间的网络通信。
 3. 确保 Pod 可以与其他 Pod、服务（Service）以及外部世界通信。
-4.
 
 如果没有正确安装和配置 CNI 插件，Kubernetes 的 Pod 网络将无法正常工作，导致 Pod 无法互通或无法分配 IP 地址。先查看是否已经安装了
 CNI 插件
@@ -115,6 +118,13 @@ firewall
 
 ## 其他必要配置
 
+启动 overlay 和 br_netfilter 内核模块，它们是 Kubernetes 集群所必需的两个内核模块，需要手动加载。
+
+```bash
+sudo modprobe overlay  
+sudo modprobe br_netfilter
+```
+
 通过编辑 `/etc/modules-load.d/k8s.conf` 文件，使得这两个模块在系统启动时自动加载
 
 ```bash
@@ -122,13 +132,6 @@ cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
 EOF
-```
-
-启动 overlay 和 br_netfilter 内核模块，它们是 Kubernetes 集群所必需的两个内核模块，需要手动加载。
-
-```bash
-sudo modprobe overlay  
-sudo modprobe br_netfilter
 ```
 
 检查是否加载成功
@@ -147,7 +150,7 @@ net.ipv4.ip_forward = 1
 EOF
 ```
 
-使配置生效
+刷新 sysctl 配置以使其生效
 
 ```bash
 sudo sysctl --system
@@ -160,9 +163,11 @@ sudo swapon -s # 查看 swap 分区
 sudo swapoff -a
 ```
 
+> 原因是 Kubernetes 不支持 swap 分区，因为 swap 分区会导致 Pod 的内存限制无效。
+
 ## 安装 Kubernetes
 
-首先安装 curl（已有则跳过）
+首先安装 curl（有则跳过）
 
 ```bash
 sudo dnf install -y curl
@@ -188,33 +193,47 @@ EOF
 sudo dnf makecache
 ```
 
-安装 kubeadm, kubelet 和 kubectl 并启动 kubelet 服务
+安装 `kubeadm`, `kubelet` 和 `kubectl` 并启动 `kubelet` 服务
 
 ```bash
 sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
 ```
 
-安装 `tc (Traffic Control) 包`，以便 Kubernetes 集群能够正常工作，首先查看包含 tc 命令的软件包
+> kubelet 服务是 Kubernetes 的主要组件之一，它负责管理 Pod 的生命周期，包括创建、销毁、监控 Pod 等。
+>
+> kubeadm 是 Kubernetes 的初始化工具，它可以帮助我们快速初始化一个 Kubernetes 集群。
+>
+> kubectl 是 Kubernetes 的命令行工具，用于与 Kubernetes 集群交互。
+
+安装 `tc (Traffic Control)` 包，以便 `Kubernetes` 集群能够正常工作，首先查看包含 `tc` 命令的软件包
 
 ```bash
 dnf provides tc
 ```
 
-一般都存在于 `iproute-tc` 软件包中，安装 iproute-tc 软件包
+一般都存在于 `iproute-tc` 软件包中，因此安装 iproute-tc 软件包
 
 ```bash
 sudo dnf install -y iproute-tc
 ```
 
-初始化 Kubernetes 集群
+通过 `kubeadm` 初始化 `Kubernetes` 集群
 
 ```bash
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
-> 1. 一定要用 `sudo` 执行 `kubeadm init` 命令，因为这个命令会修改系统的配置文件，否则会报错。
-> 2. 这里 CIDR 使用 10.244.0.0/16，因为稍后配置的网络插件 Flannel 默认使用这个 CIDR。
+> 一定要用 `sudo` 执行 `kubeadm init` 命令，因为这个命令会修改系统的配置文件，否则会报错。
+>
+> 这里 CIDR 使用 10.244.0.0/16，因为稍后配置的网络插件 Flannel 默认使用这个 CIDR。
+
+
+初始化完成后，会输出类似如下的信息，其中有两个命令，一个是 `kubeadm join` 命令，另一个是 `kubectl apply` 命令，分别用于加入节点和安装网络插件。
+
+```
+Your Kubernetes control-plane has initialized successfully!
+```
 
 检查 kubelet 服务状态
 
@@ -222,10 +241,18 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 systemctl status kubelet
 ```
 
-初始化完成后，会输出类似如下的信息，其中有两个命令，一个是 `kubeadm join` 命令，另一个是 `kubectl apply` 命令，分别用于加入节点和安装网络插件。
+应得到如下输出，kubelet 服务应该是 `Active: active (running)` 状态
 
 ```
-Your Kubernetes control-plane has initialized successfully!
+● kubelet.service - Kubernetes Kubelet
+   Loaded: loaded (/usr/lib/systemd/system/kubelet.service; enabled; vendor preset: disabled)
+   Active: active (running) since Fri 2024-11-22 09:00:00 UTC; 1min 30s ago
+     Docs: https://kubernetes.io/docs/
+ Main PID: 12345 (kubelet)
+    Tasks: 123
+   Memory: 123.4M
+   CGroup: /system.slice/kubelet.service
+           └─12345 /usr/bin/kubelet --config=/var/lib/kubelet/config.yaml --kubeconfig=/var/lib/kubelet/kubeconfig --network-plugin=cni --pod-infra-container-image=k8s.gcr.io/pause:3.5.1 --resolv-conf=/etc/resolv.conf
 ```
 
 将 `kubectl` 配置文件拷贝到当前用户的家目录下
@@ -236,8 +263,10 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-安装CNI网络插件，这里使用 Flannel。
-Flannel 是一种简单的 Kubernetes 网络解决方案。它会为每个 Pod 分配一个唯一的 IP 地址，并确保不同节点之间的 Pod 能通过虚拟网络通信。
+## 安装 CNI 插件
+
+安装CNI网络插件，这里使用 Flannel。Flannel 是一种简单的 Kubernetes 网络解决方案。它会为每个 Pod 分配一个唯一的 IP
+地址，并确保不同节点之间的 Pod 能通过虚拟网络通信。
 
 部署 Flannel
 
@@ -388,3 +417,5 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 ```bash
 sudo kubeadm join
 ```
+
+Kubernetes 以及 ArgoCD 集成完成。接下去就是通过 ArgoCD 部署应用程序了。
