@@ -172,10 +172,11 @@ sudo dnf install -y iproute-tc
 
 初始化 Kubernetes 集群
 ```bash
-sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
-> 一定要用 `sudo` 执行 `kubeadm init` 命令，因为这个命令会修改系统的配置文件，否则会报错。
+> 1. 一定要用 `sudo` 执行 `kubeadm init` 命令，因为这个命令会修改系统的配置文件，否则会报错。
+> 2. 这里 CIDR 使用 10.244.0.0/16，因为稍后配置的网络插件 Flannel 默认使用这个 CIDR。
 
 检查 kubelet 服务状态
 ```bash
@@ -198,21 +199,39 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 安装CNI网络插件，这里使用 Flannel。
 Flannel 是一种简单的 Kubernetes 网络解决方案。它会为每个 Pod 分配一个唯一的 IP 地址，并确保不同节点之间的 Pod 能通过虚拟网络通信。
 
-首先手动初始化环境变量文件（是否必要待定）
-```bash
-echo -e "FLANNEL_NETWORK=10.244.0.0/16\nFLANNEL_SUBNET=10.244.0.1/24\nFLANNEL_MTU=1450\nFLANNEL_IPMASQ=true" | sudo tee /run/flannel/subnet.env > /dev/null
-```
-
+部署 Flannel
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 ```
 
-查看相关Pod状态
+检查 Flannel Pod 是否正常运行
+```bash
+kubectl get pods -n kube-flannel
+```
+
+应得到如下输出，flannel的Pod应该是 `Running` 状态
+```
+NAME                    READY   STATUS    RESTARTS       AGE
+kube-flannel-ds-n2nzv   1/1     Running   20 (52s ago)   67m
+```
+
+以及用以下命令查看 Flannel DaemonSet
+```bash
+kubectl get daemonset kube-flannel-ds -n kube-flannel
+```
+
+应得到如下输出，`AVAILABLE` 列应该是 `1`
+```
+NAME             DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-flannel-ds  1         1         1       1            1           <none>                   67m
+```
+
+查看系统相关的 Pod
 ```bash
 kubectl get pods -n kube-system
 ```
 
-应得到如下输出
+应得到如下输出，所有的 Pod 都应该是 `Running` 状态
 ```
 NAME                                                                      READY   STATUS    RESTARTS   AGE
 coredns-668d6bf9bc-xls74                                                  1/1     Running   0          70m
@@ -235,8 +254,28 @@ NAME                                              STATUS   ROLES           AGE  
 ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m   v1.32.0
 ```
 
+## 集成 ArgoCD
+ArgoCD 是一个用于 GitOps 部署的工具，它可以帮助我们将应用程序的配置文件存储在 Git 仓库中，并通过 ArgoCD 自动同步到 Kubernetes 集群中。
+
+创建 ArgoCD 命名空间（Namespace）
+```bash
+kubectl create namespace argocd
+```
+
+安装 ArgoCD
+```bash
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
 ## 加入节点
 在 Worker 节点上执行 `kubeadm join` 命令，将 Worker 节点加入到 Kubernetes 集群中。
 ```bash
 sudo kubeadm join
+```
+
+## 问题排查
+
+以下命令创建一个临时的 Pod，用于排查网络问题
+```bash
+kubectl run test-pod --rm -it --image=busybox --restart=Never -- sh
 ```
