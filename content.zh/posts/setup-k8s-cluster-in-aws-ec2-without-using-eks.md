@@ -1,19 +1,25 @@
 ---
-title: 使用AWS EC2搭建Kubernetes集群
+title: 用AWS EC2从零搭建Kubernetes集群
 date: 2024-11-20T02:01:58+05:30
-tags: [ computer-science, aws, kubernetes ]
+tags: [ computer-science, aws, kubernetes, argocd, cicd ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/
 ---
 
 ## 准备EC2实例
 
-通过AWS控制台或者AWS CLI创建两个EC2实例，一个作为Master节点，另一个作为Worker节点。实例需求：
+通过AWS控制台或者AWS CLI创建EC2实例。一般Production环境配置至少两个节点，一个作为Master节点，另一个作为Worker节点。实例最低需求：
 
-- Master节点：2 vCPU，4GB内存，20GB硬盘
-- Worker节点：1 vCPU，2GB内存，20GB硬盘
+| 节点类型   | vCPU | 内存  | 磁盘容量 | 用途                          |
+|--------|------|-----|------|-----------------------------|
+| Master | 2    | 4GB | 20GB | 用于 Kubernetes control-plane |
+| Worker | 1    | 2GB | 20GB | 用于运行应用程序                    |
 
-使用AWS AMI创建EC2实例，选择Amazon Linux 2 AMI。
+> **也可以单节点部署，即Master和Worker放在一个EC2上。本教程会使用单节点部署，节约成本，用于学习。**
+
+使用AWS AMI创建EC2实例，选择 Amazon Linux xxx AMI。
+
+![选择Amazon Linux AMI](/static/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/aws-ec2-launch-ami.png "选择Amazon Linux AMI")
 
 ### 安全组配置
 
@@ -342,7 +348,7 @@ argocd-server-6b9b64c5fb-qtk6b                      1/1     Running   0         
 ```
 
 暴露 ArgoCD Server
-    
+
 ```bash
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 ```
@@ -360,9 +366,12 @@ NAME            TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)                  
 argocd-server   NodePort   10.97.82.16   <none>        80:31027/TCP,443:32130/TCP   14m
 ```
 
-> 其中 `80:31027/TCP` 是 HTTP 端口，`443:32130/TCP` 是 HTTPS 端口。可以通过 `http://<control-plane-ip>:31027` 访问 ArgoCD UI。
+> 其中 `80:31027/TCP` 是 HTTP 端口，`443:32130/TCP` 是 HTTPS 端口。可以通过 `http://<control-plane-ip>:31027` 访问 ArgoCD
+> UI。
 
 获取 control-plane 节点的公网 IP 地址，然后访问 `http://<control-plane-ip>:31027`。对于 AWS EC2 实例，可以在 AWS 控制台中查看。
+
+![ArgoCD 登陆界面](/static/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/argocd-login-page.png "ArgoCD 登陆界面")
 
 获取 ArgoCD Server 的初始密码
 
@@ -378,12 +387,4 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 
 ```bash
 sudo kubeadm join
-```
-
-## 问题排查
-
-以下命令创建一个临时的 Pod，用于排查网络问题
-
-```bash
-kubectl run test-pod --rm -it --image=busybox --restart=Never -- sh
 ```
