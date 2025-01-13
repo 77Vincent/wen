@@ -16,14 +16,12 @@ canonicalUrl: https://wenstudy.com/posts/setup-k8s-cluster-in-aws-ec2-without-us
 chmod 400 your-private-key.pem
 ```
 
-## 预备
-
 创建好后，需要在裸机上安装各种依赖。首先更新 dnf 包管理器。因为用的是 Amazon Linux 2 AMI，所以用的是 dnf 包管理器，而不是 yum。
 ```bash
 sudo dnf update -y
 ```
 
-### 准备容器运行时 containerd
+## 准备 containerd
 ```bash
 sudo dnf install -y containerd
 ```
@@ -50,7 +48,7 @@ sudo systemctl restart containerd
 sudo systemctl status containerd
 ```
 
-### 准备网络插件 CNI
+### 准备 CNI
 CNI (Container Network Interface) 插件为 Kubernetes 提供网络功能。它主要负责：
 1. 为 Pod 分配 IP 地址。
 2. 设置容器之间的网络通信。
@@ -84,15 +82,13 @@ firewall
 ...
 ```
 
-### 其他必要配置
-禁用 swap
+## 其他必要配置
+通过编辑 `/etc/modules-load.d/k8s.conf` 文件，使得这两个模块在系统启动时自动加载
 ```bash
-sudo swapoff -a
-```
-
-编辑 `/etc/fstab` 文件，注释掉 swap 行，以永久禁用 swap
-```bash
-sudo sed -i '/ swap / s/^/#/' /etc/fstab
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
 ```
 
 启动 overlay 和 br_netfilter 内核模块，它们是 Kubernetes 集群所必需的两个内核模块，需要手动加载。
@@ -102,21 +98,12 @@ sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
-通过编辑 `/etc/modules-load.d/k8s.conf` 文件，使得这两个模块在系统启动时自动加载
-```bash
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-overlay
-br_netfilter
-EOF
-```
-
 检查是否加载成功
 ```bash
 lsmod | grep -e overlay -e br_netfilter
 ```
 
-修改 sysctl 配置
-这里修改 sysctl 配置，使得 iptables 能够正确工作。
+修改 sysctl 配置，使得 iptables 能够正确工作。
 ```bash
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
@@ -125,16 +112,22 @@ net.ipv4.ip_forward = 1
 EOF
 ```
 
-### 安装 Kubernetes
+使配置生效
+```bash
+sudo sysctl --system
+```
+
+禁用 swap
+```bash
+sudo swapon -s # 查看 swap 分区
+sudo swapoff -a
+```
+
+## 安装 Kubernetes
 
 首先安装 curl（已有则跳过）
 ```bash
 sudo dnf install -y curl
-```
-
-添加 Kubernetes 仓库，这条命令保证了 yum 能够从 Google 的仓库中下载 Kubernetes 的软件包
-```bash
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /etc/yum.repos.d/kubernetes.repo > /dev/null
 ```
 
 以下命令添加了 Kubernetes 仓库的地址到 `/etc/yum.repos.d/kubernetes.repo` 文件中
@@ -155,10 +148,11 @@ EOF
 sudo dnf makecache
 ```
 
-安装 kubeadm, kubelet 和 kubectl
+安装 kubeadm, kubelet 和 kubectl 并启动 kubelet 服务
 
 ```bash
 sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+sudo systemctl enable --now kubelet
 ```
 
 安装 `tc (Traffic Control) 包`，以便 Kubernetes 集群能够正常工作，首先查看包含 tc 命令的软件包
@@ -171,29 +165,21 @@ dnf provides tc
 sudo dnf install -y iproute-tc
 ```
 
-启动 kubelet 服务
-```bash
-sudo systemctl enable kubelet
-```
-
-```bash
-sudo systemctl start kubelet
-```
-
-检查 kubelet 服务状态
-```bash
-sudo systemctl status kubelet
-```
-
-
 初始化 Kubernetes 集群
 ```bash
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ```
 
+> 一定要用 `sudo` 执行 `kubeadm init` 命令，因为这个命令会修改系统的配置文件，否则会报错。
+
+检查 kubelet 服务状态
+```bash
+systemctl status kubelet
+```
+
 初始化完成后，会输出类似如下的信息，其中有两个命令，一个是 `kubeadm join` 命令，另一个是 `kubectl apply` 命令，分别用于加入节点和安装网络插件。
 
-```bash
+```
 Your Kubernetes control-plane has initialized successfully!
 ```
 
@@ -204,30 +190,44 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-安装CNI网络插件，这里使用 Calico 网络插件
-```bash
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/tigera-operator.yaml
+安装CNI网络插件，这里使用 Flannel。
 
+Flannel 是一种简单的 Kubernetes 网络解决方案。它会为每个 Pod 分配一个唯一的 IP 地址，并确保不同节点之间的 Pod 能通过虚拟网络通信。
+
+首先手动初始化环境变量文件（是否必要待定）
+```bash
+echo -e "FLANNEL_NETWORK=10.244.0.0/16\nFLANNEL_SUBNET=10.244.0.1/24\nFLANNEL_MTU=1450\nFLANNEL_IPMASQ=true" | sudo tee /run/flannel/subnet.env > /dev/null
 ```
 
 ```bash
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/custom-resources.yaml
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+
+```
+
+查看相关Pod状态
+```bash
+kubectl get pods -n kube-system
+```
+
+应得到如下输出
+```
+NAME                                                                      READY   STATUS    RESTARTS   AGE
+coredns-668d6bf9bc-xls74                                                  1/1     Running   0          70m
+coredns-668d6bf9bc-zghmb                                                  1/1     Running   0          70m
+etcd-ip-123-12-12-12.ap-northeast-1.compute.internal                      1/1     Running   0          70m
+kube-apiserver-ip-123-12-12-12.ap-northeast-1.compute.internal            1/1     Running   0          70m
+kube-controller-manager-ip-123-12-12-12.ap-northeast-1.compute.internal   1/1     Running   0          70m
+kube-proxy-f2nnh                                                          1/1     Running   0          70m
+kube-scheduler-ip-123-12-12-12.ap-northeast-1.compute.internal            1/1     Running   0          70m
 ```
 
 查看节点状态
 ```bash
-kubectl get pods -n calico-system
+kubectl get nodes
 ```
 
-### 删除 kubernetes 及其依赖
-
-```bash
-sudo systemctl stop kubelet
-sudo dnf remove -y kubelet kubeadm kubectl
-sudo rm -rf /etc/kubernetes /var/lib/kubelet /var/lib/etcd ~/.kube
-sudo kubeadm reset -f
-sudo rm -rf /etc/cni/net.d
-sudo systemctl restart containerd
+应得到如下输出
 ```
-
-> 这是为了在重新安装或升级 kubernetes 时，不会因为之前的配置文件残留导致安装失败。
+NAME                                              STATUS   ROLES           AGE   VERSION
+ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m   v1.32.0
+```
