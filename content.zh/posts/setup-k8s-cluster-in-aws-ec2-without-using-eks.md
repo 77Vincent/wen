@@ -341,6 +341,37 @@ argocd-repo-server-577664cf68-ngbcz                 1/1     Running   0         
 argocd-server-6b9b64c5fb-qtk6b                      1/1     Running   0          6m15s
 ```
 
+暴露 ArgoCD Server
+    
+```bash
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+```
+
+查看 ArgoCD Server 的 NodePort 端口
+
+```bash
+kubectl get svc argocd-server -n argocd
+```
+
+应得到如下输出
+
+```
+NAME            TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
+argocd-server   NodePort   10.97.82.16   <none>        80:31027/TCP,443:32130/TCP   14m
+```
+
+> 其中 `80:31027/TCP` 是 HTTP 端口，`443:32130/TCP` 是 HTTPS 端口。可以通过 `http://<control-plane-ip>:31027` 访问 ArgoCD UI。
+
+获取 control-plane 节点的公网 IP 地址，然后访问 `http://<control-plane-ip>:31027`。对于 AWS EC2 实例，可以在 AWS 控制台中查看。
+
+获取 ArgoCD Server 的初始密码
+
+```bash
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
+```
+
+> 用户名为 `admin`，密码为上面的命令输出。建议在登陆后立即修改管理员密码。
+
 ## 加入节点
 
 在 Worker 节点上执行 `kubeadm join` 命令，将 Worker 节点加入到 Kubernetes 集群中。
