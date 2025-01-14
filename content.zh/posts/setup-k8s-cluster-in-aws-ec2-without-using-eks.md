@@ -179,10 +179,10 @@ sudo dnf install -y curl
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 EOF
 ```
@@ -306,7 +306,7 @@ kube-flannel-ds  1         1         1       1            1           <none>    
 kubectl get pods -n kube-system
 ```
 
-应得到如下输出，所有的 Pod 都应该是 `Running` 状态
+应得到如下输出，所有的 Pod 都应该是 `Running` 状态，如果有 `ContainerCreating` 状态，等一下再查看。
 
 ```
 NAME                                                                      READY   STATUS    RESTARTS   AGE
@@ -329,7 +329,51 @@ kubectl get nodes
 
 ```
 NAME                                              STATUS   ROLES           AGE   VERSION
-ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m   v1.32.0
+ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m   v1.28.0
+```
+
+## 安装 Metrics Server
+
+Metrics Server 是 Kubernetes 的一个聚合器，用于收集集群中的资源使用情况。有了 Metrics Server，就可以使用 `kubectl top` 命令查看集群实时的资源使用情况。
+
+部署 Metrics Server
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+``` 
+
+编辑 Metrics Server 的 Deployment，添加 `--kubelet-insecure-tls` 参数
+```bash
+kubectl edit deployment metrics-server -n kube-system
+```
+
+找到 `containers` 下的 `args` 字段，添加 `--kubelet-insecure-tls` 参数，如下，保存退出后，Deployment 会自动更新。
+
+```yaml
+      containers:
+        - args:
+            - --kubelet-insecure-tls
+```
+
+> 这个操作的原因是，Metrics Server 默认使用自签名证书，而 Kubernetes API Server 可能拒绝与其通信。
+
+检查 `Metrics Server` 是否正常运行
+
+```bash
+kubectl get pods -n kube-system | grep metrics-server
+```
+
+应得到如下输出，`metrics-server` 的 `Pod` 应该是 `Running` 状态
+
+```
+metrics-server-6d4c8c5f99-7z5zv   1/1     Running   0          3m
+```
+
+于是可以用 `kubectl top` 命令查看集群实时的资源使用情况
+
+```bash
+kubectl top nodes
+kubectl top pods -n <namespace>
 ```
 
 ## 集成 ArgoCD
@@ -363,7 +407,7 @@ kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 kubectl get pods -n argocd
 ```
 
-所有的 Pod 都应该是 `Running` 状态
+所有的 Pod 都应该是 `Running` 状态，同样，有 `Pod` 处于 `ContainerCreating` 或 `Init` 状态，等一下再查看。
 
 ```
 NAME                                                READY   STATUS    RESTARTS   AGE
@@ -409,13 +453,5 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 ```
 
 > 用户名为 `admin`，密码为上面的命令输出。建议在登陆后立即修改管理员密码。
-
-## 加入节点
-
-在 Worker 节点上执行 `kubeadm join` 命令，将 Worker 节点加入到 Kubernetes 集群中。
-
-```bash
-sudo kubeadm join
-```
 
 Kubernetes 以及 ArgoCD 集成完成。接下去就是通过 ArgoCD 部署应用程序了。
