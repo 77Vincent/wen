@@ -10,6 +10,8 @@ canonicalUrl: https://wenstudy.com/posts/setup-k8s-cluster-in-aws-ec2-without-us
 成本高昂，会有一笔跟 EC2 计算费用无关的起步价，仅仅来源于 EKS。为了学习（省钱），我们来用裸机 EC2 实例搭建 Kubernetes 集群，以及集成
 ArgoCD 实现 CD (Continuous Deployment)。
 
+<!--more-->
+
 ## 准备EC2实例
 
 通过AWS控制台或者AWS CLI创建EC2实例。一般Production环境配置至少两个节点，一个作为Master节点，另一个作为Worker节点。实例最低需求：
@@ -24,10 +26,6 @@ ArgoCD 实现 CD (Continuous Deployment)。
 使用AWS AMI创建EC2实例，选择 Amazon Linux xxx AMI。
 
 ![选择Amazon Linux AMI](/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/aws-ec2-launch-ami.png "选择Amazon Linux AMI")
-
-### 安全组配置
-
-在创建EC2实例时，需要配置安全组，如果不完全开放所有端口，至少需要开放以下端口：
 
 创建key pair，用于远程SSH登录EC2实例。创建后会下载一个私钥文件，一般存入`~/.ssh`目录下，并修改权限为只允许拥有者读取。
 
@@ -108,12 +106,8 @@ sudo tar -C /opt/cni/bin -xf /usr/local/src/cni-plugins-linux-amd64-v${CNI_VERSI
 再使用 `ls /opt/cni/bin` 命令查看，应当看到如下输出
 
 ```
-bridge
-host-local
-loopback
-portmap
-firewall
-...
+bandwidth  bridge  dhcp  dummy  firewall  flannel  host-device  host-local
+ipvlan  loopback  macvlan  portmap  ptp  sbr  static  tap  tuning  vlan  vrf
 ```
 
 ## 其他必要配置
@@ -334,7 +328,8 @@ ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m  
 
 ## 安装 Metrics Server
 
-Metrics Server 是 Kubernetes 的一个聚合器，用于收集集群中的资源使用情况。有了 Metrics Server，就可以使用 `kubectl top` 命令查看集群实时的资源使用情况。
+Metrics Server 是 Kubernetes 的一个聚合器，用于收集集群中的资源使用情况。有了 Metrics Server，就可以使用 `kubectl top`
+命令查看集群实时的资源使用情况。
 
 部署 Metrics Server
 
@@ -343,6 +338,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ``` 
 
 编辑 Metrics Server 的 Deployment，添加 `--kubelet-insecure-tls` 参数
+
 ```bash
 kubectl edit deployment metrics-server -n kube-system
 ```
@@ -351,8 +347,8 @@ kubectl edit deployment metrics-server -n kube-system
 
 ```yaml
 containers:
-- args:
-    - --kubelet-insecure-tls
+  - args:
+      - --kubelet-insecure-tls
 ```
 
 > 这个操作的原因是，Metrics Server 默认使用自签名证书，而 Kubernetes API Server 可能拒绝与其通信。
