@@ -1,7 +1,7 @@
 ---
-title: 软件工程师面试问题
+title: 软件工程师的通用面试问题
 date: 2025-01-01T02:01:58+05:30
-tags: [ computer-science, interview, engineering ]
+tags: [ computer-science, interview, software-engineering ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-stack-engineer/
 ---
@@ -18,7 +18,7 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 10.0.0.0/24
 ```
 
-2^(32-24)=2^8=256
+> 2^(32-24)=2^8=256
 
 ### 什么是NAT？
 
@@ -79,4 +79,68 @@ ACID是数据库事务的四个特性，保证数据库事务在并发和故障�
 2. 死锁，或数据处于非法状态。
 3. 难以复现和调试。
 
-> 重点是执行顺序不确定，而非总是错误，比如可能有时候按123顺序正确执行，有时候混乱。
+> 重点是执行顺序不确定，而非总是错误，比如可能有时候按 1-2-3 顺序正确执行，有时候混乱。
+
+### 设计模式
+
+设计模式是解决软件设计中常见问题的经验总结，常用的有：
+1. 工厂
+2. 单例
+3. 策略
+4. 适配器
+5. 模版
+
+### 单例模式
+
+单例模式是一种创建型设计模式，确保一个类只有一个实例，并提供一个全局访问点。以下是Go语言的实现。 首先是经典实现：
+
+```go
+package main
+
+import "sync"
+
+type Singleton struct{}
+
+var (
+	s  *Singleton
+	mu sync.Mutex
+)
+
+func Get() *Singleton {
+	if s == nil {
+		mu.Lock()
+		defer mu.Unlock()
+
+		if s == nil {
+			s = &Singleton{}
+			return s
+		}
+		return s
+	}
+	return s
+}
+```
+
+> 重点：首次检查为空加锁后，需再次检查是否为空，而不能直接创建，否则有可能在加锁完成前，其他线程已经创建了实例而导致重复创建。
+
+比较现代的实现方式是使用 `sync.Once`，确保线程安全。省去了更多累赘的 `if` 判断。
+
+```go
+package main
+
+import "sync"
+
+type Singleton struct{}
+
+var (
+	s    *Singleton
+	once sync.Once
+)
+
+func Get() *Singleton {
+	once.Do(func() {
+		s = &Singleton{}
+	})
+	return s
+}
+```
