@@ -350,9 +350,9 @@ kubectl edit deployment metrics-server -n kube-system
 找到 `containers` 下的 `args` 字段，添加 `--kubelet-insecure-tls` 参数，如下，保存退出后，Deployment 会自动更新。
 
 ```yaml
-      containers:
-        - args:
-            - --kubelet-insecure-tls
+containers:
+- args:
+    - --kubelet-insecure-tls
 ```
 
 > 这个操作的原因是，Metrics Server 默认使用自签名证书，而 Kubernetes API Server 可能拒绝与其通信。
