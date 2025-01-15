@@ -1,5 +1,5 @@
 ---
-title: 用AWS EC2从零搭建Kubernetes集群并集成ArgoCD
+title: 用AWS EC2从零搭建Kubernetes
 date: 2024-11-20T02:01:58+05:30
 tags: [ computer-science, aws, kubernetes, argocd, cicd ]
 categories: study
@@ -23,7 +23,7 @@ ArgoCD 实现 CD (Continuous Deployment)。
 
 使用AWS AMI创建EC2实例，选择 Amazon Linux xxx AMI。
 
-![选择Amazon Linux AMI](/static/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/aws-ec2-launch-ami.png "选择Amazon Linux AMI")
+![选择Amazon Linux AMI](/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/aws-ec2-launch-ami.png "选择Amazon Linux AMI")
 
 ### 安全组配置
 
@@ -444,7 +444,7 @@ argocd-server   NodePort   10.97.82.16   <none>        80:31027/TCP,443:32130/TC
 
 获取 control-plane 节点的公网 IP 地址，然后访问 `http://<control-plane-ip>:31027`。对于 AWS EC2 实例，可以在 AWS 控制台中查看。
 
-![ArgoCD 登陆界面](/static/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/argocd-login-page.png "ArgoCD 登陆界面")
+![ArgoCD 登陆界面](/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/argocd-login-page.png "ArgoCD 登陆界面")
 
 获取 ArgoCD Server 的初始密码
 
