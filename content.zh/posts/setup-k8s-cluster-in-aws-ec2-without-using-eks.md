@@ -1,6 +1,6 @@
 ---
 title: 用AWS EC2从零搭建Kubernetes
-date: 2024-11-20T02:01:58+05:30
+date: 2025-01-10T02:01:58+05:30
 tags: [ computer-science, aws, kubernetes, argocd, cicd ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/
