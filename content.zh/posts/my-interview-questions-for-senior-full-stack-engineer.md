@@ -23,10 +23,6 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 
 > 2^(32-24)-2=2^8-2=254
 
-其对应的子网掩码是什么？
-
-> 255.255.255.0
-
 其对应的 IP 地址范围是什么？
 
 > 10.0.0.1 ~ 10.0.0.254
@@ -34,6 +30,15 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 > 10.0.0.0 不可分配，是子网的起始地址，用于标识网络
 > 
 > 10.0.0.255 不可分配，是子网的广播地址，用于向子网内所有设备发送消息
+
+### 子网掩码
+
+有以下子网掩码和两个IP，它们是否在同一个子网？
+```
+255.255.255.0
+192.168.0.10
+192.168.1.10
+```
 
 ### 什么是NAT？
 
