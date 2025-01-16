@@ -1,6 +1,6 @@
 ---
 title: 用AWS EC2从零搭建Jenkins CI/CD
-date: 2025-01-10T02:01:58+05:30
+date: 2025-01-16T02:01:58+05:30
 tags: [ computer-science, aws, jenkins, cicd ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/setup-jenkins-in-aws-ec2/
@@ -9,6 +9,18 @@ canonicalUrl: https://wenstudy.com/posts/setup-jenkins-in-aws-ec2/
 <!--more-->
 
 ## 预备
+
+### 准备 `EC2` 实例
+
+使用 Amazon Linux 2 AMI。确保
+1. 安全组（`Security Group`）开放 `8080` 端口。
+2. EC2 的 IAM 角色有对 ECR 的读和写权限。一般是使用 `AmazonEC2ContainerRegistryFullAccess` 策略。
+
+### `SSH` 登录 `EC2`
+
+```bash
+ssh -i <your-key.pem> ec2-user@<EC2-Public-IP>
+```
 
 ### 更新包管理器 `dnf`
 
@@ -91,6 +103,16 @@ sudo systemctl status jenkins
      CGroup: /system.slice/jenkins.service
              └─976120 /usr/bin/java -Djava.awt.headless=true -jar /usr/share/java/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8080
 ```
+
+### 添加 Jenkins 用户到 Docker 用户组
+
+```bash
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+sudo systemctl restart docker
+```
+
+> 对于使用 Docker 进行镜像构建的 Jenkins 任务，这一步很重要。
 
 ## 配置 Jenkins
 
