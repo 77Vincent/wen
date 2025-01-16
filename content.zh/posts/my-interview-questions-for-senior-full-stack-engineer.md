@@ -15,7 +15,7 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 
 ### CIDR
 
-以下 `CIDR` 地址块有多少个可用的IP地址？
+#### 以下 `CIDR` 地址块有多少个可用的IP地址？
 
 ```
 10.0.0.0/24
@@ -23,17 +23,18 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 
 > 2^(32-24)-2=2^8-2=254
 
-其对应的 IP 地址范围是什么？
+#### 其对应的 IP 地址范围是什么？
 
 > 10.0.0.1 ~ 10.0.0.254
-> 
+>
 > 10.0.0.0 不可分配，是子网的起始地址，用于标识网络
-> 
+>
 > 10.0.0.255 不可分配，是子网的广播地址，用于向子网内所有设备发送消息
 
 ### 子网掩码
 
-有以下子网掩码和两个IP，它们是否在同一个子网？
+#### 有以下子网掩码和两个IP，它们是否在同一个子网？
+
 ```
 255.255.255.0
 192.168.0.10
@@ -41,22 +42,23 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 ```
 
 > 不在，因为两个IP地址与子网掩码的AND结果不同。分别是
-> 
+>
 > 192.168.0.10 & 255.255.255.0 = 192.168.0.0
-> 
+>
 > 192.168.1.10 & 255.255.255.0 = 192.168.1.0
 
 ### 什么是默认网关？
 
-默认网关是一个网络设备，用于将数据包从一个网络发送到另一个网络。当设备要发送数据包到另一个网络时，它首先检查目标IP地址是否在同一子网内。如果不在，它会将数据包发送到默认网关，由默认网关转发到目标网络。
+默认网关是一个网络设备，用于将数据包从一个网络发送到另一个网络。当设备要发送数据包到另一个网络时，它检查目标IP地址是否在同一子网内。
 
-同一个字网内的设备不需要走网关，因为它们可以直接通信。
+* 在，不需走网关，设备可直接通信。
+* 不在，将数据包发送到默认网关，由默认网关转发到目标网络。
 
 > 默认网关通常是路由器，它连接了两个不同的网络。
 
 ### 什么是NAT？
 
-NAT(Network Address Translation)是一种将私有IP地址转换为公共IP地址的技术。在私有子网中，每个设备只有一个私有IP地址，无法直接与Internet通信。NAT通过将私有IP地址映射到公共IP地址。
+NAT（Network Address Translation）是一种将私有IP地址转换为公共IP地址的技术。在私有子网中，每个设备只有一个私有IP地址，无法直接与Internet通信。NAT通过将私有IP地址映射到公共IP地址。
 
 ### UDP VS TCP
 
@@ -64,12 +66,50 @@ NAT(Network Address Translation)是一种将私有IP地址转换为公共IP地�
 
 | Feature                     | TCP                                                          | UDP                                                                             |
 |-----------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Connection                  | Connection-oriented                                          | Connectionless                                                                  |
-| Reliability                 | Reliable due to error checking, retransmission, reassembling | Unreliable due to no error checking and retransmission, reassembling            |
-| Speed                       | Slower due to overhead                                       | Faster due to no overhead                                                       |
-| Flow and Congestion control | Yes                                                          | No                                                                              |
-| Header size                 | Larger (20 - 60 bytes)                                       | Smaller (8 bytes)                                                               |
-| Use case                    | Web browsing, file transfer, email                           | Real-time application like video streaming, online gaming, VoIP (voice over IP) |
+| **Connection**              | Connection-oriented                                          | Connectionless                                                                  |
+| **Reliability**             | Reliable due to error checking, retransmission, reassembling | Unreliable due to no error checking and retransmission, reassembling            |
+| **Speed**                   | Slower due to overhead                                       | Faster due to no overhead                                                       |
+| **Flow/Congestion control** | Yes                                                          | No                                                                              |
+| **Header size**             | Larger (20 - 60 bytes)                                       | Smaller (8 bytes)                                                               |
+| **Use case**                | Web browsing, file transfer, email                           | Real-time application like video streaming, online gaming, VoIP (voice over IP) |
+
+### DNS
+
+#### 什么是 A 记录（A record）？
+
+> A 记录是将域名映射到IPv4地址的记录。其中 `@` 表示根域名。
+
+| example.com | record type | value     | TTL   |
+|-------------|-------------|-----------|-------|
+| @           | A           | 192.0.2.1 | 14400 |
+
+#### 什么是 CNAME 记录？
+
+> CNAME 记录是将域名映射到另一个域名的记录。等于是域名的别名。例如：
+
+| blog.example.com | record type | value                      | TTL   |
+|------------------|-------------|----------------------------|-------|
+| @                | CNAME       | is an alias of example.com | 32600 |
+
+### HTTP
+
+#### 请求 URL 长度有限制吗？
+
+> HTTP协议没有规定URL的最大长度，但是浏览器和服务器都有限制。例如，Chrome浏览器的URL长度限制是 2KB。
+
+#### 如何禁止浏览器缓存？
+
+> 可以通过设置HTTP响应头（response header）来禁止浏览器缓存，其中：
+
+```
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: 0
+```
+
+1. Cache-Control 中的 no-cache 表示不缓存，no-store 表示不存储，must-revalidate 表示必须重新验证。
+2. Pragma 中的 no-cache 表示不缓存。（HTTP/1.0）
+3. Expires 设置为 0 表示立即过期。（HTTP/1.0）
 
 ## 数据库
 
@@ -77,12 +117,12 @@ NAT(Network Address Translation)是一种将私有IP地址转换为公共IP地�
 
 ACID是数据库事务的四个特性，保证数据库事务在并发和故障情况下的可靠性和一致性。
 
-| Term        | Explanation                    | In one word |
-|-------------|--------------------------------|-------------|
-| Atomicity   | 事务中的所有部分只能全部完成或全部失败            | 有或没有        |
-| Consistency | 事务开始和结束时，数据库的完整性约束没有被破坏 ｜ 一致正确 |
-| Isolation   | 事务之间是相互隔离的，互不干扰                | 并发安全 ｜      |
-| Durability  | 事务一旦提交，对数据库的改变是永久的             | 持久性         |
+| Term            | Explanation             | In one word |
+|-----------------|-------------------------|-------------|
+| **Atomicity**   | 事务中的所有部分只能全部完成或全部失败     | 有或没有        |
+| **Consistency** | 事务开始和结束时，数据库的完整性约束没有被破坏 | 一致正确        |
+| **Isolation**   | 事务之间是相互隔离的，互不干扰         | 并发安全        |
+| **Durability**  | 事务一旦提交，对数据库的改变是永久的      | 持久性         |
 
 ### 什么是隔离级别？
 
@@ -97,16 +137,15 @@ ACID是数据库事务的四个特性，保证数据库事务在并发和故障�
 
 这三个现象是数据库事务并发的问题，是由于事务隔离级别不同导致的。
 
-| 现象                       | 描述                                 | 所需隔离等级 |
-|--------------------------|------------------------------------|--------|
-| 脏独（Dirty Read）           | 读取到未提交的数据                          | 读已提交   |
-| 不可重复度（Unrepeatable Read） | 一个事务中，两次读取之间，另一个事务修改了数据，导致结果不一致    | 可重复读   |
-| 幻读（Phantom Read）         | 一个事务中，两次读取之间，另一个事务插入/删除了数据，导致行数不一致 | 序列化    |
+| 现象        | 描述                                 | 所需隔离等级 |
+|-----------|------------------------------------|--------|
+| **脏独**    | 读取到未提交的数据                          | 读已提交   |
+| **不可重复度** | 一个事务中，两次读取之间，另一个事务修改了数据，导致结果不一致    | 可重复读   |
+| **幻读**    | 一个事务中，两次读取之间，另一个事务插入/删除了数据，导致行数不一致 | 序列化    |
 
 ## 开发
 
 ### Heap 数据结构
-
 
 ### 什么是竞态条件？
 
@@ -121,6 +160,7 @@ ACID是数据库事务的四个特性，保证数据库事务在并发和故障�
 ### 设计模式
 
 设计模式是解决软件设计中常见问题的经验总结，常用的有：
+
 1. 工厂
 2. 单例
 3. 策略
@@ -190,6 +230,12 @@ func Get() *Singleton {
 
 ## 架构
 
+### 轮转调度（Round Robin）
+
+轮转调度是一种负载均衡算法，将请求依次分配给服务器列表中的每个服务器。例如，有三个服务器，请求依次分配给 A、B、C、A、B、C、A、B、C...
+
+> 与此类似的算法还有加权轮询，根据服务器的负载情况，分配不同的权重。
+
 ### 如何评价一个系统？
 
 四字诀：安全可靠，无廉价美。
@@ -209,11 +255,11 @@ CDN（Content Delivery Network）是一种分布式网络，用于缓存和分�
 
 ### DDoS 攻击
 
-什么是 DDoS 攻击？
+#### 什么是 DDoS 攻击？
 
 > DDoS（Distributed Denial of Service）是一种网络攻击，通过分布式客户端，产生大量请求，使得目标服务过载或由此触发错误，导致服务不可用。
 
-如何防范？
+#### 如何防范？
 
 > 设置防火墙，限制访问频率，使用CDN，使用DDoS防护服务，使用IP黑名单，使用CAPTCHA验证。
 
@@ -271,7 +317,7 @@ $$
 $$
 
 > M/M/1队列是一个基本的排队模型，M表示到达率和服务率都是指数分布，1表示只有一个服务台。
-> 
+>
 > M/M/1 队列模型中，拒绝率等于利用率，因为利用时即为拒绝时。
 
 ### 离散数学
@@ -282,7 +328,8 @@ $$
 \log_2(n!) = \Theta(n \log n)
 $$
 
-为什么？排序本质是比较，可以用一个决策树表示，决策树的深度即为最坏情况下的比较次数。对于 \(n\) 个元素的排序，有 \(n!\) 种排列，所以决策树的叶子节点数为 \(n!\)，高度为 \(h\)，满足：
+为什么？排序本质是比较，可以用一个决策树表示，决策树的深度即为最坏情况下的比较次数。对于 \(n\) 个元素的排序，有 \(n!\)
+种排列，所以决策树的叶子节点数为 \(n!\)，高度为 \(h\)，满足：
 
 $$
 2^h \geq n!
@@ -292,7 +339,7 @@ $$
 h \geq \log_2(n!)
 $$
 
-基于斯特林公式，有 
+基于斯特林公式，有
 
 $$
 \begin{aligned}
@@ -308,7 +355,8 @@ $$
 h \geq n \log_2 n
 $$
 
-> 简单理解：首先必须要遍历所有元素，因此时间复杂度至少是 \(O(n)\)；每看到一个元素，都要用二分法去寻找它在长度为 \(n\) 的数组中的位置，这里的复杂度是 \(O(\log n)\)。所以总的时间复杂度的下限是 \(O(n \log n)\)。
+> 简单理解：首先必须要遍历所有元素，因此时间复杂度至少是 \(O(n)\)；每看到一个元素，都要用二分法去寻找它在长度为 \(n\)
+> 的数组中的位置，这里的复杂度是 \(O(\log n)\)。所以总的时间复杂度的下限是 \(O(n \log n)\)。
 
 ### 统计
 
