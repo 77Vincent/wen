@@ -1,5 +1,5 @@
 ---
-title: 用AWS EC2从零搭建Kubernetes
+title: 用AWS EC2从零搭建Kubernetes 并集成 ArgoCD
 date: 2025-01-10T02:01:58+05:30
 tags: [ computer-science, aws, kubernetes, argocd, cicd ]
 categories: study
@@ -42,18 +42,19 @@ sudo dnf update -y
 
 ## 准备 containerd
 
+### 安装
 ```bash
 sudo dnf install -y containerd
 ```
 
-启动 containerd 服务
+### 启动
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now containerd
 ```
 
-为 containerd 创建默认配置文件
+### 创建默认配置文件
 
 ```bash
 sudo containerd config default | sudo tee /etc/containerd/config.toml
@@ -75,20 +76,20 @@ sudo systemctl status containerd
 
 ## 准备 CNI
 
-CNI (Container Network Interface) 插件为 Kubernetes 提供网络功能。它主要负责：
+`CNI` (`Container Network Interface`) 插件为 `Kubernetes` 提供网络功能。它主要负责：
 
-1. 为 Pod 分配 IP 地址。
+1. 为 `Pod` 分配 `IP` 地址。
 2. 设置容器之间的网络通信。
-3. 确保 Pod 可以与其他 Pod、服务（Service）以及外部世界通信。
+3. 确保 `Pod` 可以与其他 `Pod`、服务（`Service`）以及外部世界通信。
 
-如果没有正确安装和配置 CNI 插件，Kubernetes 的 Pod 网络将无法正常工作，导致 Pod 无法互通或无法分配 IP 地址。先查看是否已经安装了
-CNI 插件
+如果没有正确安装和配置 `CNI` 插件，`Kubernetes` 的 `Pod` 网络将无法正常工作，导致 `Pod` 无法互通或无法分配 `IP` 地址。先查看是否已经安装了
+`CNI` 插件
 
 ```bash
 ls /opt/cni/bin
 ```
 
-如果以上命令没有输出如下信息，说明没有安装 CNI 插件
+如果以上命令没有输出如下信息，说明没有安装 `CNI` 插件
 
 ```
 ls: cannot access '/opt/cni/bin': No such file or directory
@@ -112,12 +113,14 @@ ipvlan  loopback  macvlan  portmap  ptp  sbr  static  tap  tuning  vlan  vrf
 
 ## 其他必要配置
 
-启动 overlay 和 br_netfilter 内核模块，它们是 Kubernetes 集群所必需的两个内核模块，需要手动加载。
+### 启动两个内核模块
 
 ```bash
 sudo modprobe overlay  
 sudo modprobe br_netfilter
 ```
+
+> `overlay` 和 `br_netfilter` 是 `Kubernetes` 集群所必需的两个内核模块，需要手动加载。
 
 通过编辑 `/etc/modules-load.d/k8s.conf` 文件，使得这两个模块在系统启动时自动加载
 
@@ -134,7 +137,7 @@ EOF
 lsmod | grep -e overlay -e br_netfilter
 ```
 
-修改 sysctl 配置，使得 iptables 能够正确工作。
+### 修改 `sysctl` 配置
 
 ```bash
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
@@ -144,13 +147,15 @@ net.ipv4.ip_forward = 1
 EOF
 ```
 
-刷新 sysctl 配置以使其生效
+> 这个操作使得 `iptables` 能够正确工作。
+
+刷新 `sysctl` 配置以使其生效
 
 ```bash
 sudo sysctl --system
 ```
 
-禁用 swap
+### 禁用 `swap`
 
 ```bash
 sudo swapon -s # 查看 swap 分区
@@ -161,11 +166,15 @@ sudo swapoff -a
 
 ## 安装 Kubernetes
 
-首先安装 curl（有则跳过）
+### 安装 `curl`
 
 ```bash
 sudo dnf install -y curl
 ```
+
+> 已有了 `curl` 的话则跳过这一步。
+
+### 添加 `Kubernetes` 仓库地址
 
 以下命令添加了 Kubernetes 仓库的地址到 `/etc/yum.repos.d/kubernetes.repo` 文件中
 
@@ -187,6 +196,7 @@ EOF
 sudo dnf makecache
 ```
 
+### 安装
 安装 `kubeadm`, `kubelet` 和 `kubectl` 并启动 `kubelet` 服务
 
 ```bash
@@ -212,6 +222,8 @@ dnf provides tc
 sudo dnf install -y iproute-tc
 ```
 
+### 启动
+
 通过 `kubeadm` 初始化 `Kubernetes` 集群
 
 ```bash
@@ -229,7 +241,7 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 Your Kubernetes control-plane has initialized successfully!
 ```
 
-检查 kubelet 服务状态
+### 检查 `kubelet` 服务状态
 
 ```bash
 systemctl status kubelet
@@ -259,16 +271,16 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ## 安装 CNI 插件
 
-安装CNI网络插件，这里使用 Flannel。Flannel 是一种简单的 Kubernetes 网络解决方案。它会为每个 Pod 分配一个唯一的 IP
-地址，并确保不同节点之间的 Pod 能通过虚拟网络通信。
+安装CNI网络插件，这里使用 `Flannel`。Flannel 是一种简单的 `Kubernetes` 网络解决方案。它会为每个 `Pod` 分配一个唯一的 `IP`
+地址，并确保不同节点之间的 `Pod` 能通过虚拟网络通信。
 
-部署 Flannel
+### 部署 `Flannel`
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 ```
 
-检查 Flannel Pod 是否正常运行
+### 检查服务状态
 
 ```bash
 kubectl get pods -n kube-flannel
@@ -281,7 +293,7 @@ NAME                    READY   STATUS    RESTARTS       AGE
 kube-flannel-ds-n2nzv   1/1     Running   20 (52s ago)   67m
 ```
 
-以及用以下命令查看 Flannel DaemonSet
+以及用以下命令查看 `Flannel DaemonSet`
 
 ```bash
 kubectl get daemonset kube-flannel-ds -n kube-flannel
@@ -294,7 +306,7 @@ NAME             DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELEC
 kube-flannel-ds  1         1         1       1            1           <none>                   67m
 ```
 
-查看系统相关的 Pod
+查看系统相关的 `Pod`
 
 ```bash
 kubectl get pods -n kube-system
@@ -326,24 +338,22 @@ NAME                                              STATUS   ROLES           AGE  
 ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m   v1.28.0
 ```
 
-## 安装 Metrics Server
+## 安装 `Metrics Server`（可选）
 
-Metrics Server 是 Kubernetes 的一个聚合器，用于收集集群中的资源使用情况。有了 Metrics Server，就可以使用 `kubectl top`
-命令查看集群实时的资源使用情况。
-
-部署 Metrics Server
+`Metrics Server` 是 `Kubernetes` 的一个聚合器，用于收集集群中的资源使用情况。有了 `Metrics Server`，就可以使用 `kubectl top`
+命令查看集群实时的资源使用情况。以下先部署：
 
 ```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ``` 
 
-编辑 Metrics Server 的 Deployment，添加 `--kubelet-insecure-tls` 参数
+编辑 `Metrics Server` 的 `Deployment`，添加 `--kubelet-insecure-tls` 参数
 
 ```bash
 kubectl edit deployment metrics-server -n kube-system
 ```
 
-找到 `containers` 下的 `args` 字段，添加 `--kubelet-insecure-tls` 参数，如下，保存退出后，Deployment 会自动更新。
+找到 `containers` 下的 `args` 字段，添加 `--kubelet-insecure-tls` 参数，如下，保存退出后，`Deployment` 会自动更新。
 
 ```yaml
 containers:
@@ -372,18 +382,18 @@ kubectl top nodes
 kubectl top pods -n <namespace>
 ```
 
-## 集成 ArgoCD
+## 集成 `ArgoCD`
 
-ArgoCD 是一个用于 GitOps 部署的工具，它可以帮助我们将应用程序的配置文件存储在 Git 仓库中，并通过 ArgoCD 自动同步到
-Kubernetes 集群中。
+`ArgoCD` 是一个用于 `GitOps` 部署的工具，它可以帮助我们将应用程序的配置文件存储在 `Git` 仓库中，并通过 `ArgoCD` 自动同步到
+`Kubernetes` 集群中。
 
-创建 ArgoCD 命名空间（Namespace）
+### 创建命名空间
 
 ```bash
 kubectl create namespace argocd
 ```
 
-安装 ArgoCD
+### 安装 `ArgoCD`
 
 ```bash
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
@@ -397,7 +407,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 ```
 
-查看 ArgoCD 相关的 Pod 状态
+### 查看相关 `Pod` 状态
 
 ```bash
 kubectl get pods -n argocd
@@ -416,13 +426,13 @@ argocd-repo-server-577664cf68-ngbcz                 1/1     Running   0         
 argocd-server-6b9b64c5fb-qtk6b                      1/1     Running   0          6m15s
 ```
 
-暴露 ArgoCD Server
+### 暴露 `ArgoCD Server`
 
 ```bash
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 ```
 
-查看 ArgoCD Server 的 NodePort 端口
+查看 `ArgoCD Server` 的 `NodePort` 端口
 
 ```bash
 kubectl get svc argocd-server -n argocd
@@ -438,11 +448,11 @@ argocd-server   NodePort   10.97.82.16   <none>        80:31027/TCP,443:32130/TC
 > 其中 `80:31027/TCP` 是 HTTP 端口，`443:32130/TCP` 是 HTTPS 端口。可以通过 `http://<control-plane-ip>:31027` 访问 ArgoCD
 > UI。
 
-获取 control-plane 节点的公网 IP 地址，然后访问 `http://<control-plane-ip>:31027`。对于 AWS EC2 实例，可以在 AWS 控制台中查看。
+获取 `control-plane` 节点的公网 `IP` 地址，然后访问 `http://<control-plane-ip>:31027`。对于 `AWS EC2` 实例，可以在 `AWS` 控制台中查看。
 
 ![ArgoCD 登陆界面](/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/argocd-login-page.png "ArgoCD 登陆界面")
 
-获取 ArgoCD Server 的初始密码
+### 获取 `ArgoCD Server` 初始密码
 
 ```bash
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
@@ -450,4 +460,48 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 
 > 用户名为 `admin`，密码为上面的命令输出。建议在登陆后立即修改管理员密码。
 
-Kubernetes 以及 ArgoCD 集成完成。接下去就是通过 ArgoCD 部署应用程序了。
+## 安装 `ArgoCD CLI`
+
+后续为了于 `CI` 集成实现自动化部署，`ArgoCD CLI` （命令行工具）是必不可少的。
+
+### 下载
+```bash
+curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+```
+
+### 赋予执行权限
+```bash
+chmod +x argocd
+```
+
+### 移动可执行文件
+
+将 `argocd` 移动到 `/usr/local/bin` 目录下
+
+```bash
+sudo mv ./argocd /usr/local/bin
+```
+
+### 验证安装
+
+```bash
+argocd version
+```
+
+`Kubernetes` 以及 `ArgoCD` 集成完成。接下去就是通过 `ArgoCD` 部署应用程序了。
+
+### 配置
+
+```bash
+argocd login <ARGOCD_SERVER> --username admin --password <YOUR_PASSWORD> --insecure
+```
+
+> `ARGOCD_SERVER` 是 `ArgoCD` 服务器的地址，`YOUR_PASSWORD` 是 `ArgoCD` 管理员的密码。
+> 
+> `--insecure` 参数是因为 `ArgoCD` 默认使用自签名证书，而 `ArgoCD CLI` 可能拒绝与其通信。
+
+### 验证连接
+
+```bash
+argocd app list
+```

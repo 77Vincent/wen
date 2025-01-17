@@ -1,5 +1,5 @@
 ---
-title: 用AWS EC2从零搭建Jenkins CI/CD
+title: 用AWS EC2从零搭建Jenkins
 date: 2025-01-16T02:01:58+05:30
 tags: [ computer-science, aws, jenkins, cicd ]
 categories: study
