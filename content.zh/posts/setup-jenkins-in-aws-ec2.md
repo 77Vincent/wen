@@ -266,13 +266,15 @@ spec:
 
 ```bash
 kubectl create secret docker-registry ecr-pull-secret \
-    --docker-server=YOUR_AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com \
+    --docker-server=733089366385.dkr.ecr.ap-northeast-1.amazonaws.com \
     --docker-username=AWS \
     --docker-password=$(aws ecr get-login-password --region ap-northeast-1) \
-    --docker-email=none
+    --namespace <namespace_of_your_application>
 ```
 
 > 其中 `ecr-pull-secret` 是一个自定义的名称，可以根据实际情况替换，但必须保证和 `deployment.yml` 中的一致。
+> 
+> `--namespace` 必须和 `deployment.yml` 中的一致。
 
 ## 配置 Pipeline
 
