@@ -5,6 +5,10 @@ tags: [ computer-science, aws, jenkins, cicd ]
 categories: study
 canonicalUrl: https://wenstudy.com/posts/setup-jenkins-in-aws-ec2/
 ---
+ 
+上一篇：[用AWS EC2从零搭建Kubernetes和ArgoCD](/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/)
+
+前一篇里，我们在 `AWS EC2` 上从无到有，搭建了 `Kubernetes` 集群和 `ArgoCD`。因为终究缺少 `CI` 环境以实现真正的实时持续集成，这一篇将手把手，在 `AWS EC2` 上搭建 `Jenkins` 实现一个 `GitOps CI/CD` 工作流。
 
 <!--more-->
 
@@ -13,6 +17,7 @@ canonicalUrl: https://wenstudy.com/posts/setup-jenkins-in-aws-ec2/
 ### 准备 `EC2` 实例
 
 使用 Amazon Linux 2 AMI。确保
+
 1. 安全组（`Security Group`）开放 `8080` 端口。
 2. EC2 的 IAM 角色有对 ECR 的读和写权限。一般是使用 `AmazonEC2ContainerRegistryFullAccess` 策略。
 
@@ -50,6 +55,8 @@ sudo usermod -aG docker $USER
 ```
 
 > 为了避免每次使用 `docker` 命令都需要 `sudo`，将当前用户添加到 `docker` 用户组。
+> 
+> 参考：[在AWS Linux EC2上准备Docker](/posts/managing-docker-on-aws-ec2/)
 
 ### 安装 `Java`
 
@@ -71,20 +78,20 @@ sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/
 sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 ```
 
-### 安装 Jenkins
+### 安装
 
 ```bash
 sudo dnf install jenkins -y 
 ```
 
-### 启动 Jenkins 服务
+### 启动服务
 
 ```bash
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
 ```
 
-### 查看 Jenkins 服务状态
+### 查看服务状态
 
 ```bash
 sudo systemctl status jenkins
@@ -116,13 +123,13 @@ sudo systemctl restart docker
 
 ## 配置 Jenkins
 
-### 获取 Jenkins 初始密码
+### 获取初始密码
 
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-### 访问 Jenkins 并初始化
+### 访问并初始化
 
 1. 在浏览器中输入 `http://<EC2-Public-IP>:8080`，然后输入初始密码，即可进入 Jenkins UI。
 2. 选择安装推荐插件。

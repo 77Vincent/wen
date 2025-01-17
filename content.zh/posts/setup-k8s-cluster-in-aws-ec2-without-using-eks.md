@@ -1,5 +1,5 @@
 ---
-title: 用AWS EC2从零搭建Kubernetes 并集成 ArgoCD
+title: 用AWS EC2从零搭建Kubernetes和ArgoCD
 date: 2025-01-10T02:01:58+05:30
 tags: [ computer-science, aws, kubernetes, argocd, cicd ]
 categories: study
@@ -43,6 +43,7 @@ sudo dnf update -y
 ## 准备 containerd
 
 ### 安装
+
 ```bash
 sudo dnf install -y containerd
 ```
@@ -82,7 +83,8 @@ sudo systemctl status containerd
 2. 设置容器之间的网络通信。
 3. 确保 `Pod` 可以与其他 `Pod`、服务（`Service`）以及外部世界通信。
 
-如果没有正确安装和配置 `CNI` 插件，`Kubernetes` 的 `Pod` 网络将无法正常工作，导致 `Pod` 无法互通或无法分配 `IP` 地址。先查看是否已经安装了
+如果没有正确安装和配置 `CNI` 插件，`Kubernetes` 的 `Pod` 网络将无法正常工作，导致 `Pod` 无法互通或无法分配 `IP`
+地址。先查看是否已经安装了
 `CNI` 插件
 
 ```bash
@@ -197,6 +199,7 @@ sudo dnf makecache
 ```
 
 ### 安装
+
 安装 `kubeadm`, `kubelet` 和 `kubectl` 并启动 `kubelet` 服务
 
 ```bash
@@ -340,7 +343,8 @@ ip-123-12-12-12.ap-northeast-1.compute.internal   Ready    control-plane   72m  
 
 ## 安装 `Metrics Server`（可选）
 
-`Metrics Server` 是 `Kubernetes` 的一个聚合器，用于收集集群中的资源使用情况。有了 `Metrics Server`，就可以使用 `kubectl top`
+`Metrics Server` 是 `Kubernetes` 的一个聚合器，用于收集集群中的资源使用情况。有了 `Metrics Server`，就可以使用
+`kubectl top`
 命令查看集群实时的资源使用情况。以下先部署：
 
 ```bash
@@ -448,7 +452,8 @@ argocd-server   NodePort   10.97.82.16   <none>        80:31027/TCP,443:32130/TC
 > 其中 `80:31027/TCP` 是 HTTP 端口，`443:32130/TCP` 是 HTTPS 端口。可以通过 `http://<control-plane-ip>:31027` 访问 ArgoCD
 > UI。
 
-获取 `control-plane` 节点的公网 `IP` 地址，然后访问 `http://<control-plane-ip>:31027`。对于 `AWS EC2` 实例，可以在 `AWS` 控制台中查看。
+获取 `control-plane` 节点的公网 `IP` 地址，然后访问 `http://<control-plane-ip>:31027`。对于 `AWS EC2` 实例，可以在 `AWS`
+控制台中查看。
 
 ![ArgoCD 登陆界面](/images/setup-k8s-cluster-in-aws-ec2-without-using-eks/argocd-login-page.png "ArgoCD 登陆界面")
 
@@ -462,14 +467,16 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.pas
 
 ## 安装 `ArgoCD CLI`
 
-后续为了于 `CI` 集成实现自动化部署，`ArgoCD CLI` （命令行工具）是必不可少的。
+后续为了与 `CI` 集成实现自动化部署，`ArgoCD CLI` （命令行工具）是必不可少的。
 
 ### 下载
+
 ```bash
 curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 ```
 
 ### 赋予执行权限
+
 ```bash
 chmod +x argocd
 ```
@@ -497,7 +504,7 @@ argocd login <ARGOCD_SERVER> --username admin --password <YOUR_PASSWORD> --insec
 ```
 
 > `ARGOCD_SERVER` 是 `ArgoCD` 服务器的地址，`YOUR_PASSWORD` 是 `ArgoCD` 管理员的密码。
-> 
+>
 > `--insecure` 参数是因为 `ArgoCD` 默认使用自签名证书，而 `ArgoCD CLI` 可能拒绝与其通信。
 
 ### 验证连接
@@ -505,3 +512,10 @@ argocd login <ARGOCD_SERVER> --username admin --password <YOUR_PASSWORD> --insec
 ```bash
 argocd app list
 ```
+
+到这里，`Kubernetes` 与 `ArgoCD` 的部署和集成完成，可以开始部署应用程序了。
+
+由于 `ArgoCD` 其实只负责 `CD`部分（显而易见），应用的打包构建还是没有被自动化。尤其对于预览和测试环境来说，我们通常希望拥有实时的构建和部署。因此我们还是需要搭建
+`CI` 环境。
+
+请参见下一篇：[用AWS EC2从零搭建Jenkins](/posts/setup-jenkins-in-aws-ec2)
