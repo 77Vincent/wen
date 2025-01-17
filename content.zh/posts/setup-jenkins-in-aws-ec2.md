@@ -276,6 +276,12 @@ kubectl create secret docker-registry ecr-pull-secret \
 > 
 > `--namespace` 必须和 `deployment.yml` 中的一致。
 
+检查创建好的 secret。
+
+```bash
+kubectl get secret ecr-pull-secret -n <namespace_of_your_application>
+```
+
 ## 配置 Pipeline
 
 Pipeline的关键是 `Jenkinsfile`，它定义了整个 `CI/CD` 流程。通常对于 `staging`（预览环境）和 `production`（生产环境）有不同的流程。
