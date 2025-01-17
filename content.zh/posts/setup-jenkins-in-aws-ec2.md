@@ -262,24 +262,25 @@ spec:
 
 ### 关于 `imagePullSecrets`
 
-配置中看到到 `imagePullSecrets` 字段，是用于从 ECR 拉取镜像时的校验，需要提前创建，这非常重要。可使用以下命令：
+配置中看到到 `imagePullSecrets` 字段，是用于从让 `kubernetes` 使用 `docker` 从 `ECR` 拉取镜像时的校验，需要提前创建，这非常重要。可使用以下命令：
 
 ```bash
-kubectl create secret docker-registry ecr-pull-secret \
-    --docker-server=733089366385.dkr.ecr.ap-northeast-1.amazonaws.com \
-    --docker-username=AWS \
-    --docker-password=$(aws ecr get-login-password --region ap-northeast-1) \
+kubectl create secret generic regcred \
+    --from-file=.dockerconfigjson=<path/to/.docker/config.json> \
+    --type=kubernetes.io/dockerconfigjson \
     --namespace <namespace_of_your_application>
 ```
 
-> 其中 `ecr-pull-secret` 是一个自定义的名称，可以根据实际情况替换，但必须保证和 `deployment.yml` 中的一致。
+> 其中 `regcred` 是一个自定义的名称，可以根据实际情况替换，但必须保证和 `deployment.yml` 中的一致。
 > 
 > `--namespace` 必须和 `deployment.yml` 中的一致。
+> 
+> 参考：[官方文档](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials)
 
 检查创建好的 secret。
 
 ```bash
-kubectl get secret ecr-pull-secret -n <namespace_of_your_application>
+kubectl get secret regcred -n <namespace_of_your_application>
 ```
 
 ## 配置 Pipeline
