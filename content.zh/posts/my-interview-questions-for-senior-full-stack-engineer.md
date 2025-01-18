@@ -145,10 +145,10 @@ ACID是数据库事务的四个特性，保证数据库事务在并发和故障�
 
 隔离级别是数据库事务并发的一个概念，定义了事务之间的隔离程度。SQL标准定义了四个隔离级别：
 
-1. 读未提交（Read Uncommitted）
-2. 读已提交（Read Committed）
-3. 可重复读（Repeatable Read）
-4. 序列化（Serializable）
+1. 读未提交（`Read Uncommitted`）
+2. 读已提交（`Read Committed`）
+3. 可重复读（`Repeatable Read`）
+4. 序列化（`Serializable`）
 
 ### 并发异常
 
