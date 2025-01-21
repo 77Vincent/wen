@@ -262,7 +262,15 @@ spec:
 
 ### 关于 `imagePullSecrets`
 
-配置中看到到 `imagePullSecrets` 字段，是用于从让 `kubernetes` 使用 `docker` 从 `ECR` 拉取镜像时的校验，需要提前创建，这非常重要。可使用以下命令：
+配置中看到到 `imagePullSecrets` 字段，是用于从让 `kubernetes` 使用 `docker` 从 `ECR` 拉取镜像时的校验，需要提前创建，这非常重要。
+
+先让 Docker 登录到 ECR。
+
+```bash
+aws ecr get-login-password --region <your_aws_region> | docker login --username AWS --password-stdin <your_aws_account>.dkr.ecr.ap-northeast-1.amazonaws.com
+```
+
+然后根据已有的 `~/.docker/config.json` 文件为 `kubernetes` 创建 `secret`。
 
 ```bash
 kubectl create secret generic regcred \
@@ -282,6 +290,14 @@ kubectl create secret generic regcred \
 ```bash
 kubectl get secret regcred -n <namespace_of_your_application>
 ```
+
+删除现有的 secret 的命令：
+
+```bash
+kubectl delete secret <secret_name> -n <namespace_of_your_application>
+```
+
+> 以上命令或需周期性地执行，以保证 `kubernetes` 能够正常拉取镜像。
 
 ## 配置 Pipeline
 
