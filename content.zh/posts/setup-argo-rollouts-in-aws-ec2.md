@@ -1,5 +1,5 @@
 ---
-title: 在AWS EC2上集成Argo Rollouts实现Canary部署
+title: 用AWS EC2集成Argo Rollouts实现Canary部署
 date: 2025-01-23T02:01:58+05:30
 tags: [ computer-science, aws, cicd, argocd, argo-rollouts, kubernetes, gitops ]
 categories: study
