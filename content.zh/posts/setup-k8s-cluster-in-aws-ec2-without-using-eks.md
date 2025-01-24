@@ -272,6 +272,15 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
+### 移除 `taint`（可选）
+如果是单节点集群，那么 control-plane 节点也需要运行普通 Pod，即 argocd 相关 Pod。然而 control-plane 节点一般带有
+`node-role.kubernetes.io/control-plane` taint，这会导致普通 Pod 无法调度到 control-plane 节点上。
+这里提供用于测试的快速解决方案，即移除 control-plane 节点上的 taint，使其可以运行普通 Pod。
+
+```bash
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+```
+
 ## 安装 CNI 插件
 
 安装CNI网络插件，这里使用 `Flannel`。Flannel 是一种简单的 `Kubernetes` 网络解决方案。它会为每个 `Pod` 分配一个唯一的 `IP`
@@ -401,14 +410,6 @@ kubectl create namespace argocd
 
 ```bash
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-```
-
-如果是单节点集群，那么 control-plane 节点也需要运行普通 Pod，即 argocd 相关 Pod。然而 control-plane 节点一般带有
-`node-role.kubernetes.io/control-plane` taint，这会导致普通 Pod 无法调度到 control-plane 节点上。
-这里提供用于测试的快速解决方案，即移除 control-plane 节点上的 taint，使其可以运行普通 Pod。
-
-```bash
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 ```
 
 ### 查看相关 `Pod` 状态
