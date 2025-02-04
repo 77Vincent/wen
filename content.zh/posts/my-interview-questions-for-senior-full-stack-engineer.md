@@ -307,7 +307,7 @@ func main() {
 
 ### 算法
 
-#### 快速幂
+#### 快速幂（Exponentiation by squaring）
 
 快速幂是一种计算 \(a^b\) 的算法，时间复杂度是 \(O(\log b)\)。非常考察对位运算和二进制的理解。以 \(a^{13}\) 为例，二进制为
 `1101`。
@@ -334,9 +334,13 @@ $$
 ```go
 package main
 
-func Pow(a, b int) int {
+func Pow(a float64, b int) float64 {
+	if b < 0 {
+		a, b = 1/a, -b
+	}
+
 	// iterative method
-	res := 1
+	var res float64 = 1
 	for b > 0 {
 		if b&1 == 1 {
 			res *= a
@@ -349,6 +353,17 @@ func Pow(a, b int) int {
 
 ```
 
+考察情形：
+
+| a   | b   | res          |
+|-----|-----|--------------|
+| any | 0   | 1            |
+| 0   | any | 0            |
+| 2   | 10  | 1024         |
+| 2   | -10 | 0.0009765625 |
+
+> 实现方式有迭代法和递归法，迭代法优越。如果未实现 \(O(\log b)\) 的算法，则不合格。
+
 #### 快速排序
 
 快速排序是一种分治算法，时间复杂度是 \(O(n \log n)\)。以升序排序为例，步骤如下：
@@ -360,8 +375,8 @@ func Pow(a, b int) int {
 - VSZ (Virtual Set Size) 是进程虚拟内存的大小，包括代码段、数据段、堆和栈。
 - RSS (Resident Set Size) 是进程实际使用的物理内存大小，包括代码段、数据段和堆。
 
-| Metrics    | VSZ                                                                                   | RSS                                                              |
-|------------|---------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| Metrics        | VSZ                                                                                   | RSS                                                              |
+|----------------|---------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | **Definition** | Total virtual memory allocated to the process                                         | Actual physical memory (RAM) currently being used by the process |
 | **Scope**      | All virtual memory, including swapped memory, memory-mapped files, and shared memory	 | Only the pages of the process currently in physical RAM          |
 | **Size**       | Larger                                                                                | Smaller                                                          |
