@@ -49,7 +49,7 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 
 ### 默认网关？
 
-默认网关是一个网络设备，用于将数据包从一个网络发送到另一个网络。当设备要发送数据包到另一个网络时，它检查目标IP地址是否在同一子网内。
+默认网关（`Default Gateway`）是一个网络设备，用于将数据包从一个网络发送到另一个网络。当设备要发送数据包到另一个网络时，它检查目标IP地址是否在同一子网内。
 
 * 在，不需走网关，设备可直接通信。
 * 不在，将数据包发送到默认网关，由默认网关转发到目标网络。
@@ -58,7 +58,7 @@ canonicalUrl: https://wenstudy.com/posts/my-interview-questions-for-senior-full-
 
 ### NAT
 
-NAT（Network Address Translation）是一种将私有IP地址转换为公共IP地址的技术。在私有子网中，每个设备只有一个私有IP地址，无法直接与Internet通信。NAT通过将私有IP地址映射到公共IP地址。
+NAT（`Network Address Translation`）是一种将私有IP地址转换为公共IP地址的技术。在私有子网中，每个设备只有一个私有IP地址，无法直接与Internet通信。NAT通过将私有IP地址映射到公共IP地址。
 
 ### UDP VS TCP
 
@@ -132,7 +132,7 @@ Expires: 0
 
 ### ACID
 
-ACID是数据库事务的四个特性，保证数据库事务在并发和故障情况下的可靠性和一致性。
+`ACID` 是数据库事务的四个特性，保证数据库事务在并发和故障情况下的可靠性和一致性。
 
 | Term            | Explanation             | In one word |
 |-----------------|-------------------------|-------------|
@@ -198,13 +198,63 @@ ACID是数据库事务的四个特性，保证数据库事务在并发和故障�
 
 ### 竞态条件
 
-多个线程或进程并发执行，修改同一个变量时，由于执行顺序不确定，可能导致：
+竞态条件（`Race Condition`）是多个线程或进程并发执行时，由于执行顺序不确定，导致结果不一致的情况。
 
 1. 数据不一致，每次执行可能得到不同的结果。
 2. 死锁，或数据处于非法状态。
 3. 难以复现和调试。
 
+错误示例
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	result := 0
+	for i := 0; i < 10; i++ {
+		go func() {
+			result = i
+		}()
+	}
+	time.Sleep(time.Millisecond)
+	fmt.Println(result)
+}
+```
+
 > 重点是执行顺序不确定，而非总是错误，比如可能有时候按 1-2-3 顺序正确执行，有时候混乱。
+ 
+正确写法
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wg sync.WaitGroup
+
+func main() {
+	result := 0
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+        go func(i int) {
+            result = i
+            wg.Done()
+        }(i)
+		wg.Wait()
+	}
+    fmt.Println(result)
+}
+```
+
+> 重点在于同步化，保证顺序
 
 ### 设计模式
 
@@ -273,7 +323,7 @@ func Get() *Singleton {
 }
 ```
 
-#### 策略模式
+#### 策略模式（Strategy）
 
 策略模式是一种行为设计模式，定义一系列算法，将每个算法封装到独立的类中，并使它们可以互相替换。以下是Go语言的实现。
 
@@ -557,6 +607,10 @@ $$
 P50 和 P99 是什么？
 
 > P50 是中位数，即数据中位于中间位置的值。P99 是百分位数，即数据中位于前99%的值。
+
+### 逻辑
+
+在玩石头剪刀布的时候，你因为戴了手套，而只能出石头或者布，这时候你会怎么做？
 
 ## 开放问题
 
