@@ -160,6 +160,22 @@ ACID是数据库事务的四个特性，保证数据库事务在并发和故障�
 | **不可重复度** | 一个事务中，两次读取之间，另一个事务修改了数据，导致结果不一致    | 可重复读   |
 | **幻读**    | 一个事务中，两次读取之间，另一个事务插入/删除了数据，导致行数不一致 | 序列化    |
 
+### 索引
+
+#### 如何给巨大的热表添加索引？
+
+#### 什么时候应该使用索引？
+
+1. 需保证唯一性时，使用唯一索引。
+2. 
+
+### 数据库安全
+
+1. 将数据库放在私有子网中，只允许特定IP访问。
+2. 分离数据库和应用服务器的网络。
+3. 使用强密码，定期更换，最小曝光。
+4. 在传输和存储时加密数据。
+
 ## 开发
 
 ### 堆（Heap）
@@ -297,13 +313,17 @@ func (c *Context) Execute() {
 func main() {
 	context := &Context{}
 
-	context.SetStrategy(&StrategyA{})
-	context.Execute()
-
-	context.SetStrategy(&StrategyB{})
-	context.Execute()
+	if true {
+        context.SetStrategy(&StrategyA{})
+        context.Execute()
+    } else {
+        context.SetStrategy(&StrategyB{})
+        context.Execute()
+    }
 }
 ```
+
+> 调用许发生在运行时，可以动态切换策略，而不需要修改代码。
 
 ### 算法
 
@@ -396,30 +416,34 @@ ps -eo pid,%mem,vsz,rss,comm | sort -nk2 -r | head -n 10
 
 ## 架构
 
-### 可用区（AZ）是什么？
+### 云计算
+
+#### 可用区（AZ）是什么？
 
 可用区（Availability Zone）是一个独立的数据中心，通常位于同一地理区域内，但是物理上相互隔离。可用区之间有独立的电力、网络和冷却系统，确保一个可用区的故障不会影响其他可用区。
 
-### 什么是堡垒机？
+#### 什么是堡垒机？
 
 堡垒机（Bastion Host）是一种安全工具，用于管理和监控服务器的访问。用户通过堡垒机访问服务器，堡垒机记录用户的操作，提供审计和安全保障。
 
 > 堡垒机也叫跳板机。
 
-### 轮转调度（Round Robin）
+### 负载均衡
+
+#### 轮转调度（Round Robin）
 
 轮转调度是一种负载均衡算法，将请求依次分配给服务器列表中的每个服务器。例如，有三个服务器，请求依次分配给
 A、B、C、A、B、C、A、B、C...
 
 > 与此类似的算法还有加权轮询，根据服务器的负载情况，分配不同的权重。
 
-### 如何评价一个系统？
+### 评价一个系统
 
 四字诀：安全可靠，无廉价美。
 
 ![image of system-requirement pyramid](/images/aws-well-architected-framework/aws-well-architected-framework.png "system-requirement-pyramid")
 
-### 为什么用 CDN？
+### CDN
 
 CDN（Content Delivery Network）是一种分布式网络，用于缓存和分发静态资源，提高网站性能和用户体验。
 
@@ -430,7 +454,7 @@ CDN（Content Delivery Network）是一种分布式网络，用于缓存和分�
 
 > CDN 本质就是宏观层面的缓存。
 
-### DDoS 攻击
+### 网络安全
 
 #### 什么是 DDoS 攻击？
 
@@ -440,20 +464,13 @@ CDN（Content Delivery Network）是一种分布式网络，用于缓存和分�
 
 > 设置防火墙，限制访问频率，使用CDN，使用DDoS防护服务，使用IP黑名单，使用CAPTCHA验证。
 
-### 如何实现高可用
+### 高可用
 
 1. 多地区和多可用区部署。
 2. 应用服务器前部署负载均衡。
 3. workload自动缩扩容
 4. 防灾冗余，包括使用 passive-active，active-active 部署。
 5. 充分的监控和报警
-
-### 保障数据库安全
-
-1. 将数据库放在私有子网中，只允许特定IP访问。
-2. 分离数据库和应用服务器的网络。
-3. 使用强密码，定期更换，最小曝光。
-4. 在传输和存储时加密数据。
 
 ## 数学
 
@@ -551,3 +568,6 @@ P50 和 P99 是什么？
 4. 十年内的目标？
 5. 未来工程师的发展方向？
 6. 犯过的最大的错是什么
+
+## 参考
+1. [use-the-index-luke](https://use-the-index-luke.com/)
