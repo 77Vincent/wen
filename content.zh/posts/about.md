@@ -8,8 +8,8 @@ _build:
 
 ![WEN](/images/wen.jpg "image of WEN")
 
-- Born in 1990, Guilin 
-- Lived in Shanghai, now in Tokyo 
-- Majored in architect, then become a software engineer and architect through self-study
+- Born in 1990, China
+- Now living in Tokyo
+- Majored in architect, then became a software engineer
 - AWS certified solutions architect
 - A coffee, badminton, and travel lover
