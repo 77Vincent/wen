@@ -164,11 +164,11 @@ transactions.
 
 These three phenomena are database transaction concurrency problems caused by different isolation levels.
 
-| 现象        | 描述                                 | 所需隔离等级 |
-|-----------|------------------------------------|--------|
-| **脏独**    | 读取到未提交的数据                          | 读已提交   |
-| **不可重复度** | 一个事务中，两次读取之间，另一个事务修改了数据，导致结果不一致    | 可重复读   |
-| **幻读**    | 一个事务中，两次读取之间，另一个事务插入/删除了数据，导致行数不一致 | 序列化    |
+| Phenomenon            | Description                                                                                                                        | Isolation-level required |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
+| **Dirty Read**        | Read uncommitted transactions                                                                                                      | Read-Committed           |
+| **Unrepeatable Read** | The second read in one transaction yields a different result due to another concurrent committed update on the same row            | Repeatable Read          |
+| **Phantom Read**      | The second read in one transaction got a different number of results due to another concurrent committed insert/delete transaction | Serializable             |
 
 ### Database Security
 
@@ -514,11 +514,13 @@ ps -eo pid,%mem,vsz,rss,comm | sort -nk2 -r | head -n 10
 
 #### What is Availability Zone (AZ)?
 
-An `Availability Zone` is an isolated data center, usually located in the same geographical region but physically isolated so that a failure in one AZ does not affect another.
+An `Availability Zone` is an isolated data center, usually located in the same geographical region but physically
+isolated so that a failure in one AZ does not affect another.
 
 #### What is a bastion host?
 
-A `Bastion Host` is a security tool used to manage and monitor server access. Users access servers through the bastion host, which records user operations and provides auditing and security.
+A `Bastion Host` is a security tool used to manage and monitor server access. Users access servers through the bastion
+host, which records user operations and provides auditing and security.
 
 > A bastion host is also called a jump host.
 
@@ -526,20 +528,21 @@ A `Bastion Host` is a security tool used to manage and monitor server access. Us
 
 #### Round Robin
 
-`Round Robin` is a load balancing algorithm that distributes requests to each server in the server list in turn. For example, with three servers, requests are distributed to A, B, C, A, B, C, A, B, C... in turn.
+`Round Robin` is a load balancing algorithm that distributes requests to each server in the server list in turn. For
+example, with three servers, requests are distributed to A, B, C, A, B, C, A, B, C... in turn.
 
 > Similar algorithms include weighted round-robin, which distributes requests to servers based on server load.
 
 ### How to evaluate a system
 
 Four dimensions: security, reliability, performance, and cost.
-四字诀：安全可靠，无廉价美。
 
 ![image of system-requirement pyramid](/images/aws-well-architected-framework/aws-well-architected-framework.png "system-requirement-pyramid")
 
 ### CDN
 
-`CDN` (Content Delivery Network) is a distributed network used to cache and distribute static resources, improving website performance and user experience.
+`CDN` (Content Delivery Network) is a distributed network used to cache and distribute static resources, improving
+website performance and user experience.
 
 1. Reduce latency by placing resources closer to the client.
 2. Reduce the network bandwidth and load on the origin server.
@@ -552,11 +555,13 @@ Four dimensions: security, reliability, performance, and cost.
 
 #### What is a DDoS attack?
 
-`DDoS` (Distributed Denial of Service) is a network attack that uses distributed clients to generate a large number of requests, causing the target service to overload or trigger errors, making the service unavailable.
+`DDoS` (Distributed Denial of Service) is a network attack that uses distributed clients to generate a large number of
+requests, causing the target service to overload or trigger errors, making the service unavailable.
 
 #### How to prevent it?
 
-> Set up a firewall, limit access frequency, use a CDN, use DDoS protection services, use an IP blacklist, use CAPTCHA verification.
+> Set up a firewall, limit access frequency, use a CDN, use DDoS protection services, use an IP blacklist, use CAPTCHA
+> verification.
 
 ### High Availability
 
@@ -568,11 +573,13 @@ Four dimensions: security, reliability, performance, and cost.
 
 ## Mathematics
 
-Mainly test basic mathematical knowledge and the ability to solve problems on the spot. Having good mathematical skills is essential for excellent engineers!
+Mainly test basic mathematical knowledge and the ability to solve problems on the spot. Having good mathematical skills
+is essential for excellent engineers!
 
 ### Permutation and Combination
 
-There are 99 people in a room, every two of them will shake hands without duplication. How many handshakes are there in total?
+There are 99 people in a room, every two of them will shake hands without duplication. How many handshakes are there in
+total?
 
 $$
 C_n^m = \frac{n!}{m!(n-m)!}
@@ -582,11 +589,14 @@ $$
 C_{99}^2 = \frac{99!}{2!(99-2)!} = \frac{99*98}{2} = 99*49 = 4851
 $$
 
-> In a room with 99 people, the first person can shake hands with 98 people, the second person can shake hands with 97 people, and so on. Essentially, it is a permutation and combination of selecting 2 people from 99.
+> In a room with 99 people, the first person can shake hands with 98 people, the second person can shake hands with 97
+> people, and so on. Essentially, it is a permutation and combination of selecting 2 people from 99.
 
 ### Queue Theory
 
-In a bank, an average of 100 customers arrive randomly every hour, following a Poisson distribution. The average service time per customer is 100 milliseconds, and only one customer can be served at a time, with no queue. How many customers will be rejected on average in an hour?
+In a bank, an average of 100 customers arrive randomly every hour, following a Poisson distribution. The average service
+time per customer is 100 milliseconds, and only one customer can be served at a time, with no queue. How many customers
+will be rejected on average in an hour?
 
 $$
 \lambda （arrival rate） = \frac{1}{\text{interval of arrival}} = \frac{100}{3600} = \frac{1}{36}
@@ -604,9 +614,11 @@ $$
 \text{average number of denial within one hour} = \lambda * \rho = \frac{1}{360} * 100 = \frac{100}{360} = \frac{5}{18} = 0.2777
 $$
 
-> The M/M/1 queue is a basic queuing model, where M stands for exponential distribution of arrival and service rates, and 1 stands for only one service station.
+> The M/M/1 queue is a basic queuing model, where M stands for exponential distribution of arrival and service rates,
+> and 1 stands for only one service station.
 >
-> In the M/M/1 queue model, the rejection rate is equal to the utilization rate, as rejection will occur when the system is utilized.
+> In the M/M/1 queue model, the rejection rate is equal to the utilization rate, as rejection will occur when the system
+> is utilized.
 
 ### Discrete Mathematics
 
@@ -616,7 +628,9 @@ $$
 \log_2(n!) = \Theta(n \log n)
 $$
 
-Why? Sorting is essentially comparison, which can be represented by a decision tree. The depth of the decision tree is the number of comparisons in the worst case. For sorting \(n\) elements, there are \(n!\) permutations, so the number of leaf nodes in the decision tree is \(n!\), and the height is \(h\), satisfying:
+Why? Sorting is essentially comparison, which can be represented by a decision tree. The depth of the decision tree is
+the number of comparisons in the worst case. For sorting \(n\) elements, there are \(n!\) permutations, so the number of
+leaf nodes in the decision tree is \(n!\), and the height is \(h\), satisfying:
 
 $$
 2^h \geq n!
@@ -645,7 +659,6 @@ $$
 ### Statistics
 
 P50 and P99
-P50 和 P99 是什么？
 
 > P50 is the median, the value in the middle of the data. P99 is the percentile, the value in the top 1% of the data.
 
@@ -654,7 +667,8 @@ P50 和 P99 是什么？
 The following questions have no standard answers and test the interviewee's understanding and depth of their work area.
 
 1. What is your most commonly used programming language, and what are its advantages and disadvantages?
-2. In your last responsible project, how many lines of code were there? How many APIs? How many batch tasks? How many users? What was the maximum RPS?
+2. In your last responsible project, how many lines of code were there? How many APIs? How many batch tasks? How many
+   users? What was the maximum RPS?
 3. How do you persuade others and sell your ideas?
 4. What are your goals for the next ten years?
 5. What is the future development direction of engineers?
