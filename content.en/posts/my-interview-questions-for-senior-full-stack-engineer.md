@@ -136,6 +136,25 @@ Expires: 0
 2. Pragma `no-cache` means do not cache (HTTP/1.0).
 3. Expires set to 0 means expire immediately (HTTP/1.0).
 
+### CORS
+
+CORS (`Cross-Origin Resource Sharing`) is a security feature enforced by browsers to prevent malicious websites from
+making requests to another origin without permission. However, CORS does not affect server-to-server communication. The definition of the same origin is:
+
+1. Same protocol
+2. Same domain
+3. Same port
+
+
+Are these two URLs the same origin?
+
+```
+http://example.com
+http://sub.example.com
+```
+
+> No, because the domain is different although the root domain is the same `example.com`.
+
 ## Database
 
 ### ACID

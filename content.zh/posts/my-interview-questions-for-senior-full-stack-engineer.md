@@ -128,6 +128,23 @@ Expires: 0
 2. Pragma 中的 no-cache 表示不缓存。（HTTP/1.0）
 3. Expires 设置为 0 表示立即过期。（HTTP/1.0）
 
+### CORS
+
+CORS 跨域资源共享（`Cross-Origin Resource Sharing`）是一种机制，防止浏览器里的网页向另一个源发送请求。但是，CORS不影响服务器之间的通信。同源的定义是：
+
+1. 协议相同
+2. 域名相同
+3. 端口相同
+
+以下两个源是否同源？
+
+```
+http://example.com
+http://sub.example.com
+```
+
+> 不同源，因为域名不同，哪怕根域名相同（`example.com`）。
+
 ## 数据库
 
 ### ACID
