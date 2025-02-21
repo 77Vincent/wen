@@ -594,6 +594,94 @@ $$
 >
 > M/M/1 队列模型中，拒绝率等于利用率，因为利用时即为拒绝时。
 
+### 图论
+
+有一个项目，有以下依赖关系：
+
+```
+A: D
+B: A
+C: A, D
+D: (无)
+E: B, C
+```
+
+请问，如何安排任务的执行顺序？
+
+> 拓扑排序，即无环有向图（Directed Acyclic Graph）的排序。首先找到没有依赖的任务，然后删除这个任务，继续找没有依赖的任务，直到所有任务都被删除。
+>
+> 顺序为 D -> A -> B -> C -> E 或 D -> A -> C -> B -> E
+> 
+> B 和 C 可以并行执行，所以有两种顺序。
+
+实现算法，以 Go 为例：
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func topoSort(graph map[string][]string) []string {
+	// 1. 统计入度
+    indegree := make(map[string]int)
+    for node, deps := range graph {
+		indegree[node] = 0
+		
+        for _, dep := range deps {
+            indegree[dep]++
+        }
+    }
+
+	// 2. 找到入度为0的节点并加入队列
+    var queue []string
+    for node, degree := range indegree {
+        if degree == 0 {
+            queue = append(queue, node)
+        }
+    }
+
+	    
+	// 3. 遍历队列，逐个加入结果集，并更新入度表
+    var result []string
+    for len(queue) > 0 {
+        node := queue[0]
+        queue = queue[1:]
+        result = append(result, node)
+
+		// 4. 更新所有包含该节点的依赖的入度
+        for _, dep := range graph[node] {
+            indegree[dep]--
+            if indegree[dep] == 0 {
+				// 5. 如果出现新的0入度节点，立即加入队列
+                queue = append(queue, dep)
+            }
+        }
+    }
+
+	// 6. 如果结果集长度小于节点数，说明有环
+    if len(result) < len(graph) {
+        return nil
+    }
+    
+    return result
+}
+
+func main() {
+    graph := map[string][]string{
+        "A": {"D"},
+        "B": {"A"},
+        "C": {"A", "D"},
+        "D": {},
+        "E": {"B", "C"},
+    }
+
+    fmt.Println(topoSort(graph))
+	// Output: [E C B A D] 结果是倒序的
+}
+```
+
 ### 离散数学
 
 通用排序算法，即对数据没有任何假设的情况下，时间复杂度的下限是多少？

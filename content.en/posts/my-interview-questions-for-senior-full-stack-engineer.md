@@ -639,6 +639,94 @@ $$
 > In the M/M/1 queue model, the rejection rate is equal to the utilization rate, as rejection will occur when the system
 > is utilized.
 
+### Topology
+
+A project has the following dependencies:
+
+```
+A: D
+B: A
+C: A, D
+D: (no dependencies)
+E: B, C
+```
+
+How to arrange the execution order of tasks?
+
+> Topological sorting, i.e., sorting of a directed acyclic graph (DAG). First, find tasks without dependencies, then delete the task, continue to find tasks without dependencies, until all tasks are deleted.
+>
+> The order is: D -> A -> B -> C -> E OR D -> A -> C -> B -> E
+>
+> B and C can be parallel.
+
+Implement the algorithm in Go:
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func topoSort(graph map[string][]string) []string {
+	// 1. Count indegree
+    indegree := make(map[string]int)
+    for node, deps := range graph {
+		indegree[node] = 0
+		
+        for _, dep := range deps {
+            indegree[dep]++
+        }
+    }
+
+	// 2. Find nodes with 0 indegree and add them to the queue
+    var queue []string
+    for node, degree := range indegree {
+        if degree == 0 {
+            queue = append(queue, node)
+        }
+    }
+
+
+	// 3. Traverse the queue, add them to the result set one by one, and update the indegree table
+    var result []string
+    for len(queue) > 0 {
+        node := queue[0]
+        queue = queue[1:]
+        result = append(result, node)
+
+		// 4. Update the indegree of all dependencies containing the node
+        for _, dep := range graph[node] {
+            indegree[dep]--
+            if indegree[dep] == 0 {
+				// 5. If a new node with 0 indegree appears, add it to the queue immediately
+                queue = append(queue, dep)
+            }
+        }
+    }
+
+	// 6. If the length of the result set is less than the number of nodes, there is a cycle
+    if len(result) < len(graph) {
+        return nil
+    }
+    
+    return result
+}
+
+func main() {
+    graph := map[string][]string{
+        "A": {"D"},
+        "B": {"A"},
+        "C": {"A", "D"},
+        "D": {},
+        "E": {"B", "C"},
+    }
+
+    fmt.Println(topoSort(graph))
+	// Output: [E C B A D] 结果是倒序的
+}
+```
+
 ### Discrete Mathematics
 
 For a general sorting algorithm, what is the lower bound of the time complexity without any assumptions about the data?
