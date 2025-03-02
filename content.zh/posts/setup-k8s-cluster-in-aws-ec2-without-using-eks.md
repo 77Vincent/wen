@@ -505,6 +505,8 @@ argocd login <ARGOCD_SERVER> --username admin --password <YOUR_PASSWORD> --insec
 ```
 
 > `ARGOCD_SERVER` 是 `ArgoCD` 服务器的地址，`YOUR_PASSWORD` 是 `ArgoCD` 管理员的密码。
+> 
+> `ArgoCD` 的服务器地址可以通过 `kubectl get svc argocd-server -n argocd` 这个命令查看，选择其中的 `EXTERNAL-IP` 地址。
 >
 > `--insecure` 参数是因为 `ArgoCD` 默认使用自签名证书，而 `ArgoCD CLI` 可能拒绝与其通信。
 
