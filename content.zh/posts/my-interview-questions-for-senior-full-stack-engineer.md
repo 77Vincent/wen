@@ -502,6 +502,10 @@ ps -eo pid,%mem,vsz,rss,comm | sort -nk2 -r | head -n 10
 
 可用区（Availability Zone）是一个独立的数据中心，通常位于同一地理区域内，但是物理上相互隔离。可用区之间有独立的电力、网络和冷却系统，确保一个可用区的故障不会影响其他可用区。
 
+#### 流量速率限制
+
+流量速率限制是一种限制网络流量的技术，用于保护服务器免受过载攻击。例如，限制每个IP的请求速率，限制每个用户、每个服务的请求速率。
+
 #### 什么是堡垒机？
 
 堡垒机（Bastion Host）是一种安全工具，用于管理和监控服务器的访问。用户通过堡垒机访问服务器，堡垒机记录用户的操作，提供审计和安全保障。
@@ -612,74 +616,54 @@ E: B, C
 >
 > 顺序为 D -> A -> B -> C -> E 或 D -> A -> C -> B -> E
 > 
-> B 和 C 可以并行执行，所以有两种顺序。
+> B 和 C 可以并行执行。
 
-实现算法，以 Go 为例：
+实现算法，以 `Javascript` 为例：
 
-```go
-package main
+```js
+const input = {
+    A: ["D"], // A depends on D
+    B: ["A"],
+    C: ["A", "D"],
+    D: [],
+    E: ["B", "C"],
+}
 
-import (
-    "fmt"
-)
+const indegree = {} // a map to store the indegree of each task
+const queue = []    // queue stores the task that has no indegree (dependency)
+const result = []   // sorted result
 
-func topoSort(graph map[string][]string) []string {
-	// 1. 统计入度
-    indegree := make(map[string]int)
-    for node, deps := range graph {
-		indegree[node] = 0
-		
-        for _, dep := range deps {
-            indegree[dep]++
-        }
+// init indegree map
+for (const k in input) {
+    if (input[k].length) {
+        indegree[k] = input[k].length // length of dependencies is the indegree
+    } else {
+        queue.push(k) // if no dependencies, push to the queue
     }
+}
 
-	// 2. 找到入度为0的节点并加入队列
-    var queue []string
-    for node, degree := range indegree {
-        if degree == 0 {
-            queue = append(queue, node)
-        }
-    }
+// until the queue is empty
+while (queue.length) {
+    // take the earliest task from the queue
+    const el = queue[0]
 
-	    
-	// 3. 遍历队列，逐个加入结果集，并更新入度表
-    var result []string
-    for len(queue) > 0 {
-        node := queue[0]
-        queue = queue[1:]
-        result = append(result, node)
+    for (const k in input) {
+        if (input[k].includes(el)) {
+            indegree[k] -= 1
 
-		// 4. 更新所有包含该节点的依赖的入度
-        for _, dep := range graph[node] {
-            indegree[dep]--
-            if indegree[dep] == 0 {
-				// 5. 如果出现新的0入度节点，立即加入队列
-                queue = append(queue, dep)
+            if (indegree[k] === 0) {
+                queue.push(k)
             }
         }
     }
 
-	// 6. 如果结果集长度小于节点数，说明有环
-    if len(result) < len(graph) {
-        return nil
-    }
-    
-    return result
+    // push to the result
+    result.push(el)
+    // remove from the queue
+    queue.shift()
 }
 
-func main() {
-    graph := map[string][]string{
-        "A": {"D"},
-        "B": {"A"},
-        "C": {"A", "D"},
-        "D": {},
-        "E": {"B", "C"},
-    }
-
-    fmt.Println(topoSort(graph))
-	// Output: [E C B A D] 结果是倒序的
-}
+console.log(result) // ["D", "A", "B", "C", "E"]
 ```
 
 ### 离散数学

@@ -536,6 +536,10 @@ ps -eo pid,%mem,vsz,rss,comm | sort -nk2 -r | head -n 10
 An `Availability Zone` is an isolated data center, usually located in the same geographical region but physically
 isolated so that a failure in one AZ does not affect another.
 
+#### Rate limiting
+
+`Rate limiting` is a method of controlling the number of requests sent to a server within a certain period to prevent or mitigate the service overload caused by excessive requests.
+
 #### What is a bastion host?
 
 A `Bastion Host` is a security tool used to manage and monitor server access. Users access servers through the bastion
@@ -659,72 +663,52 @@ How to arrange the execution order of tasks?
 >
 > B and C can be parallel.
 
-Implement the algorithm in Go:
+Implementation in `JavaScript`:
 
-```go
-package main
+```javascript
+const input = {
+    A: ["D"], // A depends on D
+    B: ["A"],
+    C: ["A", "D"],
+    D: [],
+    E: ["B", "C"],
+}
 
-import (
-    "fmt"
-)
+const indegree = {} // a map to store the indegree of each task
+const queue = []    // queue stores the task that has no indegree (dependency)
+const result = []   // sorted result
 
-func topoSort(graph map[string][]string) []string {
-	// 1. Count indegree
-    indegree := make(map[string]int)
-    for node, deps := range graph {
-		indegree[node] = 0
-		
-        for _, dep := range deps {
-            indegree[dep]++
-        }
+// init indegree map
+for (const k in input) {
+    if (input[k].length) {
+        indegree[k] = input[k].length // length of dependencies is the indegree
+    } else {
+        queue.push(k) // if no dependencies, push to the queue
     }
+}
 
-	// 2. Find nodes with 0 indegree and add them to the queue
-    var queue []string
-    for node, degree := range indegree {
-        if degree == 0 {
-            queue = append(queue, node)
-        }
-    }
+// until the queue is empty
+while (queue.length) {
+    // take the earliest task from the queue
+    const el = queue[0]
 
+    for (const k in input) {
+        if (input[k].includes(el)) {
+            indegree[k] -= 1
 
-	// 3. Traverse the queue, add them to the result set one by one, and update the indegree table
-    var result []string
-    for len(queue) > 0 {
-        node := queue[0]
-        queue = queue[1:]
-        result = append(result, node)
-
-		// 4. Update the indegree of all dependencies containing the node
-        for _, dep := range graph[node] {
-            indegree[dep]--
-            if indegree[dep] == 0 {
-				// 5. If a new node with 0 indegree appears, add it to the queue immediately
-                queue = append(queue, dep)
+            if (indegree[k] === 0) {
+                queue.push(k)
             }
         }
     }
 
-	// 6. If the length of the result set is less than the number of nodes, there is a cycle
-    if len(result) < len(graph) {
-        return nil
-    }
-    
-    return result
+    // push to the result
+    result.push(el)
+    // remove from the queue
+    queue.shift()
 }
 
-func main() {
-    graph := map[string][]string{
-        "A": {"D"},
-        "B": {"A"},
-        "C": {"A", "D"},
-        "D": {},
-        "E": {"B", "C"},
-    }
-
-    fmt.Println(topoSort(graph))
-	// Output: [E C B A D] 结果是倒序的
-}
+console.log(result) // ["D", "A", "B", "C", "E"]
 ```
 
 ### Discrete Mathematics
