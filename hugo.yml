@@ -1,7 +1,7 @@
 baseURL: https://wenstudy.com
 title: WEN
 theme: hugo-book
-defaultContentLanguage: zh
+defaultContentLanguage: en
 ignoreLogs: ['warning-goldmark-raw-html']
 
 summaryLength: 6
