@@ -1,9 +1,9 @@
 ---
 title: 用AWS EC2集成Argo Rollouts实现Canary部署
 date: 2025-01-23T02:01:58+05:30
-tags: [ computer-science, aws, cicd, argocd, argo-rollouts, kubernetes, gitops ]
+tags: [ aws, cicd ]
 categories: study
-canonicalUrl: https://wenstudy.com/posts/setup-argo-rollouts-in-aws-ec2/
+canonicalUrl: https://wenstudy.com/posts/用AWS EC2集成Argo Rollouts实现Canary部署/
 ---
 
 上一篇：[用AWS EC2从零搭建Jenkins并实现GitOps CI/CD](/posts/setup-jenkins-in-aws-ec2/)

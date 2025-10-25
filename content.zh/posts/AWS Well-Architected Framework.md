@@ -1,10 +1,11 @@
 ---
 title: AWS Well-Architected Framework
 date: 2024-11-20T02:01:58+05:30
-tags: [ computer-science, aws ]
+tags: [ aws ]
 categories: study
 math: true
-canonicalUrl: https://wenstudy.com/posts/aws-well-architect-framework/
+draft: true
+canonicalUrl: https://wenstudy.com/posts/AWS Well-Architected Framework/
 ---
 
 要用AWS搭建一个优秀的系统，根据官方资料和一些第三方讲义，我把要义总结为四个需求八个字：

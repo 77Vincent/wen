@@ -1,9 +1,9 @@
 ---
 title: 用AWS EC2从零搭建Jenkins并实现GitOps CI/CD
 date: 2025-01-16T02:01:58+05:30
-tags: [ computer-science, aws, jenkins, argocd, cicd, gitops ]
+tags: [ aws, cicd ]
 categories: study
-canonicalUrl: https://wenstudy.com/posts/setup-jenkins-in-aws-ec2/
+canonicalUrl: https://wenstudy.com/posts/用AWS EC2从零搭建Jenkins并实现GitOps CICD/
 ---
 
 上一篇：[用AWS EC2从零搭建Kubernetes和ArgoCD](/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/)

@@ -1,9 +1,9 @@
 ---
 title: 在AWS Linux EC2上准备Docker
 date: 2024-11-20T02:01:58+05:30
-tags: [ computer-science, aws, kubernetes ]
+tags: [ aws, docker ]
 categories: study
-canonicalUrl: https://wenstudy.com/posts/managing-docker-on-aws-ec2/
+canonicalUrl: https://wenstudy.com/posts/在AWS Linux EC2上准备Docker/
 ---
 
 对于简单的容器化应用的部署，Docker 和 EC2 的搭配是最常见的选择。先创建EC2实例，这里使用 Amazon Linux 2 AMI，因此包管理器是 dnf。首先更新 dnf 包管理器。

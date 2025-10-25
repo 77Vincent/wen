@@ -1,9 +1,9 @@
 ---
 title: 用Golang理解几种设计模式
 date: 2023-10-29T02:01:58+05:30
-tags: [computer-science, golang]
+tags: [ golang ]
 categories: study 
-canonicalUrl: https://wenstudy.com/posts/explain-design-patterns-one-sentence/
+canonicalUrl: https://wenstudy.com/posts/用Golang理解几种设计模式/
 ---
 
 大部分模式都有一个共同点，那就是通过接口连接生产者和消费者。接口的抽象是关键，它反映了对底层类型的深刻理解。知道这一点可以简化事情，无论我们处理的是什么场景，或者使用的是什么语言。
