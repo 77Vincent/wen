@@ -3,6 +3,7 @@ title: 顾好自己，专注过程
 date: 2024-11-30T12:40:07+06:00
 tags: [ humanity, success ]
 categories: life
+draft: true
 canonicalUrl: https://wenstudy.com/posts/focus-on-your-business/
 ---
 

@@ -3,6 +3,7 @@ title: 随便写
 date: 2024-11-21T11:01:58+05:30
 tags: [ love ]
 categories: life
+draft: true
 canonicalUrl: https://wenstudy.com/posts/my-life-by-2024/
 ---
 
