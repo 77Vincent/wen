@@ -3,7 +3,7 @@ title: 一种处理 Golang 中链式通道的方法
 date: 2023-11-07T02:01:58+05:30
 tags: [computer-science, golang]
 categories: study 
-canonicalUrl: https://wenstudy.com/posts/a-pattern-for-handling-chained-channels-in-golang/
+canonicalUrl: https://wenstudy.com/posts/一种处理 Golang 中链式通道的方法/
 ---
 
 当使用通道来串行化任务时，我们因此创建了一个异步流。在异步编程中很容易搞砸，尤其是有额外的要求时，比如超时和取消。 真实世界的例子，是从文件读取器逐行读取数据，然后传递给另一个异步工作的文本解析器。
