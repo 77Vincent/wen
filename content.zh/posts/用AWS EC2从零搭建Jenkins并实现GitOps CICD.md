@@ -2,7 +2,7 @@
 title: 用AWS EC2从零搭建Jenkins并实现GitOps CI/CD
 date: 2025-01-16T02:01:58+05:30
 tags: [ aws, cicd ]
-categories: study
+categories: tech
 canonicalUrl: https://wenstudy.com/posts/用AWS EC2从零搭建Jenkins并实现GitOps CICD/
 ---
 

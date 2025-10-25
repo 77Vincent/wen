@@ -2,7 +2,7 @@
 title: 用AWS EC2从零搭建Kubernetes和ArgoCD
 date: 2025-01-10T02:01:58+05:30
 tags: [ aws, cicd ]
-categories: study
+categories: tech
 canonicalUrl: https://wenstudy.com/posts/用AWS EC2从零搭建Kubernetes和ArgoCD/
 ---
 

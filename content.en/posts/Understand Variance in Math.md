@@ -1,9 +1,9 @@
 ---
 title: Understand Variance in Math
 date: 2023-11-30T02:01:58+05:30
-tags: [ probability, statistics, math ]
-categories: study
-canonicalUrl: https://wenstudy.com/posts/en/understand-math-variance/
+tags: [ statistics, math ]
+categories: tech
+canonicalUrl: https://wenstudy.com/posts/en/Understand Variance in Math/
 math: true
 ---
 

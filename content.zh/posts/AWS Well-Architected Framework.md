@@ -2,7 +2,7 @@
 title: AWS Well-Architected Framework
 date: 2024-11-20T02:01:58+05:30
 tags: [ aws ]
-categories: study
+categories: tech
 math: true
 draft: true
 canonicalUrl: https://wenstudy.com/posts/AWS Well-Architected Framework/

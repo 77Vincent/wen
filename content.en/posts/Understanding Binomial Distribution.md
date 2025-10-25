@@ -1,9 +1,9 @@
 ---
 title: Understanding Binomial Distribution
 date: 2024-11-28T02:01:58+05:30
-tags: [ probability, statistics, math ]
+tags: [ statistics, math ]
 categories: study
-canonicalUrl: https://wenstudy.com/en/posts/binomial-distribution/
+canonicalUrl: https://wenstudy.com/en/posts/Understanding Binomial Distribution/
 math: true
 ---
 

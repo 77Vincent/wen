@@ -1,9 +1,9 @@
 ---
 title: Setup Kubernetes Cluster in AWS EC2 without using EKS
 date: 2025-01-10T02:01:58+05:30
-tags: [ computer-science, aws, kubernetes, argocd, cicd ]
+tags: [ aws, cicd ]
 categories: study
-canonicalUrl: https://wenstudy.com/en/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/
+canonicalUrl: https://wenstudy.com/en/posts/Setup Kubernetes Cluster in AWS EC2 without using EKS/
 ---
 
 The simplest way to implement a Kubernetes cluster on AWS is to use the EKS (Elastic Kubernetes Service) managed
