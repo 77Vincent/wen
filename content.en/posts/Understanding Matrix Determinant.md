@@ -1,9 +1,9 @@
 ---
 title: Understanding Matrix Determinant
 date: 2024-11-21T02:01:58+05:30
-tags: [ matrix, math ]
+tags: [ linear-algebra, math ]
 categories: study
-canonicalUrl: https://wenstudy.com/en/posts/matrix-determinant/
+canonicalUrl: https://wenstudy.com/en/posts/Understanding Matrix Determinant/
 math: true
 ---
 

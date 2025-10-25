@@ -1,9 +1,8 @@
 ---
 title: Do Not Be a Good Kid
 date: 2024-11-25T12:40:07+06:00
-tags: [ humanity ]
 categories: life
-canonicalUrl: https://wenstudy.com/en/posts/do-not-be-a-good-kid/
+canonicalUrl: https://wenstudy.com/en/posts/Do Not Be a Good Kid/
 ---
 
 In Chinese, there is a word "懂事" (dǒng shì), which means sensible, obedient, and mature.

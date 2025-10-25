@@ -2,7 +2,7 @@
 title: Understand Variance in Math
 date: 2023-11-30T02:01:58+05:30
 tags: [ statistics, math ]
-categories: tech
+categories: study
 canonicalUrl: https://wenstudy.com/posts/en/Understand Variance in Math/
 math: true
 ---

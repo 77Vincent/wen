@@ -1,9 +1,8 @@
 ---
 title: "Human Nature: To Be Utilized, Not Opposed"
 date: 2024-09-22T02:01:58+05:30
-tags: [humanity]
 categories: life 
-canonicalUrl: https://wenstudy.com/en/posts/humanity-and-rationalism/
+canonicalUrl: https://wenstudy.com/en/posts/Human Nature - To Be Utilized, Not Opposed/
 ---
 
 Human nature is something to be utilized, not resisted. Even apparent opposition is merely another form of leverage. This is akin to how we harness water, electricity, or coal—not by fighting their essence but by channelling their forces. Especially for adults, genuine change rarely stems from another’s will; it occurs only when profound pain disrupts their mental and physical state.

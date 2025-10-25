@@ -1,9 +1,9 @@
 ---
 title: Understanding Matrix Eigenvalues and Eigenvectors
 date: 2024-11-25T02:01:58+05:30
-tags: [ matrix, math ]
+tags: [ linear-algebra, math ]
 categories: study
-canonicalUrl: https://wenstudy.com/en/posts/matrix-eigenvalues-and-eigenvactors.md/
+canonicalUrl: https://wenstudy.com/en/posts/Understanding Matrix Eigenvalues and Eigenvectors/
 math: true
 ---
 

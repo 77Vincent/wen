@@ -1,9 +1,9 @@
 ---
 title: Understanding Matrix Multiplication
 date: 2024-03-18T02:01:58+05:30
-tags: [ matrix, math ]
+tags: [ linear-algebra, math ]
 categories: study
-canonicalUrl: https://wenstudy.com/en/posts/matrics-multiplication/
+canonicalUrl: https://wenstudy.com/en/posts/Understanding Matrix Multiplication/
 math: true
 ---
 

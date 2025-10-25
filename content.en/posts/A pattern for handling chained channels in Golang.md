@@ -1,9 +1,9 @@
 ---
 title: A pattern for handling chained channels in Golang
 date: 2023-11-07T02:01:58+05:30
-tags: [computer-science, golang, english]
+tags: [golang]
 categories: study 
-canonicalUrl: https://wenstudy.com/en/posts/a-pattern-for-handling-chained-channels-in-golang/
+canonicalUrl: https://wenstudy.com/en/posts/A pattern for handling chained channels in Golang/
 ---
 
 When we use channels to serialize tasks, we create an asynchronous flow. It is easy to mess things up in asynchronous programming, especially if we have additional requirements like timeout and cancelation.

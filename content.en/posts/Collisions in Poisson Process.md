@@ -4,7 +4,7 @@ date: 2024-11-12T02:01:58+05:30
 tags: [math, randomness]
 categories: study 
 math: true
-canonicalUrl: https://wenstudy.com/en/posts/poisson-process-collision-rate/
+canonicalUrl: https://wenstudy.com/en/posts/Collisions in Poisson Process/
 ---
 
 This is problem that you may encounter, and I found a simple way to calculate it. The result looks correct after comparing with the actual data.
