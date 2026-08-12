@@ -1,8 +1,6 @@
 ---
 title: Understanding Hamming Distance error detection and correction
 date: 2024-03-18T02:01:58+05:30
-tags: [math]
-categories: study 
 canonicalUrl: https://wenstudy.com/en/posts/Understanding Hamming Distance error detection and correction/
 ---
 

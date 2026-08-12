@@ -1,8 +1,6 @@
 ---
 title: Setup Kubernetes Cluster in AWS EC2 without using EKS
 date: 2025-01-10T02:01:58+05:30
-tags: [ aws, cicd ]
-categories: tech
 canonicalUrl: https://wenstudy.com/en/posts/Setup Kubernetes Cluster in AWS EC2 without using EKS/
 ---
 

@@ -1,8 +1,6 @@
 ---
 title: 在AWS Linux EC2上准备Docker
 date: 2024-11-20T02:01:58+05:30
-tags: [ aws, docker ]
-categories: study
 canonicalUrl: https://wenstudy.com/posts/在AWS Linux EC2上准备Docker/
 ---
 

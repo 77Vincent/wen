@@ -1,8 +1,6 @@
 ---
 title: 一种处理 Golang 中链式通道的方法
 date: 2023-11-07T02:01:58+05:30
-tags: [golang]
-categories: tech
 canonicalUrl: https://wenstudy.com/posts/一种处理 Golang 中链式通道的方法/
 ---
 

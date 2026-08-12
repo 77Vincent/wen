@@ -1,7 +1,6 @@
 ---
 title: Software Engineering Interview Questions
 date: 2025-01-01T02:01:58+05:30
-categories: tech
 math: true
 canonicalUrl: https://wenstudy.com/posts/en/Software Engineering Interview Questions/
 ---

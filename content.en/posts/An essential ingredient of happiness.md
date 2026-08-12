@@ -1,7 +1,6 @@
 ---
 title: An essential ingredient of happiness
 date: 2023-10-30T02:01:58+05:30
-categories: life
 canonicalUrl: https://wenstudy.com/en/posts/An essential ingredient of happiness/
 ---
 

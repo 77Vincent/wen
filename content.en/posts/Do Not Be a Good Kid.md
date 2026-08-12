@@ -1,7 +1,6 @@
 ---
 title: Do Not Be a Good Kid
 date: 2024-11-25T12:40:07+06:00
-categories: life
 canonicalUrl: https://wenstudy.com/en/posts/Do Not Be a Good Kid/
 ---
 

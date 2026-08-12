@@ -1,7 +1,6 @@
 ---
 title: "Human Nature: To Be Utilized, Not Opposed"
 date: 2024-09-22T02:01:58+05:30
-categories: life 
 canonicalUrl: https://wenstudy.com/en/posts/Human Nature - To Be Utilized, Not Opposed/
 ---
 

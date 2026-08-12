@@ -1,8 +1,6 @@
 ---
 title: Collisions in Poisson Process
 date: 2024-11-12T02:01:58+05:30
-tags: [math, randomness]
-categories: study 
 math: true
 canonicalUrl: https://wenstudy.com/en/posts/Collisions in Poisson Process/
 ---

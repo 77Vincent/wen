@@ -1,8 +1,6 @@
 ---
 title: A pattern for handling chained channels in Golang
 date: 2023-11-07T02:01:58+05:30
-tags: [golang]
-categories: study 
 canonicalUrl: https://wenstudy.com/en/posts/A pattern for handling chained channels in Golang/
 ---
 
