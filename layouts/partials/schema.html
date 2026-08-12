@@ -1,6 +1,6 @@
+{{ if eq .Section "posts" }}
 <script type="application/ld+json">
-    {{ if eq .Section "posts" }}
-    {
+  {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": {{ .Title }},
@@ -8,27 +8,29 @@
     "datePublished": {{ .PublishDate }},
     "dateModified": {{ .Lastmod }},
     "author": {
-    "@type": "Person",
-    "name": {{ .Site.Params.author }}
+      "@type": "Person",
+      "name": {{ .Site.Params.author }}
     },
     "mainEntityOfPage": { "@type": "WebPage" },
     "publisher": {
-    "@type": "Organization",
-    "name": {{ .Site.Params.header }},
-    "logo": {
-    "@type": "ImageObject",
-    "url": {{ .Site.Params.BookLogo }}
-    }
+      "@type": "Organization",
+      "name": {{ .Site.Params.header }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ .Site.Params.BookLogo }}
+      }
     },
-    "description": {{ .Summary | plainify | safeHTML }},
-    "keywords": [{{ range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}]
-    }
-    {{ end }}
-    {
+    "description": {{ .Summary | plainify | safeHTML }}
+  }
+</script>
+{{ end }}
+
+<script type="application/ld+json">
+  {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": {{ .Site.Params.header }},
     "url": {{ .Site.BaseURL }},
     "sameAs": []
-    }
+  }
 </script>

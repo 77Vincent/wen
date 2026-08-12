@@ -4,7 +4,7 @@ date: 2025-01-23T02:01:58+05:30
 canonicalUrl: https://wenstudy.com/posts/用AWS EC2集成Argo Rollouts实现Canary部署/
 ---
 
-上一篇：[用AWS EC2从零搭建Jenkins并实现GitOps CI/CD](/posts/setup-jenkins-in-aws-ec2/)
+上一篇：[用AWS EC2从零搭建Jenkins并实现GitOps CI/CD](/posts/用aws-ec2从零搭建jenkins并实现gitops-cicd/)
 
 在上一篇里，我们在 `AWS EC2` 上从无到有，搭建了 `Jenkins` 并结合 `ArgoCD` 实现了一个 `GitOps CI/CD` 工作流。
 然而 `ArgoCD` 本身只具备基础的滚动部署（`rolling update`），对于 `Canary` 部署支持并不友好。要实现全自动、智能化、省心的

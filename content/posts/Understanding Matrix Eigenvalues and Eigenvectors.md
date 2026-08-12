@@ -1,7 +1,7 @@
 ---
 title: Understanding Matrix Eigenvalues and Eigenvectors
 date: 2024-11-25T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/en/posts/Understanding Matrix Eigenvalues and Eigenvectors/
+canonicalUrl: https://wenstudy.com/posts/Understanding Matrix Eigenvalues and Eigenvectors/
 math: true
 ---
 
@@ -10,7 +10,7 @@ The fundamental property of a matrix is the transformation space, so _eigenvalue
 <!-- more -->
 ![image of matrix-eigen](/images/matrix-eigenvalues-and-eigenvectors/matrix-eigen.png "matrix-eigen")
 
-Pre-requisite: [Understanding Matrix Determinant](/en/posts/matrix-determinant/)
+Pre-requisite: [Understanding Matrix Determinant](/posts/understanding-matrix-determinant/)
 
 ## Meaning
 An eigenvector is a non-zero vector \(v\) whose direction remains unchanged after being transformed by matrix \(A\), only elongated or shortened, and the scaling factor \(\lambda\) is the eigenvalue.

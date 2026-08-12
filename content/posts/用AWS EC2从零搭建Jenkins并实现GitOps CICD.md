@@ -4,7 +4,7 @@ date: 2025-01-16T02:01:58+05:30
 canonicalUrl: https://wenstudy.com/posts/用AWS EC2从零搭建Jenkins并实现GitOps CICD/
 ---
 
-上一篇：[用AWS EC2从零搭建Kubernetes和ArgoCD](/posts/setup-k8s-cluster-in-aws-ec2-without-using-eks/)
+上一篇：[用AWS EC2从零搭建Kubernetes和ArgoCD](/posts/用aws-ec2从零搭建kubernetes和argocd/)
 
 前一篇里，我们在 `AWS EC2` 上从无到有，搭建了 `Kubernetes` 集群和 `ArgoCD`。因为终究缺少 `CI` 环境以实现真正的实时持续集成，这一篇将手把手，在
 `AWS EC2` 上搭建 `Jenkins` 实现一个 `GitOps CI/CD` 工作流。
@@ -55,7 +55,7 @@ sudo usermod -aG docker $USER
 
 > 为了避免每次使用 `docker` 命令都需要 `sudo`，将当前用户添加到 `docker` 用户组。
 >
-> 参考：[在AWS Linux EC2上准备Docker](/posts/managing-docker-on-aws-ec2/)
+> 参考：[在AWS Linux EC2上准备Docker](/posts/在aws-linux-ec2上准备docker/)
 
 ### 安装 `Java`
 

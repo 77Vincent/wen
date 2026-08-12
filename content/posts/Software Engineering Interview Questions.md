@@ -2,7 +2,7 @@
 title: Software Engineering Interview Questions
 date: 2025-01-01T02:01:58+05:30
 math: true
-canonicalUrl: https://wenstudy.com/posts/en/Software Engineering Interview Questions/
+canonicalUrl: https://wenstudy.com/posts/Software Engineering Interview Questions/
 ---
 
 Here is a list of interview questions for senior full-stack engineers, covering basic knowledge, front-end, back-end,

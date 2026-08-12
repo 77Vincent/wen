@@ -1,7 +1,7 @@
 ---
 title: An essential ingredient of happiness
 date: 2023-10-30T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/en/posts/An essential ingredient of happiness/
+canonicalUrl: https://wenstudy.com/posts/An essential ingredient of happiness/
 ---
 
 For some people, losing possibilities or choices in their lives, or having a heartfelt acceptance of fate, can be quite distasteful. It is best to always be in a state with infinite opportunities. Otherwise, surprisingly, they feel unsafe.

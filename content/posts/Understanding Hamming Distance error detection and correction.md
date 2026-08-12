@@ -1,7 +1,7 @@
 ---
 title: Understanding Hamming Distance error detection and correction
 date: 2024-03-18T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/en/posts/Understanding Hamming Distance error detection and correction/
+canonicalUrl: https://wenstudy.com/posts/Understanding Hamming Distance error detection and correction/
 ---
 
 With a coding scheme where the minimum hamming distance between two valid codewords is m, it can detect r-bit errors at most when

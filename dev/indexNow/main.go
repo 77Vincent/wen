@@ -19,7 +19,6 @@ var (
 		"keyLocation": "https://wenstudy.com/d1b801009c857fd452e1f9086f9b567e.txt",
 		"urlList": []string{
 			"https://wenstudy.com",
-			"https://wenstudy.com/en/",
 		},
 	}
 )

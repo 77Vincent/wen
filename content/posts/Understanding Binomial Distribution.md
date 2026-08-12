@@ -1,7 +1,7 @@
 ---
 title: Understanding Binomial Distribution
 date: 2024-11-28T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/en/posts/Understanding Binomial Distribution/
+canonicalUrl: https://wenstudy.com/posts/Understanding Binomial Distribution/
 math: true
 ---
 
@@ -89,7 +89,7 @@ $$
 Var(X) = E[(X - E[X])^2]
 $$
 
-When expanded, we get the following formula, which is easier to derive the variance of the binomial distribution. (See previous: [Understanding Variance](/posts/understand-math-variance/))
+When expanded, we get the following formula, which is easier to derive the variance of the binomial distribution. (See previous: [Understanding Variance](/posts/understand-variance-in-math/))
 
 $$
 Var(X) = E(X^2) - E(X)^2

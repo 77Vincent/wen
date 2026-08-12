@@ -519,4 +519,4 @@ argocd app list
 由于 `ArgoCD` 其实只负责 `CD`部分（显而易见），应用的打包构建还是没有被自动化。尤其对于预览和测试环境来说，我们通常希望拥有实时的构建和部署。因此我们还是需要搭建
 `CI` 环境。
 
-请参见下一篇：[用AWS EC2从零搭建Jenkins](/posts/setup-jenkins-in-aws-ec2)
+请参见下一篇：[用AWS EC2从零搭建Jenkins](/posts/用aws-ec2从零搭建jenkins并实现gitops-cicd/)

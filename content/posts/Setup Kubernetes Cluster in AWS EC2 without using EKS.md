@@ -1,7 +1,7 @@
 ---
 title: Setup Kubernetes Cluster in AWS EC2 without using EKS
 date: 2025-01-10T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/en/posts/Setup Kubernetes Cluster in AWS EC2 without using EKS/
+canonicalUrl: https://wenstudy.com/posts/Setup Kubernetes Cluster in AWS EC2 without using EKS/
 ---
 
 The simplest way to implement a Kubernetes cluster on AWS is to use the EKS (Elastic Kubernetes Service) managed
@@ -517,4 +517,4 @@ So far, the deployment and integration of `Kubernetes` and `ArgoCD` have been co
 
 Because `ArgoCD` is only responsible for the `CD` part (obviously), the application packaging and building are still not automated. Especially for preview and test environments, we usually want to have real-time builds and deployments. Therefore, we still need to build a `CI` environment.
 
-Please refer to the next post: [Setup Jenkins in AWS EC2](/posts/setup-jenkins-in-aws-ec2) for the deployment of `Jenkins` in `AWS EC2`.
+Please refer to the next post: [Setup Jenkins in AWS EC2](/posts/用aws-ec2从零搭建jenkins并实现gitops-cicd/) for the deployment of `Jenkins` in `AWS EC2`.

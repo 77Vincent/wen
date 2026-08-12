@@ -1,7 +1,7 @@
 ---
 title: Understand Variance in Math
 date: 2023-11-30T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/posts/en/Understand Variance in Math/
+canonicalUrl: https://wenstudy.com/posts/Understand Variance in Math/
 math: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Understanding Matrix Multiplication
 date: 2024-03-18T02:01:58+05:30
-canonicalUrl: https://wenstudy.com/en/posts/Understanding Matrix Multiplication/
+canonicalUrl: https://wenstudy.com/posts/Understanding Matrix Multiplication/
 math: true
 ---
 
@@ -264,4 +264,4 @@ AB = f_A(f_B(x))
 $$
 
 ---
-Next：[Understanding Matrix Determinant](/en/posts/matrix-determinant/)
+Next：[Understanding Matrix Determinant](/posts/understanding-matrix-determinant/)

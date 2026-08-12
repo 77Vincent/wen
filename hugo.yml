@@ -1,25 +1,12 @@
 baseURL: https://wenstudy.com
 title: WEN
 theme: hugo-book
-defaultContentLanguage: en
+locale: und
+disableKinds: [taxonomy, term]
 ignoreLogs: ['warning-goldmark-raw-html']
 
 summaryLength: 6
 enableRobotsTXT: true
-
-# Multi-lingual mode config
-# There are different options to translate files
-# See https://gohugo.io/content-management/multilingual/#translation-by-filename
-# And https://gohugo.io/content-management/multilingual/#translation-by-content-directory
-languages:
-  zh:
-    languageName: Chinese
-    contentDir: content.zh
-    weight: 1
-  en:
-    languageName: English
-    contentDir: content.en
-    weight: 2
 
 markup:
   goldmark:

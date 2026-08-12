@@ -1,5 +1,5 @@
 run:
-	hugo serve
+	hugo serve --cleanDestinationDir
 
 deploy:
 	rm -rf public && hugo build && hugo deploy
