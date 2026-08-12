@@ -28,8 +28,6 @@
         {{ partial "docs/inject/footer" . }}
       </footer>
 
-      {{ template "comments" . }} <!-- Comments block -->
-
       <label for="menu-control" class="hidden book-menu-overlay"></label>
     </div>
 
@@ -62,14 +60,6 @@
 
 {{ define "footer" }}
   {{ partial "docs/footer" . }}
-{{ end }}
-
-{{ define "comments" }}
-  {{ if and .Content (default true (default .Site.Params.BookComments .Params.BookComments)) }}
-  <div class="book-comments">
-    {{- partial "docs/comments" . -}}
-  </div>
-  {{ end }}
 {{ end }}
 
 {{ define "main" }}
