@@ -5,7 +5,7 @@ locale: und
 disableKinds: [taxonomy, term]
 ignoreLogs: ['warning-goldmark-raw-html']
 
-summaryLength: 6
+summaryLength: 4
 enableRobotsTXT: true
 
 markup:
