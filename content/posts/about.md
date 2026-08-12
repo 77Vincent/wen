@@ -6,8 +6,9 @@ build:
   list: never
 ---
 
-![WEN](/images/wen.jpg "image of WEN")
+- 出生在桂林，定居在上海，旅居于东京。
+- 曾学过建筑，没学好。
+- 写过一些程序，对数理逻辑甚有兴趣。
+- 偶尔打球，热爱驾驶，每天一杯咖啡。
 
-- Born in China, living in Tokyo
-- Majored in architect, then became another kind of architect
-- A coffee, badminton, and travel lover
+![WEN](/images/wen.jpg "image of WEN")
