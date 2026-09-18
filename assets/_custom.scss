@@ -33,6 +33,10 @@ mjx-container {
   mjx-math {
     font-size: 1.25rem;
   }
+
+  mjx-mtr + mjx-mtr mjx-mtd {
+    padding-top: 0.75em !important;
+  }
 }
 
 h1.book-brand {
